@@ -1,5 +1,4 @@
-const { triggerAsyncId } = require('async_hooks');
-const { client } = require('.');
+const client = require('./client');
 
 const dropTables = async () => {
   try {
@@ -23,10 +22,6 @@ const buildTables = async () => {
     console.log('Building tables...');
 
     await client.query(`
-        CREATE TABLE types (
-            id SERIAL PRIMARY KEY,
-            name VARCHAR(100) UNIQUE NOT NULL
-        );
 
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
@@ -38,24 +33,29 @@ const buildTables = async () => {
             email VARCHAR(100) UNIQUE NOT NULL
         );
 
+        CREATE TABLE types (
+          id SERIAL PRIMARY KEY,
+          name VARCHAR(100) UNIQUE NOT NULL
+      );
+
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) UNIQUE NOT NULL,
             description VARCHAR(255) NOT NULL,
-            type REFERENCES types(id),
+            type INTEGER REFERENCES types(id),
             price INTEGER NOT NULL
         );
 
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
-            "userId" REFERENCES users(id),
-            "isOpen" BOOLEAN DEFAULT true,
+            "userId" INTEGER REFERENCES users(id),
+            "isOpen" BOOLEAN DEFAULT true
         );
 
         CREATE TABLE orderproducts (
             id SERIAL PRIMARY KEY,
-            "orderId" REFERENCES orders(id),
-            "productId" REFERENCES products(id),
+            "orderId" INTEGER REFERENCES orders(id),
+            "productId" INTEGER REFERENCES products(id),
             quantity INTEGER NOT NULL
         );
     `);
@@ -70,27 +70,66 @@ const createInitialUsers = async () => {
 
   try {
     const usersToCreate = [
-      { username: 'ATown2021', password: 'ATown2021', isAdmin: true, firstName: 'Aaron', lastName: 'Sexton', email: 'aaronsexton5@gmail.com'},
-      { username: 'jstaff123', password: 'FullStack', isAdmin: true, firstName: 'Jerrod', lastName: 'Stafford', email: 'jerrodstafford10@gmail.com' },
-      { username: 'T-Rey2020', password: 'FullStack', isAdmin: true, firstName: 'Trey', lastName: 'Byars', email: 'treybyars93@gmail.com'},
-      { username: 'nadia', password: 'gamergirl20', isAdmin: true, firstName: 'Nadia', lastName: 'DuBell', email: 'ndubell01@gmail.com'}
+      {
+        username: 'ATown2021',
+        password: 'ATown2021',
+        isAdmin: true,
+        firstName: 'Aaron',
+        lastName: 'Sexton',
+        email: 'aaronsexton5@gmail.com',
+      },
+      {
+        username: 'jstaff123',
+        password: 'FullStack',
+        isAdmin: true,
+        firstName: 'Jerrod',
+        lastName: 'Stafford',
+        email: 'jerrodstafford10@gmail.com',
+      },
+      {
+        username: 'T-Rey2020',
+        password: 'FullStack',
+        isAdmin: true,
+        firstName: 'Trey',
+        lastName: 'Byars',
+        email: 'treybyars93@gmail.com',
+      },
+      {
+        username: 'nadia',
+        password: 'gamergirl20',
+        isAdmin: true,
+        firstName: 'Nadia',
+        lastName: 'DuBell',
+        email: 'ndubell01@gmail.com',
+      },
     ];
 
-      const users = [];
+    const users = [];
 
-      for (const user of usersToCreate) {
-        users.push(await createUser(user));
-      }
+    for (const user of usersToCreate) {
+      users.push(await createUser(user));
+    }
 
-      console.log('Users created:');
-      console.log(users);
-      console.log('Finished creating users!');
+    console.log('Users created:');
+    console.log(users);
+    console.log('Finished creating users!');
   } catch (error) {
     console.log('Error creating initial users');
     throw error;
   }
 };
 
-const createInitialProducts = 
+const createInitialProducts = async () => {};
 
+const rebuildDB = async () => {
+  try {
+    await dropTables();
+    await buildTables();
+    await createInitialUsers();
+  } catch (error) {
+    console.log('Error during rebuildDB');
+    throw error;
+  }
+};
 
+module.exports = { rebuildDB };
