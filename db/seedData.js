@@ -1,4 +1,5 @@
 const client = require('./client');
+const { createUser } = require('./');
 
 const dropTables = async () => {
   try {
@@ -22,15 +23,16 @@ const buildTables = async () => {
     console.log('Building tables...');
 
     await client.query(`
-
+    
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
-            username VARCHAR(50) UNIQUE NOT NULL,
-            password VARCHAR(50) NOT NULL,
+            username VARCHAR(50) NOT NULL,
+            password VARCHAR(255) NOT NULL,
             "isAdmin" BOOLEAN DEFAULT false,
             "firstName" VARCHAR(50) NOT NULL,
             "lastName" VARCHAR(50) NOT NULL,
-            email VARCHAR(100) UNIQUE NOT NULL
+            email VARCHAR(100) NOT NULL,
+            UNIQUE(username, email)
         );
 
         CREATE TABLE breeds (
@@ -43,7 +45,7 @@ const buildTables = async () => {
             name VARCHAR(100) UNIQUE NOT NULL,
             description VARCHAR(255) NOT NULL,
             breed INTEGER REFERENCES breeds(id),
-            price INTEGER NOT NULL
+            price DECIMAL NOT NULL
         );
 
         CREATE TABLE orders (
@@ -136,7 +138,7 @@ const createInitialBreed = async () => {
     const breeds = [];
 
     for (const breed of breedsToCreate) {
-      breeds.push(await createInitialBreed(breed));
+      breeds.push(await createBreed(breed));
     }
     console.log('Breeds created:');
     console.log(breeds);
@@ -147,7 +149,62 @@ const createInitialBreed = async () => {
   }
 };
 
-const createInitialProducts = async () => {};
+const createInitialProducts = async () => {
+  console.log('Creating initial products...');
+
+  try {
+    const productsToCreate = [
+      {
+        name: 'Breyer Horse',
+        description: "It's beautiful",
+        breed: 1,
+        price: 5000,
+      },
+      {
+        name: 'Horse drinking from stream',
+        description: "It's thirsty",
+        breed: 2,
+        price: 10,
+      },
+      {
+        name: 'Miniature Model Horse',
+        description: "It's small",
+        breed: 3,
+        price: 25,
+      },
+      {
+        name: 'Bucking Bronco',
+        description: "It's angry",
+        breed: 4,
+        price: 50,
+      },
+      {
+        name: 'Prancing Palomino',
+        description: "It's fancy",
+        breed: 5,
+        price: 100,
+      },
+      {
+        name: 'Lil Sebastian',
+        description: "It's a Parks & Rec reference",
+        breed: 6,
+        price: 150,
+      },
+    ];
+
+    const products = [];
+
+    for (const product of productsToCreate) {
+      products.push(await createProduct(product));
+    }
+    console.log('Products created:');
+    console.log(products);
+    console.log('Finished creating products!');
+  } catch (error) {
+    console.log('Error creating initial products');
+    throw error;
+  }
+};
 
 const rebuildDB = async () => {
   try {
