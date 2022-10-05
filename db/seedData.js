@@ -7,7 +7,7 @@ const dropTables = async () => {
     await client.query(`
             DROP TABLE IF EXISTS orderproducts;
             DROP TABLE IF EXISTS orders;
-            DROP TABLE IF EXISTS types;
+            DROP TABLE IF EXISTS breeds;
             DROP TABLE IF EXISTS products;
             DROP TABLE IF EXISTS users;
         `);
@@ -33,7 +33,7 @@ const buildTables = async () => {
             email VARCHAR(100) UNIQUE NOT NULL
         );
 
-        CREATE TABLE types (
+        CREATE TABLE breeds (
           id SERIAL PRIMARY KEY,
           name VARCHAR(100) UNIQUE NOT NULL
       );
@@ -42,7 +42,7 @@ const buildTables = async () => {
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) UNIQUE NOT NULL,
             description VARCHAR(255) NOT NULL,
-            type INTEGER REFERENCES types(id),
+            breed INTEGER REFERENCES breeds(id),
             price INTEGER NOT NULL
         );
 
@@ -115,6 +115,34 @@ const createInitialUsers = async () => {
     console.log('Finished creating users!');
   } catch (error) {
     console.log('Error creating initial users');
+    throw error;
+  }
+};
+
+const createInitialBreed = async () => {
+  console.log('Creating initial types...');
+  try {
+    const breedsToCreate = [
+      { name: 'Thoroughbred' },
+      { name: 'Friesian' },
+      { name: 'American Quarter' },
+      { name: 'Akhal-Teke' },
+      { name: 'Arabian' },
+      { name: 'Lipizzan' },
+      { name: 'Palomino' },
+      { name: 'Clydesdale' },
+    ];
+
+    const breeds = [];
+
+    for (const breed of breedsToCreate) {
+      breeds.push(await createInitialBreed(breed));
+    }
+    console.log('Breeds created:');
+    console.log(breeds);
+    console.log('Finished creating breeds!');
+  } catch (error) {
+    console.log('Error creating initial types');
     throw error;
   }
 };
