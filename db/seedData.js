@@ -8,9 +8,9 @@ const dropTables = async () => {
     await client.query(`
             DROP TABLE IF EXISTS orderproducts;
             DROP TABLE IF EXISTS orders;
+            DROP TABLE IF EXISTS breeds;
             DROP TABLE IF EXISTS products;
             DROP TABLE IF EXISTS users;
-            DROP TABLE IF EXISTS types;
         `);
   } catch (error) {
     console.log('Error dropping tables');
@@ -24,11 +24,6 @@ const buildTables = async () => {
 
     await client.query(`
     
-        CREATE TABLE types (
-              id SERIAL PRIMARY KEY,
-              name VARCHAR(100) UNIQUE NOT NULL
-        );
-
         CREATE TABLE users (
             id SERIAL PRIMARY KEY,
             username VARCHAR(50) NOT NULL,
@@ -40,12 +35,17 @@ const buildTables = async () => {
             UNIQUE(username, email)
         );
 
+        CREATE TABLE breeds (
+          id SERIAL PRIMARY KEY,
+          name VARCHAR(100) UNIQUE NOT NULL
+      );
+
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) UNIQUE NOT NULL,
             description VARCHAR(255) NOT NULL,
-            type INTEGER REFERENCES types(id),
-            price INTEGER NOT NULL
+            breed INTEGER REFERENCES breeds(id),
+            price DECIMAL NOT NULL
         );
 
         CREATE TABLE orders (
@@ -121,7 +121,90 @@ const createInitialUsers = async () => {
   }
 };
 
-// const createInitialProducts = async () => {};
+const createInitialBreed = async () => {
+  console.log('Creating initial types...');
+  try {
+    const breedsToCreate = [
+      { name: 'Thoroughbred' },
+      { name: 'Friesian' },
+      { name: 'American Quarter' },
+      { name: 'Akhal-Teke' },
+      { name: 'Arabian' },
+      { name: 'Lipizzan' },
+      { name: 'Palomino' },
+      { name: 'Clydesdale' },
+    ];
+
+    const breeds = [];
+
+    for (const breed of breedsToCreate) {
+      breeds.push(await createBreed(breed));
+    }
+    console.log('Breeds created:');
+    console.log(breeds);
+    console.log('Finished creating breeds!');
+  } catch (error) {
+    console.log('Error creating initial types');
+    throw error;
+  }
+};
+
+const createInitialProducts = async () => {
+  console.log('Creating initial products...');
+
+  try {
+    const productsToCreate = [
+      {
+        name: 'Breyer Horse',
+        description: "It's beautiful",
+        breed: 1,
+        price: 5000,
+      },
+      {
+        name: 'Horse drinking from stream',
+        description: "It's thirsty",
+        breed: 2,
+        price: 10,
+      },
+      {
+        name: 'Miniature Model Horse',
+        description: "It's small",
+        breed: 3,
+        price: 25,
+      },
+      {
+        name: 'Bucking Bronco',
+        description: "It's angry",
+        breed: 4,
+        price: 50,
+      },
+      {
+        name: 'Prancing Palomino',
+        description: "It's fancy",
+        breed: 5,
+        price: 100,
+      },
+      {
+        name: 'Lil Sebastian',
+        description: "It's a Parks & Rec reference",
+        breed: 6,
+        price: 150,
+      },
+    ];
+
+    const products = [];
+
+    for (const product of productsToCreate) {
+      products.push(await createProduct(product));
+    }
+    console.log('Products created:');
+    console.log(products);
+    console.log('Finished creating products!');
+  } catch (error) {
+    console.log('Error creating initial products');
+    throw error;
+  }
+};
 
 const rebuildDB = async () => {
   try {
