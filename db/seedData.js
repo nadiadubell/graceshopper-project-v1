@@ -1,7 +1,10 @@
 const client = require('./client');
-const { createUser } = require('./users');
-const { createBreed } = require('./breeds');
-const { createProduct } = require('./products');
+
+const { createUser, updateUser } = require('./users');
+const { createBreed, updateBreed } = require('./breeds');
+const { createProduct, updateProduct } = require('./products');
+const { createOrder } = require('./orders');
+const { createOrderProduct } = require('./order_products');
 
 const dropTables = async () => {
   try {
@@ -60,7 +63,8 @@ const buildTables = async () => {
             id SERIAL PRIMARY KEY,
             "orderId" INTEGER REFERENCES orders(id),
             "productId" INTEGER REFERENCES products(id),
-            quantity INTEGER NOT NULL
+            quantity INTEGER NOT NULL,
+            CONSTRAINT UC_OrderProducts UNIQUE ("orderId", "productId")
         );
     `);
   } catch (error) {
@@ -76,7 +80,7 @@ const createInitialUsers = async () => {
     const usersToCreate = [
       {
         username: 'ATown2021',
-        password: 'ATown2021',
+        password: 'FullStack',
         isAdmin: true,
         firstName: 'Aaron',
         lastName: 'Sexton',
@@ -124,7 +128,8 @@ const createInitialUsers = async () => {
 };
 
 const createInitialBreeds = async () => {
-  console.log('Creating initial types...');
+
+console.log('Creating initial breeds...');
   try {
     const breedsToCreate = [
       { name: 'Thoroughbred' },
@@ -146,7 +151,7 @@ const createInitialBreeds = async () => {
     console.log(breeds);
     console.log('Finished creating breeds!');
   } catch (error) {
-    console.log('Error creating initial types');
+    console.log('Error creating initial breeds');
     throw error;
   }
 };
@@ -208,6 +213,91 @@ const createInitialProducts = async () => {
   }
 };
 
+const createInitialOrders = async () => {
+  console.log('Creating initial orders...');
+  try {
+    const ordersToCreate = [
+      { userId: 1, isOpen: true },
+      { userId: 2, isOpen: true },
+      { userId: 3, isOpen: true },
+      { userId: 4, isOpen: true },
+    ];
+
+    const orders = [];
+
+    for (const order of ordersToCreate) {
+      orders.push(await createOrder(order));
+    }
+    console.log('Orders created:');
+    console.log(orders);
+    console.log('Finished creating orders!');
+  } catch (error) {
+    console.log('Error creating initial orders');
+    throw error;
+  }
+};
+
+const createInitialOrderProducts = async () => {
+  console.log('Creating intial order products...');
+
+  try {
+    const [order1, order2, order3, order4] = await getAllOrders();
+    const [product1, product2, product3, product4, product5, product6] =
+      await getAllProducts();
+
+    const orderProductsToCreate = [
+      {
+        orderId: order1.id,
+        productId: product1.id,
+        quantity: 1,
+      },
+      {
+        orderId: order1.id,
+        productId: product2.id,
+        quantity: 2,
+      },
+      {
+        orderId: order1.id,
+        productId: product3.id,
+        quantity: 100,
+      },
+      {
+        orderId: order2.id,
+        productId: product4.id,
+        quantity: 1,
+      },
+      {
+        orderId: order2.id,
+        productId: product1.id,
+        quantity: 2,
+      },
+      {
+        orderId: order3.id,
+        productId: product5.id,
+        quantity: 10,
+      },
+      {
+        orderId: order4.id,
+        productId: product6.id,
+        quantity: 5,
+      },
+    ];
+
+    const orderProducts = [];
+
+    for (const orderProduct of orderProductsToCreate) {
+      orderProducts.push(await createOrderProduct(orderProduct));
+    }
+
+    console.log('Order products created:');
+    console.log(orderProducts);
+    console.log('Finished creating order products');
+  } catch (error) {
+    console.log('Error creating order products');
+    throw error;
+  }
+};
+
 const rebuildDB = async () => {
   try {
     await dropTables();
@@ -215,10 +305,52 @@ const rebuildDB = async () => {
     await createInitialUsers();
     await createInitialBreeds();
     await createInitialProducts();
+    await createInitialOrders();
+    // await createInitialOrderProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
   }
 };
 
-module.exports = { rebuildDB };
+const testDB = async () => {
+  try {
+    console.log('Testing database...');
+
+    console.log('Calling getAllUsers');
+    const users = await getAllUsers();
+
+    console.log('Calling updateUsers on users[0]');
+    const updateUserResult = await updateUser(users[0].id, {
+      username: 'Newname Sogood',
+      password: 'NewPasswordWhoThis?',
+      isAdmin: false,
+      firstName: 'Newname',
+      lastName: 'Sogood',
+      email: 'thisismyemail@gmail.com',
+    });
+
+    console.log('Calling getAllBreeds');
+    const breeds = await getAllBreeds();
+
+    console.log('Calling updateBreed on breeds[0]');
+    const updateBreedResult = await updateBreed(breeds[0].id, {
+      name: 'Brand New Horse Breed',
+    });
+
+    console.log('Calling updateProduct on products[0]');
+    const updateProductResult = await updateProduct(products[0].id, {
+      name: 'Brand New Product',
+      description: 'That New Product Smell',
+      breedId: 1,
+      price: 1000,
+    });
+
+    console.log('Database tested!');
+  } catch (err) {
+    console.log('Error testing database!');
+    throw err;
+  }
+};
+
+module.exports = { rebuildDB, testDB };
