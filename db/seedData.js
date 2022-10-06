@@ -1,5 +1,5 @@
 const client = require('./client');
-const { createUser } = require('./');
+const { createUser, createBreed, createProduct } = require('./');
 
 const dropTables = async () => {
   try {
@@ -8,8 +8,8 @@ const dropTables = async () => {
     await client.query(`
             DROP TABLE IF EXISTS orderproducts;
             DROP TABLE IF EXISTS orders;
-            DROP TABLE IF EXISTS breeds;
             DROP TABLE IF EXISTS products;
+            DROP TABLE IF EXISTS breeds;
             DROP TABLE IF EXISTS users;
         `);
   } catch (error) {
@@ -44,7 +44,7 @@ const buildTables = async () => {
             id SERIAL PRIMARY KEY,
             name VARCHAR(100) UNIQUE NOT NULL,
             description VARCHAR(255) NOT NULL,
-            breed INTEGER REFERENCES breeds(id),
+            "breedId" INTEGER REFERENCES breeds(id),
             price DECIMAL NOT NULL
         );
 
@@ -157,37 +157,37 @@ const createInitialProducts = async () => {
       {
         name: 'Breyer Horse',
         description: "It's beautiful",
-        breed: 1,
+        breedId: 1,
         price: 5000,
       },
       {
         name: 'Horse drinking from stream',
         description: "It's thirsty",
-        breed: 2,
+        breedId: 2,
         price: 10,
       },
       {
         name: 'Miniature Model Horse',
         description: "It's small",
-        breed: 3,
+        breedId: 3,
         price: 25,
       },
       {
         name: 'Bucking Bronco',
         description: "It's angry",
-        breed: 4,
+        breedId: 4,
         price: 50,
       },
       {
         name: 'Prancing Palomino',
         description: "It's fancy",
-        breed: 5,
+        breedId: 5,
         price: 100,
       },
       {
         name: 'Lil Sebastian',
         description: "It's a Parks & Rec reference",
-        breed: 6,
+        breedId: 6,
         price: 150,
       },
     ];

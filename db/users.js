@@ -21,8 +21,60 @@ const createUser = async({ username, password, firstName, lastName, email }) => 
     }
 }
 
+const getUser = async({ username, password }) => {
+  try {
+    
+    return user;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+
+const getUserById = async(id) => {
+  try {
+    
+    return user;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+}
+
+}
+
+const getUserByUsername = async(username) => {
+  try {
+    
+    return user;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+
+const destroyUser = async(id) => {
+  try {
+    const deletedUser = await getUserById(id)
+    await client.query(`
+      DELETE FROM users
+      FROM users
+      WHERE id = ${ id }
+    `)
+    return deletedUser;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+
+}
+
+}
+
 
 
 module.exports = {
     createUser,
+    getUser,
+    getUserById,
+    getUserByUsername,
+    destroyUser,
 }
