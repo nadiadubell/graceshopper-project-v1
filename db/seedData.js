@@ -1,8 +1,13 @@
 const client = require('./client');
 
 const { createUser, updateUser } = require('./users');
-const { createBreed, updateBreed } = require('./breeds');
-const { createProduct, updateProduct } = require('./products');
+const { createBreed, updateBreed, getAllBreeds } = require('./breeds');
+const {
+  createProduct,
+  updateProduct,
+  getAllProducts,
+  deleteProduct,
+} = require('./products');
 const { createOrder } = require('./orders');
 const { createOrderProduct } = require('./order_products');
 
@@ -128,8 +133,7 @@ const createInitialUsers = async () => {
 };
 
 const createInitialBreeds = async () => {
-
-console.log('Creating initial breeds...');
+  console.log('Creating initial breeds...');
   try {
     const breedsToCreate = [
       { name: 'Thoroughbred' },
@@ -317,18 +321,18 @@ const testDB = async () => {
   try {
     console.log('Testing database...');
 
-    console.log('Calling getAllUsers');
-    const users = await getAllUsers();
+    // console.log("Calling getAllUsers");
+    // const users = await getAllUsers();
 
-    console.log('Calling updateUsers on users[0]');
-    const updateUserResult = await updateUser(users[0].id, {
-      username: 'Newname Sogood',
-      password: 'NewPasswordWhoThis?',
-      isAdmin: false,
-      firstName: 'Newname',
-      lastName: 'Sogood',
-      email: 'thisismyemail@gmail.com',
-    });
+    // console.log("Calling updateUsers on users[0]");
+    // const updateUserResult = await updateUser(users[0].id, {
+    //   username: "Newname Sogood",
+    //   password: "NewPasswordWhoThis?",
+    //   isAdmin: false,
+    //   firstName: "Newname",
+    //   lastName: "Sogood",
+    //   email: "thisismyemail@gmail.com",
+    // });
 
     console.log('Calling getAllBreeds');
     const breeds = await getAllBreeds();
@@ -338,6 +342,10 @@ const testDB = async () => {
       name: 'Brand New Horse Breed',
     });
 
+    console.log('Calling getAllProducts');
+    const products = await getAllProducts();
+    console.log('Result: ', products);
+
     console.log('Calling updateProduct on products[0]');
     const updateProductResult = await updateProduct(products[0].id, {
       name: 'Brand New Product',
@@ -345,6 +353,11 @@ const testDB = async () => {
       breedId: 1,
       price: 1000,
     });
+    console.log('Result: ', updateProductResult);
+
+    console.log('Calling deleteProduct on products[0]');
+    const deleteProductResult = await deleteProduct(products[0].id);
+    console.log('Result: ', deleteProductResult);
 
     console.log('Database tested!');
   } catch (err) {
