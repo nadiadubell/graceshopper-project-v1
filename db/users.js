@@ -2,17 +2,17 @@ const client = require('./client');
 const bcrypt = require('bcrypt');
 
 
-const createUser = async({ username, password, firstName, lastName, email }) => {
+const createUser = async({username, password, firstName, lastName, email}) => {
     try {
         const SALT_COUNT = 10;
         const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 
-        const { rows: [user] } = await client.query(`
+        const {rows: [user]} = await client.query(`
           INSERT INTO users (username, password, "firstName", "lastName", email)
           VALUES($1, $2, $3, $4, $5)
           ON CONFLICT (username, email) DO NOTHING
           returning id, username;
-        `, [username, hashedPassword, firstName, lastName, email])
+        `, [username, hashedPassword, firstName, lastName, email]);
 
         return user;
     } catch (error) {
@@ -21,18 +21,16 @@ const createUser = async({ username, password, firstName, lastName, email }) => 
     }
 }
 
-const getUser = async({ username, password }) => {
+const getUser = async({username, password}) => {
   try {
-    
-    return user;
-  } catch (error) {
-    console.error(error)
-    throw error;
-  }
+    const user = await getUserByUsername(username);
+    const hashedPassword = user.password;
+    const matchingPasswords = await bcrypt.compare(password, hashedPassword);
 
-const getUserById = async(id) => {
-  try {
-    
+    if(matchingPasswords) {
+      const userResult = (({id, username }) => ({id, username}))(user);
+      return userResult
+    }
     return user;
   } catch (error) {
     console.error(error)
@@ -40,25 +38,45 @@ const getUserById = async(id) => {
   }
 }
 
-}
-
-const getUserByUsername = async(username) => {
+const getUserById = async(userId) => {
   try {
-    
+    const {rows: [user]} = await client.query(`
+      SELECT id, username
+      FROM users
+      WHERE id = ${userId};
+    `);
+
     return user;
   } catch (error) {
     console.error(error)
     throw error;
   }
+}
 
-const destroyUser = async(id) => {
+const getUserByUsername = async(userName) => {
+  try {
+    const {rows: [user]} = await client.query(`
+      SELECT *
+      FROM users
+      WHERE USERNAME = $1;
+    `, [userName]);
+
+    return user;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+}
+
+const destroyUser = async(userId) => {
   try {
     const deletedUser = await getUserById(id)
     await client.query(`
       DELETE FROM users
       FROM users
-      WHERE id = ${ id }
-    `)
+      WHERE id = ${userId};
+    `);
+
     return deletedUser;
   } catch (error) {
     console.error(error)
@@ -67,7 +85,7 @@ const destroyUser = async(id) => {
 
 }
 
-}
+
 
 
 
