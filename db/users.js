@@ -21,6 +21,31 @@ const createUser = async({username, password, firstName, lastName, email}) => {
     }
 }
 
+const updateUser = async({id, ...fields}) => {
+
+  const setString = Object.keys(fields).map(
+    (key, index) => `"${key}"=$${index + 1}`
+  ).join(', ');
+
+  if(setString.length === 0) {
+    return;
+  }
+
+  try {
+    const {rows: [user]} = await client.query(`
+      UPDATE users
+      SET ${setString}
+      WHERE id = ${ id }
+      RETURNING *'
+    `, Object.values(fields));
+
+    return user;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+}
+
 const getUser = async({username, password}) => {
   try {
     const user = await getUserByUsername(username);
@@ -91,6 +116,7 @@ const destroyUser = async(userId) => {
 
 module.exports = {
     createUser,
+    updateUser,
     getUser,
     getUserById,
     getUserByUsername,
