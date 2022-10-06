@@ -7,6 +7,9 @@ const {
   updateProduct,
   getAllProducts,
   deleteProduct,
+  getProductById,
+  getProductByName,
+  getProductsByPrice,
 } = require('./products');
 const { createOrder } = require('./orders');
 const { createOrderProduct } = require('./order_products');
@@ -345,6 +348,20 @@ const testDB = async () => {
     console.log('Calling getAllProducts');
     const products = await getAllProducts();
     console.log('Result: ', products);
+
+    console.log('Calling getProductById on products with the id of 3');
+    const getProductByIdResult = await getProductById(3);
+    console.log('Result: ', getProductByIdResult);
+
+    console.log(
+      'Calling getProductById on products with the name of Lil Sebastian'
+    );
+    const getProductByNameResult = await getProductByName('Lil Sebastian');
+    console.log('Result: ', getProductByNameResult);
+
+    console.log('Calling getProductByPrice with the price of $10');
+    const getProductsByPriceResult = await getProductsByPrice(10);
+    console.log('Result: ', getProductsByPriceResult);
 
     console.log('Calling updateProduct on products[0]');
     const updateProductResult = await updateProduct(products[0].id, {
