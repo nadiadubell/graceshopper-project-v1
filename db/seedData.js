@@ -1,5 +1,9 @@
 const client = require('./client');
+<<<<<<< HEAD
 const { createUser, createBreed, createProduct } = require('./');
+=======
+const { createUser, createProduct } = require('./');
+>>>>>>> main
 
 const dropTables = async () => {
   try {
@@ -211,6 +215,7 @@ const rebuildDB = async () => {
     await dropTables();
     await buildTables();
     await createInitialUsers();
+    await createInitialProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
