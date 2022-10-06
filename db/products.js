@@ -1,4 +1,4 @@
-const client = require("./client");
+const client = require('./client');
 
 const createProduct = async ({ name, description, breedId, price }) => {
   try {
@@ -36,7 +36,8 @@ const getAllProducts = async () => {
 const updateProduct = async ({ id, ...fields }) => {
   const setString = Object.keys(fields)
     .map((key, index) => key != id && `"${key}"=$${index + 1}`)
-    .join(", ");
+    .join(', ');
+  console.log('setstring------', setString);
   try {
     const { rows: products } = await client.query(
       `
