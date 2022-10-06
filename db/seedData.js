@@ -206,6 +206,30 @@ const createInitialProducts = async () => {
   }
 };
 
+const createInitialOrders = async () => {
+  console.log('Creating initial orders...');
+  try {
+    const ordersToCreate = [
+      { userId: 1, isOpen: true },
+      { userId: 2, isOpen: true },
+      { userId: 3, isOpen: true },
+      { userId: 4, isOpen: true },
+    ];
+
+    const orders = [];
+
+    for (const order of ordersToCreate) {
+      orders.push(await createOrder(order));
+    }
+    console.log('Orders created:');
+    console.log(orders);
+    console.log('Finished creating orders!');
+  } catch (error) {
+    console.log('Error creating initial orders');
+    throw error;
+  }
+};
+
 const rebuildDB = async () => {
   try {
     await dropTables();
