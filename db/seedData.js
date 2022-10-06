@@ -2,7 +2,12 @@ const client = require('./client');
 
 const { createUser, updateUser } = require('./users');
 const { createBreed, updateBreed, getAllBreeds } = require('./breeds');
-const { createProduct, updateProduct, getAllProducts } = require('./products');
+const {
+  createProduct,
+  updateProduct,
+  getAllProducts,
+  deleteProduct,
+} = require('./products');
 const { createOrder } = require('./orders');
 const { createOrderProduct } = require('./order_products');
 
@@ -349,6 +354,10 @@ const testDB = async () => {
       price: 1000,
     });
     console.log('Result: ', updateProductResult);
+
+    console.log('Calling deleteProduct on products[0]');
+    const deleteProductResult = await deleteProduct(products[0].id);
+    console.log('Result: ', deleteProductResult);
 
     console.log('Database tested!');
   } catch (err) {

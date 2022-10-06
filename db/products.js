@@ -33,11 +33,10 @@ const getAllProducts = async () => {
   }
 };
 
-const updateProduct = async ({ id, ...fields }) => {
+const updateProduct = async (id, { ...fields }) => {
   const setString = Object.keys(fields)
     .map((key, index) => key != id && `"${key}"=$${index + 1}`)
     .join(', ');
-  console.log('setstring------', setString);
   try {
     const { rows: products } = await client.query(
       `
@@ -55,10 +54,26 @@ const updateProduct = async ({ id, ...fields }) => {
   }
 };
 
-const deleteProduct = async ({ id }) => {};
+const deleteProduct = async id => {
+  try {
+    const { rows: products } = await client.query(
+      `
+            DELETE FROM products
+            WHERE products.id = $1
+            RETURNING *;
+        `,
+      [id]
+    );
+    return products[0];
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
 
 module.exports = {
   createProduct,
   updateProduct,
   getAllProducts,
+  deleteProduct,
 };
