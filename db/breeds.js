@@ -15,13 +15,14 @@ const getAllBreeds = async () => {
 
 const getAllProductsByBreedId = async (id) => {
   try {
-    const { rows: [breed] } = await client.query(`
-      SELECT *
-      FROM breeds
-      WHERE id=$1;
+    const { rows: products } = await client.query(`
+      SELECT products.*, breeds.name AS breedname
+      FROM products
+      JOIN breeds ON products."breedId" = breeds.id
+      WHERE "breedId"=$1;
       `,[id]);
-     
-    return breed;
+    console.log('THIS IS BREED:', products) 
+    return products;
   } catch (error) {
     console.log('error getting products by breed id');
     throw error;
@@ -60,7 +61,7 @@ const createBreed = async ({name}) => {
 const updateBreed = async ({ id, ...fields }) => {
   try {
     const setString = Object.keys(fields).map(
-      (key, index) => `"${ key }=$${ index + 1 }`
+      (key, index) => `"${ key }"=$${ index + 1 }`
     ).join(", ");
 
     if(setString.length > 0) {
