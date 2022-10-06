@@ -33,6 +33,10 @@ const updateProduct = async ({id, ...fields}) => {
     }
 }
 
+const deleteProduct = async ({id}) => {
+    
+}
+
 module.exports = {
     createProduct,
     updateProduct

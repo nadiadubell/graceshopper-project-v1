@@ -1,7 +1,10 @@
 const client = require('./client');
-const { createUser } = require("./users");
-const { createBreed } = require("./breeds");
-const { createProduct } = require("./products");
+
+const { createUser } = require('./users');
+const { createBreed } = require('./breeds');
+const { createProduct } = require('./products');
+const { createOrder } = require('./orders');
+const { createOrderProduct } = require('./order_products');
 
 const dropTables = async () => {
   try {
@@ -76,7 +79,7 @@ const createInitialUsers = async () => {
     const usersToCreate = [
       {
         username: 'ATown2021',
-        password: 'ATown2021',
+        password: 'FullStack',
         isAdmin: true,
         firstName: 'Aaron',
         lastName: 'Sexton',
@@ -123,8 +126,8 @@ const createInitialUsers = async () => {
   }
 };
 
-const createInitialBreed = async () => {
-  console.log('Creating initial types...');
+const createInitialBreeds = async () => {
+  console.log('Creating initial breeds...');
   try {
     const breedsToCreate = [
       { name: 'Thoroughbred' },
@@ -146,7 +149,7 @@ const createInitialBreed = async () => {
     console.log(breeds);
     console.log('Finished creating breeds!');
   } catch (error) {
-    console.log('Error creating initial types');
+    console.log('Error creating initial breeds');
     throw error;
   }
 };
@@ -208,13 +211,91 @@ const createInitialProducts = async () => {
   }
 };
 
+const createInitialOrders = async () => {
+  console.log('Creating initial orders...');
+  try {
+    const ordersToCreate = [
+      { userId: 1, isOpen: true },
+      { userId: 2, isOpen: true },
+      { userId: 3, isOpen: true },
+      { userId: 4, isOpen: true },
+    ];
+
+    const orders = [];
+
+    for (const order of ordersToCreate) {
+      orders.push(await createOrder(order));
+    }
+    console.log('Orders created:');
+    console.log(orders);
+    console.log('Finished creating orders!');
+  } catch (error) {
+    console.log('Error creating initial orders');
+    throw error;
+  }
+};
+
+const createInitialOrderProducts = async () => {
+  console.log('Creating intial order products...');
+
+  const [order1, order2, order3, order4] = await getAllOrders();
+  const [product1, product2, product3, product4, product5, product6] =
+    await getAllProducts();
+
+  const orderProductsToCreate = [
+    {
+      orderId: order1.id,
+      productId: product1.id,
+      quantity: 1,
+    },
+    {
+      orderId: order1.id,
+      productId: product2.id,
+      quantity: 2,
+    },
+    {
+      orderId: order1.id,
+      productId: product3.id,
+      quantity: 100,
+    },
+    {
+      orderId: order2.id,
+      productId: product4.id,
+      quantity: 1,
+    },
+    {
+      orderId: order2.id,
+      productId: product1.id,
+      quantity: 2,
+    },
+    {
+      orderId: order3.id,
+      productId: product5.id,
+      quantity: 10,
+    },
+    {
+      orderId: order4.id,
+      productId: product6.id,
+      quantity: 5,
+    },
+  ];
+
+  const orderProducts = [];
+
+  for (const orderProduct of orderProductsToCreate) {
+    orderProducts.push(await createOrderProduct(orderProduct));
+  }
+};
+
 const rebuildDB = async () => {
   try {
     await dropTables();
     await buildTables();
     await createInitialUsers();
-    await createInitialBreed();
+    await createInitialBreeds();
     await createInitialProducts();
+    await createInitialOrders();
+    // await createInitialOrderProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
