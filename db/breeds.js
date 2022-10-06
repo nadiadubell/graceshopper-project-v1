@@ -1,5 +1,18 @@
 const client = require('./client')
 
+const getAllBreeds = async () => {
+  try {
+    const { rows } = await client.query(`
+    SELECT *
+    FROM breeds;
+    `);
+
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
 const getAllProductsByBreedId = async (id) => {
   try {
     const { rows: [breed] } = await client.query(`
@@ -83,6 +96,7 @@ const deleteBreed = async (id) => {
 }
 
 module.exports = {
+  getAllBreeds,
   getAllProductsByBreedId,
   getBreedByName,
   createBreed,
