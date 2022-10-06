@@ -14,7 +14,6 @@ const getAllProductsByBreedId = async (id) => {
     throw error;
   }
 }
-
 const getBreedByName = async (name) => {
   try {
     const { rows: [breed] } = await client.query(`
