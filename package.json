@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "seed:dev": "nodemon ./db/seed.js",
-    "seed": "node ./db/seed.js"
+    "seed": "node ./db/seed.js",
+    "start:dev": "nodemon server.js",
+    "start": "node server.js"  
   },
   "repository": {
     "type": "git",
