@@ -119,7 +119,7 @@ const createInitialUsers = async () => {
   }
 };
 
-const createInitialBreed = async () => {
+const createInitialBreeds = async () => {
   console.log('Creating initial types...');
   try {
     const breedsToCreate = [
@@ -208,7 +208,9 @@ const rebuildDB = async () => {
   try {
     await dropTables();
     await buildTables();
-    await createInitialUsers();
+    // await createInitialUsers();
+    // await createInitialBreeds();
+    // await createInitialProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
