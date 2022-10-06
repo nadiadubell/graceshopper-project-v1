@@ -2,6 +2,7 @@ const client = require('./client');
 const { createUser } = require('./users');
 const { createBreed } = require('./breeds');
 const { createProduct } = require('./products');
+const { createOrder } = require('./orders');
 
 const dropTables = async () => {
   try {
@@ -291,6 +292,7 @@ const rebuildDB = async () => {
     await createInitialUsers();
     await createInitialBreeds();
     await createInitialProducts();
+    await createInitialOrders();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
