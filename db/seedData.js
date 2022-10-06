@@ -128,7 +128,8 @@ const createInitialUsers = async () => {
 };
 
 const createInitialBreeds = async () => {
-  console.log('Creating initial breeds...');
+
+console.log('Creating initial breeds...');
   try {
     const breedsToCreate = [
       { name: 'Thoroughbred' },
