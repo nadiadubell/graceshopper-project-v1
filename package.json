@@ -1,7 +1,6 @@
 {
   "name": "graceshopper-project",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "seed:dev": "nodemon ./db/seed.js",
@@ -30,5 +29,6 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.4.1",
     "react-scripts": "^5.0.1"
-  }
+  },
+  "description": ""
 }
