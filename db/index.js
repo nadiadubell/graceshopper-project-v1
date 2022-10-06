@@ -1,5 +1,8 @@
 module.exports = {
   ...require('./client'),
   ...require('./users'),
-  ...require("./products")
-}
+  ...require('./products'),
+  ...require('./breeds'),
+  ...require('./orders'),
+  ...require('./order_products'),
+};
