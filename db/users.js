@@ -2,17 +2,17 @@ const client = require('./client');
 const bcrypt = require('bcrypt');
 
 
-const createUser = async({username, password, firstName, lastName, email}) => {
+const createUser = async({username, password, isAdmin, firstName, lastName, email}) => {
     try {
         const SALT_COUNT = 10;
         const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
 
         const {rows: [user]} = await client.query(`
-          INSERT INTO users (username, password, "firstName", "lastName", email)
-          VALUES($1, $2, $3, $4, $5)
+          INSERT INTO users (username, password, "isAdmin", "firstName", "lastName", email)
+          VALUES($1, $2, $3, $4, $5, $6)
           ON CONFLICT (username, email) DO NOTHING
           returning id, username;
-        `, [username, hashedPassword, firstName, lastName, email]);
+        `, [username, hashedPassword, isAdmin, firstName, lastName, email]);
 
         return user;
     } catch (error) {
@@ -21,7 +21,21 @@ const createUser = async({username, password, firstName, lastName, email}) => {
     }
 }
 
-const updateUser = async({id, ...fields}) => {
+const getAllUsers = async() => {
+  try {
+    const {rows} = await client.query(`
+    SELECT id, username, "firstName", "lastName", email
+    FROM users;
+    `);
+
+    return rows;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+}
+
+const updateUser = async(id, fields = {}) => {
 
   const setString = Object.keys(fields).map(
     (key, index) => `"${key}"=$${index + 1}`
@@ -36,7 +50,7 @@ const updateUser = async({id, ...fields}) => {
       UPDATE users
       SET ${setString}
       WHERE id = ${ id }
-      RETURNING *'
+      RETURNING *;
     `, Object.values(fields));
 
     return user;
@@ -53,7 +67,7 @@ const getUser = async({username, password}) => {
     const matchingPasswords = await bcrypt.compare(password, hashedPassword);
 
     if(matchingPasswords) {
-      const userResult = (({id, username }) => ({id, username}))(user);
+      const userResult = (({id, username}) => ({id, username}))(user);
       return userResult
     }
     return user;
@@ -93,13 +107,12 @@ const getUserByUsername = async(userName) => {
   }
 }
 
-const destroyUser = async(userId) => {
+const destroyUser = async(id) => {
   try {
     const deletedUser = await getUserById(id)
     await client.query(`
       DELETE FROM users
-      FROM users
-      WHERE id = ${userId};
+      WHERE id = ${id};
     `);
 
     return deletedUser;
@@ -116,9 +129,10 @@ const destroyUser = async(userId) => {
 
 module.exports = {
     createUser,
+    getAllUsers,
     updateUser,
     getUser,
     getUserById,
     getUserByUsername,
-    destroyUser,
+    destroyUser
 }
