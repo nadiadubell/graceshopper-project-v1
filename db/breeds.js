@@ -8,7 +8,6 @@ const getAllProductsByBreedId = async (id) => {
       WHERE id=$1;
       `,[id]);
 
-    console.log(breed)
     return breed;
   } catch (error) {
     console.log('error getting products by breed id');
