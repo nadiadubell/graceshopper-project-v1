@@ -1,7 +1,7 @@
 const client = require("./client");
 
 const { createUser, updateUser } = require("./users");
-const { createBreed, updateBreed } = require("./breeds");
+const { createBreed, updateBreed, getAllBreeds } = require("./breeds");
 const { createProduct, updateProduct, getAllProducts } = require("./products");
 const { createOrder } = require("./orders");
 const { createOrderProduct } = require("./order_products");
@@ -337,6 +337,10 @@ const testDB = async () => {
       name: "Brand New Horse Breed",
     });
 
+    console.log("Calling getAllProducts");
+    const products = await getAllProducts();
+    console.log("Result: ", products);
+
     console.log("Calling updateProduct on products[0]");
     const updateProductResult = await updateProduct(products[0].id, {
       name: "Brand New Product",
@@ -344,6 +348,7 @@ const testDB = async () => {
       breedId: 1,
       price: 1000,
     });
+    console.log("Result: ", updateProductResult);
 
     console.log("Database tested!");
   } catch (err) {
