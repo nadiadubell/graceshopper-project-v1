@@ -102,7 +102,6 @@ const deleteBreed = async id => {
 
 module.exports = {
   getAllBreeds,
-  getAllProductsByBreedId,
   getBreedByName,
   createBreed,
   updateBreed,

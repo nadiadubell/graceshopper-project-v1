@@ -22,10 +22,19 @@ const createOrder = async ({ userId, isOpen }) => {
 const getAllOrders = async () => {
   try {
     const { rows } = await client.query(`
-            SELECT orders.*
-        `);
-
-    console.log(rows);
+    SELECT orders.*, username,
+    jsonb_agg(jsonb_build_object(
+      'id', products.id,
+      'name', products.name,
+      'price', products.price,
+      'quantity', orderproducts.quantity
+    )) as products
+    FROM orders
+    LEFT JOIN orderproducts ON orders.id = orderproducts."orderId"
+    LEFT JOIN products ON orderproducts."productId" = products.id
+    LEFT JOIN users ON users.id = orders."userId"
+    GROUP BY orders.id, users.username, orderproducts.quantity;
+`);
     return rows;
   } catch (error) {
     console.log('Error getting all orders');
@@ -33,4 +42,4 @@ const getAllOrders = async () => {
   }
 };
 
-module.exports = { createOrder };
+module.exports = { createOrder, getAllOrders };
