@@ -13,21 +13,6 @@ const getAllBreeds = async () => {
   }
 }
 
-const getAllProductsByBreedId = async (id) => {
-  try {
-    const { rows: products } = await client.query(`
-      SELECT products.*, breeds.name AS breedname
-      FROM products
-      JOIN breeds ON products."breedId" = breeds.id
-      WHERE "breedId"=$1;
-      `,[id]);
-     
-    return breed;
-  } catch (error) {
-    console.log('error getting products by breed id');
-    throw error;
-  }
-}
 const getBreedByName = async (name) => {
   try {
     const { rows: [breed] } = await client.query(`
