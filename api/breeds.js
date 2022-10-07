@@ -10,8 +10,10 @@ const {
 const { requireAdmin } = require('./utils');
 
 breedsRouter.get('/:breedId', async (req, res, next) => {
+  const { breedId: id } = req.params;
+  console.log('req.params', req.params);
+
   try {
-    const { breedId: id } = req.params;
     const productsByBreedId = await getAllProductsByBreedId(id);
 
     if (!productsByBreedId) {
@@ -34,8 +36,8 @@ breedsRouter.post('/:breedId', requireAdmin, async (req, res, next) => {
     const breedToCreate = await createBreed(name);
 
     res.send(breedToCreate);
-  } catch (error) {
-    next(error);
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
@@ -50,8 +52,8 @@ breedsRouter.patch('/:breedId', requireAdmin, async (req, res, next) => {
     });
 
     res.send(breedToUpdate);
-  } catch (error) {
-    next(error);
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
@@ -72,8 +74,8 @@ breedsRouter.delete('/:breedId', requireAdmin, async (req, res, next) => {
         res.send({ success: true, ...breedToDelete });
       }
     }
-  } catch (error) {
-    next(error);
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 

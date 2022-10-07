@@ -42,10 +42,10 @@ apiRouter.use('/products/breeds', breedsRouter);
 const productsRouter = require('./products');
 apiRouter.use('/products', productsRouter);
 
-const ordersRouter = require('./orders');
-apiRouter.use('/orders', ordersRouter);
+// const ordersRouter = require('./orders');
+// apiRouter.use('/orders', ordersRouter);
 
-const orderproductsRouter = require('./orderproducts');
-apiRouter.use('/orderproducts', orderproductsRouter);
+// const orderproductsRouter = require('./orderproducts');
+// apiRouter.use('/orderproducts', orderproductsRouter);
 
 module.exports = apiRouter;

@@ -313,7 +313,7 @@ const rebuildDB = async () => {
     await createInitialBreeds();
     await createInitialProducts();
     await createInitialOrders();
-    await createInitialOrderProducts();
+    // await createInitialOrderProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
@@ -324,17 +324,17 @@ const testDB = async () => {
   try {
     console.log('Testing database...');
 
-    console.log("Calling getAllUsers");
+    console.log('Calling getAllUsers');
     const users = await getAllUsers();
 
-    console.log("Calling updateUsers on users[0]");
+    console.log('Calling updateUsers on users[0]');
     const updateUserResult = await updateUser(users[0].id, {
-      username: "Newname Sogood",
-      password: "NewPasswordWhoThis?",
+      username: 'Newname Sogood',
+      password: 'NewPasswordWhoThis?',
       isAdmin: false,
-      firstName: "Newname",
-      lastName: "Sogood",
-      email: "thisismyemail@gmail.com",
+      firstName: 'Newname',
+      lastName: 'Sogood',
+      email: 'thisismyemail@gmail.com',
     });
 
     console.log('Calling getAllBreeds');
