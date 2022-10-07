@@ -1,6 +1,6 @@
 const client = require('./client');
 
-const createOrderProduct = async ({ orderId, productId, quantity }) => {
+const addProductToOrder = async ({ orderId, productId, quantity }) => {
   try {
     const {
       rows: [orderProduct],
@@ -19,4 +19,4 @@ const createOrderProduct = async ({ orderId, productId, quantity }) => {
   }
 };
 
-module.exports = { createOrderProduct };
+module.exports = { addProductToOrder };

@@ -66,7 +66,6 @@ const getAllOrders = async () => {
   }
 };
 
-// UNDER CONSTRUCTION!!
 const getOrderById = async id => {
   try {
     const { rows } = await client.query(`
@@ -86,13 +85,14 @@ const getOrderById = async id => {
 `);
 
     const result = makeProductArray(rows);
-    console.log('RESULT:', result);
     return result;
   } catch (error) {
     console.log('Error getting order by ID');
     throw error;
   }
 };
+
+const addItemToOrder = async () => {};
 
 module.exports = {
   createOrder,
