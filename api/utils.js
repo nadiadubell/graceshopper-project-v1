@@ -11,8 +11,6 @@ const requireAdmin = (req, res, next) => {
   next();
 }
 
-module.exports = requireAdmin();
-
 const requireUser = (req, res, next) => {
   if (!req.user) {
     res.statusCode = 401;

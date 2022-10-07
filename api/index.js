@@ -9,10 +9,7 @@ apiRouter.use(async (req, res, next) => {
   const auth = req.header('Authorization');
 
   if (!auth) {
-    next({
-      name: 'UnauthorizedError',
-      message: 'You must be logged in to perform this action!',
-    });
+    next();
   } else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length);
 
