@@ -97,7 +97,7 @@ const getUserByUsername = async(userName) => {
     const {rows: [user]} = await client.query(`
       SELECT *
       FROM users
-      WHERE USERNAME = $1;
+      WHERE username = $1;
     `, [userName]);
 
     return user;
