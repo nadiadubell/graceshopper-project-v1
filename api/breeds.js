@@ -7,9 +7,8 @@ router.use(express.json())
 
 router.get('api/products/:breedId', async(req, res, next) => {
   try {
-    const { name } = req.body;
     const { breedId: id} = req.params
-    const productsByBreedId = await getAllProductsByBreedId({id})
+    const productsByBreedId = await getAllProductsByBreedId(id)
 
 
     if(!productsByBreedId) {
@@ -30,7 +29,7 @@ router.post('api/products/:breedId', requireAdmin, async(req, res, next) => {
   try {
     const { name } = req.body;
     
-    const breedToCreate = await createBreed({name})
+    const breedToCreate = await createBreed(name)
 
     res.send(breedToCreate)
   } catch (error) {
@@ -56,7 +55,7 @@ router.patch('api/products/:breedId', requireAdmin, async(req, res, next) => {
 
 router.delete('api/products/:breedId', requireAdmin, async(req, res, next) => {
   try {
-    const breedId = req.params.breedId;
+    const breedId = req.params;
     const { name } = req.body;
 
     let breed = await getBreedByName(name)
