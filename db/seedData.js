@@ -313,7 +313,7 @@ const rebuildDB = async () => {
     await createInitialBreeds();
     await createInitialProducts();
     await createInitialOrders();
-    await createInitialOrderProducts();
+    // await createInitialOrderProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
