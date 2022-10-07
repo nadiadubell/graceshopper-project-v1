@@ -1,8 +1,16 @@
 const client = require('./client');
 
-const { createUser, updateUser } = require('./users');
+const { createUser, getAllUsers, updateUser } = require('./users');
 const { createBreed, updateBreed, getAllBreeds } = require('./breeds');
-const { createProduct, updateProduct, getAllProducts } = require('./products');
+const {
+  createProduct,
+  updateProduct,
+  getAllProducts,
+  deleteProduct,
+  getProductById,
+  getProductByName,
+  getProductsByPrice,
+} = require('./products');
 const { createOrder } = require('./orders');
 const { createOrderProduct } = require('./order_products');
 
@@ -305,7 +313,7 @@ const rebuildDB = async () => {
     await createInitialBreeds();
     await createInitialProducts();
     await createInitialOrders();
-    // await createInitialOrderProducts();
+    await createInitialOrderProducts();
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
@@ -316,18 +324,18 @@ const testDB = async () => {
   try {
     console.log('Testing database...');
 
-    // console.log("Calling getAllUsers");
-    // const users = await getAllUsers();
+    console.log("Calling getAllUsers");
+    const users = await getAllUsers();
 
-    // console.log("Calling updateUsers on users[0]");
-    // const updateUserResult = await updateUser(users[0].id, {
-    //   username: "Newname Sogood",
-    //   password: "NewPasswordWhoThis?",
-    //   isAdmin: false,
-    //   firstName: "Newname",
-    //   lastName: "Sogood",
-    //   email: "thisismyemail@gmail.com",
-    // });
+    console.log("Calling updateUsers on users[0]");
+    const updateUserResult = await updateUser(users[0].id, {
+      username: "Newname Sogood",
+      password: "NewPasswordWhoThis?",
+      isAdmin: false,
+      firstName: "Newname",
+      lastName: "Sogood",
+      email: "thisismyemail@gmail.com",
+    });
 
     console.log('Calling getAllBreeds');
     const breeds = await getAllBreeds();
@@ -341,6 +349,20 @@ const testDB = async () => {
     const products = await getAllProducts();
     console.log('Result: ', products);
 
+    console.log('Calling getProductById on products with the id of 3');
+    const getProductByIdResult = await getProductById(3);
+    console.log('Result: ', getProductByIdResult);
+
+    console.log(
+      'Calling getProductById on products with the name of Lil Sebastian'
+    );
+    const getProductByNameResult = await getProductByName('Lil Sebastian');
+    console.log('Result: ', getProductByNameResult);
+
+    console.log('Calling getProductByPrice with the price of $10');
+    const getProductsByPriceResult = await getProductsByPrice(10);
+    console.log('Result: ', getProductsByPriceResult);
+
     console.log('Calling updateProduct on products[0]');
     const updateProductResult = await updateProduct(products[0].id, {
       name: 'Brand New Product',
@@ -349,6 +371,10 @@ const testDB = async () => {
       price: 1000,
     });
     console.log('Result: ', updateProductResult);
+
+    console.log('Calling deleteProduct on products[0]');
+    const deleteProductResult = await deleteProduct(products[0].id);
+    console.log('Result: ', deleteProductResult);
 
     console.log('Database tested!');
   } catch (err) {
