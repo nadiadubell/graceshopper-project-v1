@@ -1,4 +1,4 @@
-export const requireAdmin = (req, res, next) => {
+const requireAdmin = (req, res, next) => {
 
   if(!req.isAdmin) {
     res.statusCode = 401;
@@ -11,7 +11,7 @@ export const requireAdmin = (req, res, next) => {
   next();
 }
 
-export const requireUser = (req, res, next) => {
+const requireUser = (req, res, next) => {
   if (!req.user) {
     res.statusCode = 401;
     next({
@@ -20,4 +20,9 @@ export const requireUser = (req, res, next) => {
     })
   }
   next();
+}
+
+module.exports = {
+  requireAdmin,
+  requireUser
 }

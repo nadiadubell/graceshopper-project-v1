@@ -36,6 +36,6 @@ usersRouter.post('/login', async(req, res, next) =>{
   } catch ({ name, message }) {
     next ({ name, message })
   }
-
-
 })
+
+module.exports = usersRouter;
