@@ -1,4 +1,4 @@
-const client = require('./client')
+const client = require('./client');
 
 const getAllBreeds = async () => {
   try {
@@ -11,81 +11,99 @@ const getAllBreeds = async () => {
   } catch (error) {
     throw error;
   }
-}
+};
 
-const getBreedByName = async (name) => {
+const getBreedByName = async name => {
   try {
-    const { rows: [breed] } = await client.query(`
+    const {
+      rows: [breed],
+    } = await client.query(
+      `
       SELECT *
       FROM breeds
       WHERE name=$1;
-      `,[name]);
+      `,
+      [name]
+    );
 
     return breed;
   } catch (error) {
     console.log('error getting products by breed name');
     throw error;
   }
-}
+};
 
-const createBreed = async ({name}) => {
+const createBreed = async ({ name }) => {
   try {
-    const { rows: [breed] } = await client.query(`
+    const {
+      rows: [breed],
+    } = await client.query(
+      `
     INSERT INTO breeds (name)
     VALUES ($1)
     RETURNING *;
-    `, [name]);
-    
+    `,
+      [name]
+    );
+
     return breed;
   } catch (error) {
-    console.log('error creating breed')
+    console.log('error creating breed');
     throw error;
   }
-}
+};
 
 const updateBreed = async ({ id, ...fields }) => {
   try {
-    const setString = Object.keys(fields).map(
-      (key, index) => `"${ key }"=$${ index + 1 }`
-    ).join(", ");
+    const setString = Object.keys(fields)
+      .map((key, index) => `"${key}"=$${index + 1}`)
+      .join(', ');
 
-    if(setString.length > 0) {
-
-      const { rows: [breed] } = await client.query(`
+    if (setString.length > 0) {
+      const {
+        rows: [breed],
+      } = await client.query(
+        `
       UPDATE breeds
-      SET ${ setString }
-      WHERE id=${ id }
+      SET ${setString}
+      WHERE id=${id}
       RETURNING *;
-      `, Object.values(fields));
-     
+      `,
+        Object.values(fields)
+      );
+
       return breed;
     }
   } catch (error) {
-    console.log('error updating breed')
+    console.log('error updating breed');
     throw error;
   }
-}
+};
 
-const deleteBreed = async (id) => {
+const deleteBreed = async id => {
   try {
-    const { rows: [breed] } = await client.query(`
+    const {
+      rows: [breed],
+    } = await client.query(
+      `
       DELETE FROM breeds
       WHERE id=$1;
       RETURNING *;
-      `, [id]);
+      `,
+      [id]
+    );
 
-    return breed  
+    return breed;
   } catch (error) {
     console.log('error deleting breed');
-    throw error
+    throw error;
   }
-}
+};
 
 module.exports = {
   getAllBreeds,
-  getAllProductsByBreedId,
   getBreedByName,
   createBreed,
   updateBreed,
-  deleteBreed
-}
+  deleteBreed,
+};
