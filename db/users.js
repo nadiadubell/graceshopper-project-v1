@@ -107,7 +107,7 @@ const getUserByUsername = async(userName) => {
   }
 }
 
-const destroyUser = async(id) => {
+const deleteUser = async(id) => {
   try {
     const deletedUser = await getUserById(id)
     await client.query(`
@@ -134,5 +134,5 @@ module.exports = {
     getUser,
     getUserById,
     getUserByUsername,
-    destroyUser
+    deleteUser
 }
