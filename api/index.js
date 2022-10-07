@@ -9,10 +9,7 @@ apiRouter.use(async (req, res, next) => {
   const auth = req.header('Authorization');
 
   if (!auth) {
-    next({
-      name: 'UnauthorizedError',
-      message: 'You must be logged in to perform this action!',
-    });
+    next();
   } else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length);
 
@@ -40,7 +37,7 @@ const usersRouter = require('./users');
 apiRouter.use('/users', usersRouter);
 
 const breedsRouter = require('./breeds');
-apiRouter.use('/breeds', breedsRouter);
+apiRouter.use('/products/breeds', breedsRouter);
 
 const productsRouter = require('./products');
 apiRouter.use('/products', productsRouter);
