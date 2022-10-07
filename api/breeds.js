@@ -76,3 +76,5 @@ breedsRouter.delete('/:breedId', requireAdmin, async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = breedsRouter;

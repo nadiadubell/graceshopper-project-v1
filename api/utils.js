@@ -10,3 +10,19 @@ const requireAdmin = (req, res, next) => {
 
   next();
 }
+
+const requireUser = (req, res, next) => {
+  if (!req.user) {
+    res.statusCode = 401;
+    next({
+      name: 'MissingUserCredentialsError',
+      message: 'You must be a registered user to perform this action'
+    })
+  }
+  next();
+}
+
+module.exports = {
+  requireAdmin,
+  requireUser
+}
