@@ -11,7 +11,7 @@ const {
   getProductByName,
   getProductsByPrice,
 } = require('./products');
-const { createOrder, getAllOrders } = require('./orders');
+const { createOrder, getAllOrders, getOrderById } = require('./orders');
 const { createOrderProduct } = require('./order_products');
 
 const dropTables = async () => {
@@ -314,6 +314,8 @@ const rebuildDB = async () => {
     await createInitialProducts();
     await createInitialOrders();
     await createInitialOrderProducts();
+    await getAllOrders();
+    // await getOrderById(1);
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
