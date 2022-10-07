@@ -1,5 +1,14 @@
 const client = require('./client');
 
+const makeProductArray = rows => {
+  let productArr = [];
+  for (let i = 0; i < rows.length; i++) {
+    productArr.push(rows[i].products[0]);
+  }
+  rows[0].products = productArr;
+  return rows[0];
+};
+
 const createOrder = async ({ userId, isOpen }) => {
   try {
     const {
@@ -41,14 +50,15 @@ const getAllOrders = async () => {
       'name', products.name,
       'price', products.price,
       'quantity', orderproducts.quantity
-    )) as products
+    )) AS products
     FROM orders
-    JOIN orderproducts ON orders.id = orderproducts."orderId"
-    JOIN products ON orderproducts."productId" = products.id
     JOIN users ON users.id = orders."userId"
-    GROUP BY orders.id, users.username, orderproducts.quantity;
+    JOIN orderproducts ON orderproducts."orderId" = orders.id
+    JOIN products ON orderproducts."productId" = products.id
+    GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
     console.log('GET ALL ORDERS:', rows);
+
     return rows;
   } catch (error) {
     console.log('Error getting all orders');
@@ -59,15 +69,25 @@ const getAllOrders = async () => {
 // UNDER CONSTRUCTION!!
 const getOrderById = async id => {
   try {
-    const {
-      rows: [order],
-    } = await client.query(`
-    SELECT *
-    FROM orders;
-    `);
+    const { rows } = await client.query(`
+    SELECT orders.*, username,
+    jsonb_agg(jsonb_build_object(
+      'id', products.id,
+      'name', products.name,
+      'price', products.price,
+      'quantity', orderproducts.quantity
+    )) AS products
+    FROM orders
+    JOIN users ON users.id = orders."userId"
+    JOIN orderproducts ON orderproducts."orderId" = orders.id
+    JOIN products ON orderproducts."productId" = products.id
+    WHERE users.id=${id}
+    GROUP BY users.id, orders.id, orderproducts.quantity;
+`);
 
-    console.log('ORDER BY ID:', order);
-    return order;
+    const result = makeProductArray(rows);
+    console.log('RESULT:', result);
+    return result;
   } catch (error) {
     console.log('Error getting order by ID');
     throw error;

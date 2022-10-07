@@ -319,7 +319,7 @@ const rebuildDB = async () => {
     await createInitialProducts();
     await createInitialOrders();
     await createInitialOrderProducts();
-    await getAllOrders();
+    await getOrderById(1);
     // await getOrderById(1);
   } catch (error) {
     console.log('Error during rebuildDB');
