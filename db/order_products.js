@@ -12,7 +12,6 @@ const createOrderProduct = async ({ orderId, productId, quantity }) => {
 `,
       [orderId, productId, quantity]
     );
-    console.log(orderProduct);
     return orderProduct;
   } catch (error) {
     console.log('Error creating order product');

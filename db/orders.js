@@ -43,9 +43,9 @@ const getAllOrders = async () => {
       'quantity', orderproducts.quantity
     )) as products
     FROM orders
-    LEFT JOIN orderproducts ON orders.id = orderproducts."orderId"
-    LEFT JOIN products ON orderproducts."productId" = products.id
-    LEFT JOIN users ON users.id = orders."userId"
+    JOIN orderproducts ON orders.id = orderproducts."orderId"
+    JOIN products ON orderproducts."productId" = products.id
+    JOIN users ON users.id = orders."userId"
     GROUP BY orders.id, users.username, orderproducts.quantity;
 `);
     console.log('GET ALL ORDERS:', rows);
@@ -56,24 +56,14 @@ const getAllOrders = async () => {
   }
 };
 
+// UNDER CONSTRUCTION!!
 const getOrderById = async id => {
   try {
     const {
       rows: [order],
     } = await client.query(`
-    SELECT orders.*, username,
-    jsonb_agg(jsonb_build_object(
-      'id', products.id,
-      'name', products.name,
-      'price', products.price,
-      'quantity', orderproducts.quantity
-    )) as products
-    FROM orders
-    LEFT JOIN orderproducts ON orders.id = orderproducts."orderId"
-    LEFT JOIN products ON orderproducts."productId" = products.id
-    LEFT JOIN users ON users.id = orders."userId"
-    WHERE "orderId"=${id}
-    GROUP BY orders.id, users.username, orderproducts.quantity;
+    SELECT *
+    FROM orders;
     `);
 
     console.log('ORDER BY ID:', order);
@@ -84,4 +74,9 @@ const getOrderById = async id => {
   }
 };
 
-module.exports = { createOrder, getAllOrders, getOrderById };
+module.exports = {
+  createOrder,
+  getAllOrders,
+  getOrderById,
+  getOrdersWithoutProducts,
+};

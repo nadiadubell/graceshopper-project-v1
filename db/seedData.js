@@ -11,7 +11,12 @@ const {
   getProductByName,
   getProductsByPrice,
 } = require('./products');
-const { createOrder, getAllOrders, getOrderById } = require('./orders');
+const {
+  createOrder,
+  getAllOrders,
+  getOrdersWithoutProducts,
+  getOrderById,
+} = require('./orders');
 const { createOrderProduct } = require('./order_products');
 
 const dropTables = async () => {
@@ -248,7 +253,7 @@ const createInitialOrderProducts = async () => {
   console.log('Creating intial order products...');
 
   try {
-    const [order1, order2, order3, order4] = await getAllOrders();
+    const [order1, order2, order3, order4] = await getOrdersWithoutProducts();
     const [product1, product2, product3, product4, product5, product6] =
       await getAllProducts();
 
