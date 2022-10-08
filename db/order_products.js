@@ -20,4 +20,21 @@ const createOrderProduct = async ({ orderId, productId, quantity }) => {
   }
 };
 
+const checkForOrderProductPair = async (orderId, productId) => {
+  try {
+    const {
+      rows: [orderProduct],
+    } = await client.query(`
+      SELECT *
+      FROM orderproducts
+      WHERE "orderId"=${orderId} AND "productId"=${productId}
+    `);
+
+    return orderProduct;
+  } catch (error) {
+    console.log('Error checking for order product pair');
+    throw error;
+  }
+};
+
 module.exports = { createOrderProduct };
