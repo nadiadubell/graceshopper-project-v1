@@ -27,7 +27,7 @@ const getOrderProductById = async id => {
     } = await client.query(`
       SELECT *
       FROM orderproducts
-      WHERE id=${id}
+      WHERE id=${id};
     `);
 
     return orderProduct;
@@ -44,7 +44,7 @@ const checkForOrderProductPair = async (orderId, productId) => {
     } = await client.query(`
       SELECT *
       FROM orderproducts
-      WHERE "orderId"=${orderId} AND "productId"=${productId}
+      WHERE "orderId"=${orderId} AND "productId"=${productId};
     `);
 
     return orderProduct;
@@ -54,8 +54,29 @@ const checkForOrderProductPair = async (orderId, productId) => {
   }
 };
 
+const addProductToOrder = async ({ orderId, productId, quantity }) => {
+  try {
+    const check = await checkForOrderProductPair(orderId, productId);
+    if (!check) {
+      const {
+        rows: [orderProduct],
+      } = await client.query(`
+        INSERT INTO orderproducts ("orderId", "productId", quantity)
+        VALUES (${orderId}, ${productId}, ${quantity})
+        RETURNING *;
+      `);
+
+      return orderProduct;
+    }
+  } catch (error) {
+    console.log('Error adding product to order');
+    throw error;
+  }
+};
+
 module.exports = {
   createOrderProduct,
   getOrderProductById,
   checkForOrderProductPair,
+  addProductToOrder,
 };
