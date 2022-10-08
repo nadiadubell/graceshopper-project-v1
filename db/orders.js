@@ -80,7 +80,7 @@ const getOrderById = async id => {
     JOIN users ON users.id = orders."userId"
     JOIN orderproducts ON orderproducts."orderId" = orders.id
     JOIN products ON orderproducts."productId" = products.id
-    WHERE users.id=${id}
+    WHERE users.id=${id} AND "isOpen" = true
     GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
 
@@ -130,6 +130,32 @@ const deleteOrder = async id => {
   }
 };
 
+const getOrderHistoryById = async id => {
+  try {
+    const { rows } = await client.query(`
+    SELECT orders.*, username,
+    jsonb_agg(jsonb_build_object(
+      'id', products.id,
+      'name', products.name,
+      'price', products.price,
+      'quantity', orderproducts.quantity
+    )) AS products
+    FROM orders
+    JOIN users ON users.id = orders."userId"
+    JOIN orderproducts ON orderproducts."orderId" = orders.id
+    JOIN products ON orderproducts."productId" = products.id
+    WHERE users.id=${id} AND "isOpen" = false
+    GROUP BY users.id, orders.id, orderproducts.quantity;
+`);
+
+    const result = makeProductArray(rows);
+    return result;
+  } catch (error) {
+    console.log('Error getting order by ID');
+    throw error;
+  }
+};
+
 module.exports = {
   createOrder,
   getAllOrders,
@@ -137,4 +163,5 @@ module.exports = {
   getOrdersWithoutProducts,
   updateOrder,
   deleteOrder,
+  getOrderHistoryById,
 };
