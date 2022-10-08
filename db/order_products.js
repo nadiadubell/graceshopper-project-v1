@@ -20,6 +20,23 @@ const createOrderProduct = async ({ orderId, productId, quantity }) => {
   }
 };
 
+const getOrderProductById = async id => {
+  try {
+    const {
+      rows: [orderProduct],
+    } = await client.query(`
+      SELECT *
+      FROM orderproducts
+      WHERE id=${id}
+    `);
+
+    return orderProduct;
+  } catch (error) {
+    console.log('Error getting order product by ID');
+    throw error;
+  }
+};
+
 const checkForOrderProductPair = async (orderId, productId) => {
   try {
     const {
@@ -37,4 +54,8 @@ const checkForOrderProductPair = async (orderId, productId) => {
   }
 };
 
-module.exports = { createOrderProduct };
+module.exports = {
+  createOrderProduct,
+  getOrderProductById,
+  checkForOrderProductPair,
+};
