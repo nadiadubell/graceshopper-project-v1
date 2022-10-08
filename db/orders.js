@@ -52,9 +52,9 @@ const getAllOrders = async () => {
       'quantity', orderproducts.quantity
     )) AS products
     FROM orders
-    JOIN users ON users.id = orders."userId"
     JOIN orderproducts ON orderproducts."orderId" = orders.id
     JOIN products ON orderproducts."productId" = products.id
+    JOIN users ON users.id = orders."userId"
     GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
     console.log('GET ALL ORDERS:', rows);
@@ -92,11 +92,49 @@ const getOrderById = async id => {
   }
 };
 
-const addItemToOrder = async () => {};
+const updateOrder = async (id, fields = {}) => {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(', ');
+
+  try {
+    if (setString.length > 0) {
+      await client.query(
+        `
+        UPDATE orders
+        SET ${setString}
+        WHERE id=${id}
+        RETURNING *;
+      `,
+        Object.values(fields)
+      );
+    }
+  } catch (error) {
+    console.log('Error updating order');
+    throw error;
+  }
+};
+
+const deleteOrder = async id => {
+  try {
+    const deletedOrder = await getOrderById(id);
+    await client.query(`
+      DELETE from orderproducts
+      WHERE id=${id};
+    `);
+
+    return deletedOrder;
+  } catch (error) {
+    console.log('Error deleting order');
+    throw error;
+  }
+};
 
 module.exports = {
   createOrder,
   getAllOrders,
   getOrderById,
   getOrdersWithoutProducts,
+  updateOrder,
+  deleteOrder,
 };
