@@ -16,7 +16,7 @@ breedsRouter.get('/:breedId', async (req, res, next) => {
   try {
     const productsByBreedId = await getAllProductsByBreedId(id);
 
-    if (!productsByBreedId) {
+    if (!productsByBreedId[0]) {
       next({
         name: 'ProductsByBreedIdNotFoundError',
         message: 'Products could not be found by Breed Id',
@@ -29,7 +29,7 @@ breedsRouter.get('/:breedId', async (req, res, next) => {
   }
 });
 
-breedsRouter.post('/:breedId', requireAdmin, async (req, res, next) => {
+breedsRouter.post('/', requireAdmin, async (req, res, next) => {
   try {
     const { name } = req.body;
 
