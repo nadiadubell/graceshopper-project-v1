@@ -74,9 +74,35 @@ const addProductToOrder = async ({ orderId, productId, quantity }) => {
   }
 };
 
+const updateOrderProduct = async (id, fields = {}) => {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(', ');
+
+  try {
+    if (setString.length > 0) {
+      await client.query(
+        `
+        UPDATE orderproducts
+        SET ${setString}
+        WHERE id=${id}
+        RETURNING *;
+      `,
+        Object.values(fields)
+      );
+    }
+
+    return await getOrderProductById(id);
+  } catch (error) {
+    console.log('Error updating order product');
+    throw error;
+  }
+};
+
 module.exports = {
   createOrderProduct,
   getOrderProductById,
   checkForOrderProductPair,
   addProductToOrder,
+  updateOrderProduct,
 };
