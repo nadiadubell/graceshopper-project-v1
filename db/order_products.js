@@ -99,10 +99,26 @@ const updateOrderProduct = async (id, fields = {}) => {
   }
 };
 
+const deleteProductFromOrder = async id => {
+  try {
+    const deletedProductFromOrder = await getOrderProductById(id);
+    await client.query(`
+      DELETE FROM orderproducts
+      WHERE id=${id}
+    `);
+
+    return deletedProductFromOrder;
+  } catch (error) {
+    console.log('Error deleting product from order');
+    throw error;
+  }
+};
+
 module.exports = {
   createOrderProduct,
   getOrderProductById,
   checkForOrderProductPair,
   addProductToOrder,
   updateOrderProduct,
+  deleteProductFromOrder,
 };
