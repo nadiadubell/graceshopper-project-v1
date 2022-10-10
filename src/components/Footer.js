@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
+      <h2>&copy 2022</h2>
+    
       <nav class="footer-links">
         <a href="https://www.linkedin.com/home" target="_blank" rel="noreferrer">
           <img 
