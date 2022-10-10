@@ -79,7 +79,7 @@ const getAllProductsByBreedId = async id => {
       [id]
     );
 
-    return breed;
+    return products;
   } catch (error) {
     console.log('error getting products by breed id');
     throw error;
@@ -126,6 +126,14 @@ const updateProduct = async (id, { ...fields }) => {
 
 const deleteProduct = async id => {
   try {
+    await client.query(
+      `
+    DELETE FROM orderproducts
+    WHERE "productId" = $1;
+    `,
+      [id]
+    );
+
     const { rows: products } = await client.query(
       `
             DELETE FROM products
