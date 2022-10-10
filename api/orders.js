@@ -3,6 +3,7 @@ const ordersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
 const {
   createOrder,
+  getOpenOrderByUserId,
   getOrderById,
   getOrdersWithoutProducts,
   updateOrder,
@@ -18,7 +19,7 @@ ordersRouter.get('/:userId', async (req, res, next) => {
   //POSSIBLE CHECK FOR IF USERID EXISTS AND, IF NOT, CARRY OUT GUEST SIDE OF THIS API CALL
 
   try {
-    const order = await getOrderById(userId);
+    const order = await getOpenOrderByUserId(userId);
 
     if (order) res.send(order);
     else
@@ -35,14 +36,14 @@ ordersRouter.post('/:userId', async (req, res, next) => {
   const { userId } = req.params;
   const { productId, quantity } = req.body;
   try {
-    let { id: orderId } = await getOrderById(userId);
+    let { id: orderId } = await getOpenOrderByUserId(userId);
 
     if (!orderId) {
       const { id: newOrderId } = await createOrder({ userId });
       orderId = newOrderId;
     }
     await addProductToOrder({ orderId, productId, quantity });
-    const order = await getOrderById(userId);
+    const order = await getOpenOrderByUserId(userId);
 
     if (order) res.send(order);
     else
@@ -56,8 +57,8 @@ ordersRouter.post('/:userId', async (req, res, next) => {
   }
 });
 
-ordersRouter.patch('/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
+  const { userId, orderId } = req.params;
   const { isOpen = '' } = req.body;
 
   const updateFields = {};
@@ -66,7 +67,7 @@ ordersRouter.patch('/:userId', async (req, res, next) => {
   if (userId) updateFields.userId = userId;
 
   try {
-    const originalOrder = await getOrderById(userId);
+    const originalOrder = await getOrderById(orderId);
     if (originalOrder.userId === req.user.id || req.user.isAdmin === true) {
       const updatedOrder = await updateOrder(originalOrder.id, updateFields);
       res.send({ order: updatedOrder });
@@ -81,13 +82,13 @@ ordersRouter.patch('/:userId', async (req, res, next) => {
   }
 });
 
-ordersRouter.delete('/:userId', async (req, res, next) => {
-  const { userId } = req.params;
+ordersRouter.delete('/:orderId', async (req, res, next) => {
+  const { orderId } = req.params;
   try {
-    const order = await getOrderById(userId);
+    const order = await getOrderById(orderId);
 
     if (order && (order.userId === req.user.id || req.user.isAdmin === true))
-      await deleteOrder(userId);
+      await deleteOrder(orderId);
     else {
       next(
         order

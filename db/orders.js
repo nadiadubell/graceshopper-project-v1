@@ -69,7 +69,7 @@ const getAllOrders = async () => {
   }
 };
 
-const getOrderById = async id => {
+const getOpenOrderByUserId = async id => {
   try {
     const { rows } = await client.query(`
     SELECT orders.*, username,
@@ -84,6 +84,32 @@ const getOrderById = async id => {
     JOIN orderproducts ON orderproducts."orderId" = orders.id
     JOIN products ON orderproducts."productId" = products.id
     WHERE users.id=${id} AND "isOpen" = true
+    GROUP BY users.id, orders.id, orderproducts.quantity;
+`);
+
+    const result = makeProductArray(rows);
+    return result;
+  } catch (error) {
+    console.log('Error getting order by ID');
+    throw error;
+  }
+};
+
+const getOrderById = async id => {
+  try {
+    const { rows } = await client.query(`
+    SELECT orders.*, username,
+    jsonb_agg(jsonb_build_object(
+      'id', products.id,
+      'name', products.name,
+      'price', products.price,
+      'quantity', orderproducts.quantity
+    )) AS products
+    FROM orders
+    JOIN users ON users.id = orders."userId"
+    JOIN orderproducts ON orderproducts."orderId" = orders.id
+    JOIN products ON orderproducts."productId" = products.id
+    WHERE orders.id=${id}
     GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
 
@@ -112,15 +138,17 @@ const updateOrder = async (id, fields = {}) => {
         Object.values(fields)
       );
     }
+
+    return await getOrderById(id);
   } catch (error) {
     console.log('Error updating order');
     throw error;
   }
 };
 
-const deleteOrder = async id => {
+const deleteOrder = async orderId => {
   try {
-    const deletedOrder = await getOrderById(id);
+    const deletedOrder = await getOrderById(orderId);
 
     await client.query(`
       DELETE from orderproducts
@@ -129,7 +157,7 @@ const deleteOrder = async id => {
 
     await client.query(`
       DELETE from orders
-      WHERE id=${id}
+      WHERE id=${orderId}
     `);
 
     return deletedOrder;
@@ -168,6 +196,7 @@ const getOrderHistoryById = async id => {
 module.exports = {
   createOrder,
   getAllOrders,
+  getOpenOrderByUserId,
   getOrderById,
   getOrdersWithoutProducts,
   updateOrder,
