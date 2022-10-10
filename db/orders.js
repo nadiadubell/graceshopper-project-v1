@@ -3,13 +3,15 @@ const client = require('./client');
 const makeProductArray = rows => {
   let productArr = [];
   for (let i = 0; i < rows.length; i++) {
-    productArr.push(rows[i].products[0]);
+    for (let j = 0; j < rows[i].products.length; j++) {
+      productArr.push(rows[i].products[j]);
+    }
   }
   rows[0].products = productArr;
   return rows[0];
 };
 
-const createOrder = async ({ userId, isOpen }) => {
+const createOrder = async ({ userId, isOpen = true }) => {
   try {
     const {
       rows: [order],
@@ -80,7 +82,7 @@ const getOrderById = async id => {
     JOIN users ON users.id = orders."userId"
     JOIN orderproducts ON orderproducts."orderId" = orders.id
     JOIN products ON orderproducts."productId" = products.id
-    WHERE users.id=${id} AND "isOpen" = true
+    WHERE users.id=1 AND "isOpen" = true
     GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
 
