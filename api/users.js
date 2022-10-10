@@ -4,7 +4,7 @@ const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
 
 const jwt = require('jsonwebtoken');
-const { getUser } = require('../db/users');
+const { getUser, getUserByUsername, createUser } = require('../db/users');
 const { JWT_SECRET } = process.env;
 
 usersRouter.post('/login', async(req, res, next) =>{
@@ -37,5 +37,53 @@ usersRouter.post('/login', async(req, res, next) =>{
     next ({ name, message })
   }
 })
+
+usersRouter.post('/register', async(req, res, next) => {
+  const { username, password } = req.body;
+
+  try {
+    const _user = await getUserByUsername(username);
+
+    if(_user) {
+      next({
+        name: 'UsernameTakenError',
+        message: "The username you've chose already exists, please choose another"
+      })
+    } else {
+      const user = await createUser({
+        username,
+        password
+      });
+
+      const token = jwt.sign({
+        id: user.id,
+        username
+      }, JWT_SECRET, {
+        expiresIn: '1w'
+      });
+
+      const data = await getUser({
+        username,
+        password
+      });
+
+      res.send({
+        user: data,
+        message: "Thanks for signing up!",
+        token
+      });
+    }
+  } catch({ name, message }) {
+    next({ name, message })
+  }
+})
+
+usersRouter.get('/me', requireUser, (req, res) => {
+  const user = req.user
+
+  res.send(user);
+})
+
+
 
 module.exports = usersRouter;
