@@ -1,5 +1,6 @@
 const express = require('express');
 const ordersRouter = express.Router();
+const { requireUser, requireAdmin } = require('./utils');
 const {
   createOrder,
   getOrderById,
@@ -9,9 +10,9 @@ const {
   getOrderHistoryById,
 } = require('../db/orders');
 
-// GET api/:userId/order
+// GET api/orders/:userId
 ordersRouter.get('/:userId', async (req, res, next) => {
-  const userId = req.params;
+  const { userId } = req.params;
 
   try {
     const order = await getOrderById(userId);
@@ -27,3 +28,5 @@ ordersRouter.get('/:userId', async (req, res, next) => {
     next({ name, message });
   }
 });
+
+module.exports = ordersRouter;

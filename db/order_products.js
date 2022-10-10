@@ -98,7 +98,6 @@ module.exports = {
   addProductToOrder,
   getOrderProductById,
   checkForOrderProductPair,
-  addProductToOrder,
   updateOrderProduct,
   deleteProductFromOrder,
 };
