@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { addProductToOrder, getOrderHistoryById } from "../../db";
 
 const Profile = () => {
   const [info, setInfo] = useState ({});
@@ -23,15 +24,41 @@ const Profile = () => {
       console.log(error)
     }
   }
+
+  const getOrderHistoryInfo = async () => {
+    try {
+      if (info && info.id) {
+        const orderHistoryResult = await getOrderHistoryById(info.id)
+        if (orderHistoryResult) {
+          setOrderHistory(orderHistoryResult)
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const reorderProduct = async () => {
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useEffect(() => {
     getUserInfo()
   }, []);
+
+  useEffect(() => {
+    getOrderHistoryInfo()
+  }, [info]);
 
   return (
     <>
     <h3>Hello {info.username}!</h3>
     <h2>Order History</h2>
-    <h4><Link to="login" onClick={logout}>logout</Link></h3>
+    <span onClick={reorder} >Re-Order! </span>
+    <h4><Link to="login" onClick={logout}>logout</Link></h4>
     </>
   )
 }
