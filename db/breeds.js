@@ -33,6 +33,26 @@ const getBreedByName = async name => {
   }
 };
 
+const getBreedById = async id => {
+  try {
+    const {
+      rows: [breed],
+    } = await client.query(
+      `
+      SELECT *
+      FROM breeds
+      WHERE id=$1
+    `,
+      [id]
+    );
+
+    return breed;
+  } catch (error) {
+    console.log('error getting breed by id');
+    throw error;
+  }
+};
+
 const createBreed = async ({ name }) => {
   try {
     const {
@@ -87,7 +107,7 @@ const deleteBreed = async id => {
     } = await client.query(
       `
       DELETE FROM breeds
-      WHERE id=$1;
+      WHERE id=$1
       RETURNING *;
       `,
       [id]
@@ -103,6 +123,7 @@ const deleteBreed = async id => {
 module.exports = {
   getAllBreeds,
   getBreedByName,
+  getBreedById,
   createBreed,
   updateBreed,
   deleteBreed,
