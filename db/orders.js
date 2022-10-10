@@ -2,6 +2,7 @@ const client = require('./client');
 
 const makeProductArray = rows => {
   let productArr = [];
+  //The dreaded double for loop -- but I couldn't think of a better solution
   for (let i = 0; i < rows.length; i++) {
     for (let j = 0; j < rows[i].products.length; j++) {
       productArr.push(rows[i].products[j]);
