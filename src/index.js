@@ -28,7 +28,7 @@ const App = () => {
           <Routes>
             <Route path='/' element={<h1>Welcome to HorsePlay!</h1>}></Route>
             <Route path='/products' element={<Products />}></Route>
-            <Route path='/:productId' element={<SingleProduct />}></Route>
+            <Route path='/products/:productId' element={<SingleProduct />}></Route>
             <Route path='/profile' element={<Profile />}></Route>
             <Route path='/order' element={<Order />}></Route>
             <Route path='/checkout'element={<Checkout />}></Route>
@@ -40,9 +40,9 @@ const App = () => {
               <Route path='/' element={<h1>Welcome to HorsePlay!</h1>}></Route>
               <Route path='/products' element={<Products />}></Route>
               <Route path='/:productId' element={<SingleProduct />}></Route>
-              <Route path='/login' element={<Login />}></Route>
-              <Route path='/register' element={<Register />}></Route>
-              <Route path='/order' element={<Order />}></Route>
+              <Route path='users/login' element={<Login />}></Route>
+              <Route path='users/register' element={<Register />}></Route>
+              <Route path='users/order' element={<Order />}></Route>
               <Route path='/checkout'element={<Checkout />}></Route>
             </Routes>
 
