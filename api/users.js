@@ -5,6 +5,7 @@ const { requireUser, requireAdmin } = require('./utils');
 
 const jwt = require('jsonwebtoken');
 const { getUser, getUserByUsername, createUser } = require('../db/users');
+const { getOrderHistoryById } = require('../db');
 const { JWT_SECRET } = process.env;
 
 usersRouter.post('/login', async(req, res, next) =>{
@@ -39,7 +40,7 @@ usersRouter.post('/login', async(req, res, next) =>{
 })
 
 usersRouter.post('/register', async(req, res, next) => {
-  const { username, password } = req.body;
+  const { username, password, isAdmin, firstName, lastName, email } = req.body;
 
   try {
     const _user = await getUserByUsername(username);
@@ -52,7 +53,11 @@ usersRouter.post('/register', async(req, res, next) => {
     } else {
       const user = await createUser({
         username,
-        password
+        password,
+        isAdmin,
+        firstName,
+        lastName,
+        email
       });
 
       const token = jwt.sign({
@@ -84,6 +89,27 @@ usersRouter.get('/me', requireUser, (req, res) => {
   res.send(user);
 })
 
+usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
+  const { username } = req.params;
+  
+  try {
+    
+  } catch({ name, message }) {
+    next({ name, message })
+  }
+})
 
+usersRouter.get('/:userId/profile', requireUser, async(req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    if(req.user) {
+      const userOrderHistory = await getOrderHistoryById(userId);
+      res.send(userOrderHistory)
+    }
+  } catch({ name, message }) {
+    next({ name, message })
+  }
+})
 
 module.exports = usersRouter;
