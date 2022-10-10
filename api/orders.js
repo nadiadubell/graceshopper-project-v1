@@ -41,8 +41,7 @@ ordersRouter.post('/:userId', async (req, res, next) => {
       const { id: newOrderId } = await createOrder({ userId });
       orderId = newOrderId;
     }
-    const test = await addProductToOrder({ orderId, productId, quantity });
-    console.log('Product Added to Order', test);
+    await addProductToOrder({ orderId, productId, quantity });
     const order = await getOrderById(userId);
 
     if (order) res.send(order);
@@ -52,6 +51,58 @@ ordersRouter.post('/:userId', async (req, res, next) => {
         message:
           'Unable to add the product to the order at this time. Please try again',
       });
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+ordersRouter.patch('/:userId', async (req, res, next) => {
+  const { userId } = req.params;
+  const { isOpen = '' } = req.body;
+
+  const updateFields = {};
+
+  if (isOpen || !isOpen) updateFields.isOpen = isOpen;
+  if (userId) updateFields.userId = userId;
+
+  try {
+    const originalOrder = await getOrderById(userId);
+    if (originalOrder.userId === req.user.id || req.user.isAdmin === true) {
+      const updatedOrder = await updateOrder(originalOrder.id, updateFields);
+      res.send({ order: updatedOrder });
+    } else {
+      next({
+        name: 'OrderUpdateError',
+        message: 'Unable to update the order at this time. Please try again',
+      });
+    }
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+ordersRouter.delete('/:userId', async (req, res, next) => {
+  const { userId } = req.params;
+  try {
+    const order = await getOrderById(userId);
+
+    if (order && (order.userId === req.user.id || req.user.isAdmin === true))
+      await deleteOrder(userId);
+    else {
+      next(
+        order
+          ? {
+              name: 'DeleteOrderError',
+              message:
+                'Unable to delete the order at this time. Please try again',
+            }
+          : {
+              name: 'OrderNotFoundError',
+              message:
+                'This order was not found and may not exist. Please try again',
+            }
+      );
+    }
   } catch ({ name, message }) {
     next({ name, message });
   }

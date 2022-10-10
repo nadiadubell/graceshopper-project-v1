@@ -83,7 +83,7 @@ const getOrderById = async id => {
     JOIN users ON users.id = orders."userId"
     JOIN orderproducts ON orderproducts."orderId" = orders.id
     JOIN products ON orderproducts."productId" = products.id
-    WHERE users.id=1 AND "isOpen" = true
+    WHERE users.id=${id} AND "isOpen" = true
     GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
 
@@ -121,9 +121,15 @@ const updateOrder = async (id, fields = {}) => {
 const deleteOrder = async id => {
   try {
     const deletedOrder = await getOrderById(id);
+
     await client.query(`
       DELETE from orderproducts
-      WHERE id=${id};
+      WHERE "orderId"=${deletedOrder.id};
+    `);
+
+    await client.query(`
+      DELETE from orders
+      WHERE id=${id}
     `);
 
     return deletedOrder;
