@@ -79,7 +79,7 @@ const getAllProductsByBreedId = async id => {
       [id]
     );
 
-    return breed;
+    return products;
   } catch (error) {
     console.log('error getting products by breed id');
     throw error;
