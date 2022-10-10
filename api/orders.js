@@ -110,4 +110,20 @@ ordersRouter.delete('/:orderId', async (req, res, next) => {
   }
 });
 
+ordersRouter.get('/:userId/orderhistory', async (req, res, next) => {
+  const { userId } = req.params;
+  try {
+    const orderHistory = await getOrderHistoryById(userId);
+
+    if (!orderHistory)
+      next({
+        name: 'OrderHistoryError',
+        message: 'Unable to get order history. Please try again',
+      });
+    else res.send(orderHistory);
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
 module.exports = ordersRouter;
