@@ -5,16 +5,17 @@ const {
   createBreed,
   updateBreed,
   deleteBreed,
-  getBreedByName,
+  getBreedById,
 } = require('../db');
 const { requireAdmin } = require('./utils');
 
 breedsRouter.get('/:breedId', async (req, res, next) => {
+  const { breedId: id } = req.params;
+
   try {
-    const { breedId: id } = req.params;
     const productsByBreedId = await getAllProductsByBreedId(id);
 
-    if (!productsByBreedId) {
+    if (!productsByBreedId[0]) {
       next({
         name: 'ProductsByBreedIdNotFoundError',
         message: 'Products could not be found by Breed Id',
@@ -27,21 +28,21 @@ breedsRouter.get('/:breedId', async (req, res, next) => {
   }
 });
 
-breedsRouter.post('/:breedId', requireAdmin, async (req, res, next) => {
+breedsRouter.post('/', requireAdmin, async (req, res, next) => {
   try {
     const { name } = req.body;
 
-    const breedToCreate = await createBreed(name);
+    const breedToCreate = await createBreed({ name });
 
     res.send(breedToCreate);
-  } catch (error) {
-    next(error);
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
 breedsRouter.patch('/:breedId', requireAdmin, async (req, res, next) => {
   try {
-    const { breedId } = req.params.breedId;
+    const { breedId } = req.params;
     const { name } = req.body;
 
     const breedToUpdate = await updateBreed({
@@ -50,30 +51,28 @@ breedsRouter.patch('/:breedId', requireAdmin, async (req, res, next) => {
     });
 
     res.send(breedToUpdate);
-  } catch (error) {
-    next(error);
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
 breedsRouter.delete('/:breedId', requireAdmin, async (req, res, next) => {
   try {
-    const breedId = req.params;
-    const { name } = req.body;
+    const breedId = req.params.breedId;
 
-    let breed = await getBreedByName(name);
-    if (!breed) {
+    if (!breedId) {
       res.send({
         name: 'BreedNotFoundError',
         message: 'Breed not found',
       });
     } else {
-      let breedToDelete = await deleteBreed(breedId);
-      if (!breedToDelete) {
+      const breedToDelete = await deleteBreed(breedId);
+      if (breedToDelete) {
         res.send({ success: true, ...breedToDelete });
       }
     }
-  } catch (error) {
-    next(error);
+  } catch ({ name, message }) {
+    next({ name, message });
   }
 });
 
