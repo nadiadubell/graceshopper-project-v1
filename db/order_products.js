@@ -1,6 +1,6 @@
 const client = require('./client');
 
-const createOrderProduct = async ({ orderId, productId, quantity }) => {
+const addProductToOrder = async ({ orderId, productId, quantity }) => {
   try {
     const {
       rows: [orderProduct],
@@ -12,7 +12,6 @@ const createOrderProduct = async ({ orderId, productId, quantity }) => {
 `,
       [orderId, productId, quantity]
     );
-    console.log(orderProduct);
     return orderProduct;
   } catch (error) {
     console.log('Error creating order product');
@@ -20,4 +19,4 @@ const createOrderProduct = async ({ orderId, productId, quantity }) => {
   }
 };
 
-module.exports = { createOrderProduct };
+module.exports = { addProductToOrder };
