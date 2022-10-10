@@ -64,7 +64,7 @@ ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
   const updateFields = {};
 
   if (isOpen || !isOpen) updateFields.isOpen = isOpen;
-  if (userId) updateFields.userId = userId;
+  updateFields.userId = userId;
 
   try {
     const originalOrder = await getOrderById(orderId);
@@ -87,9 +87,10 @@ ordersRouter.delete('/:orderId', async (req, res, next) => {
   try {
     const order = await getOrderById(orderId);
 
-    if (order && (order.userId === req.user.id || req.user.isAdmin === true))
-      await deleteOrder(orderId);
-    else {
+    if (order && (order.userId === req.user.id || req.user.isAdmin === true)) {
+      const deletedOrder = await deleteOrder(orderId);
+      res.send(deletedOrder);
+    } else {
       next(
         order
           ? {
