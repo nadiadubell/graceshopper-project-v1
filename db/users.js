@@ -82,9 +82,13 @@ const getUser = async ({ username, password }) => {
     const matchingPasswords = await bcrypt.compare(password, hashedPassword);
 
     if (matchingPasswords) {
-      const userResult = (({ id, username }) => ({ id, username }))(user);
-      return userResult;
+      await client.query(`
+      SELECT username, "firstName", "lastName", email
+      FROM users
+      WHERE username = ${username};
+      `);
     }
+
     return user;
   } catch (error) {
     console.error(error);

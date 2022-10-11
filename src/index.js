@@ -2,7 +2,14 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Header, Footer, Profile, Products } from './components';
+import {
+  Header,
+  Footer,
+  Profile,
+  Products,
+  Register,
+  Login,
+} from './components';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

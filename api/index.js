@@ -33,8 +33,8 @@ apiRouter.use((req, res, next) => {
   next();
 });
 
-// const usersRouter = require('./users');
-// apiRouter.use('/users', usersRouter);
+const usersRouter = require('./users');
+apiRouter.use('/users', usersRouter);
 
 const breedsRouter = require('./breeds');
 apiRouter.use('/products/breeds', breedsRouter);
