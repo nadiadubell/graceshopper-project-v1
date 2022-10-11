@@ -2,7 +2,15 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Header, Footer, Profile, Orders, Register, Login } from './components';
+import {
+  Header,
+  Footer,
+  Profile,
+  Products,
+  Orders,
+  Register,
+  Login,
+} from './components';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,8 +34,8 @@ const App = () => {
       />
       <Routes>
         <Route path="/" element={<h1>Welcome to HorsePlay!</h1>}></Route>
-        {/* <Route path='/products' element={<Products />}></Route>
-            <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
+        <Route path='/products' element={<Products />}></Route>
+            {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/orders" element={<Orders />}></Route>
         {/* <Route path='/checkout'element={<Checkout />}></Route> */}
