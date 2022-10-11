@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE } from '../api/index';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
@@ -24,8 +25,12 @@ export const Products = () => {
       {products.map((product, i) => {
         return (
           <div id="products" key={i}>
-            <img src={product.image} />
-            <h2 id="product-name">{product.name}</h2>
+            <Link to="/:productId">
+              <img id="product-image" src={product.image} />
+            </Link>
+            <Link to="/:productId">
+              <h2 id="product-name">{product.name}</h2>
+            </Link>
             <div id="product-price">Price: {product.price}</div>
             <button id="add-to-cart">Add To Cart</button>
           </div>

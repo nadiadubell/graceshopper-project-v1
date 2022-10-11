@@ -38,10 +38,16 @@ const App = () => {
         <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path='/order' element={<Order />}></Route> */}
         {/* <Route path='/checkout'element={<Checkout />}></Route> */}
-        {/* <Route path='/:productId' element={<SingleProduct />}></Route> */}
-        {/* <Route path='/login' element={<Login />}></Route> */}
-        {/* <Route path='/register' element={<Register />}></Route>
-            <Route path='/order' element={<Order />}></Route>
+        {/* <Route path="/:productId" element={<SingleProduct />}></Route> */}
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        ></Route>
+        <Route
+          path="/register"
+          element={<Register setIsLoggedIn={setIsLoggedIn} />}
+        ></Route>
+        {/* <Route path='/order' element={<Order />}></Route>
             <Route path='/checkout'element={<Checkout />}></Route> */}
       </Routes>
       {/* <Route path='/admin' element={<Admin />}></Route> */}

@@ -174,37 +174,42 @@ const createInitialProducts = async () => {
         description: "It's beautiful",
         breedId: 1,
         price: 5000,
-        image: 'https://i.imgur.com/CNTCkCG.png',
+        image: 'https://i.imgur.com/Kp0A6zL.jpg',
       },
       {
         name: 'Horse drinking from stream',
         description: "It's thirsty",
         breedId: 2,
         price: 10,
+        image: 'https://i.imgur.com/BOdkcCY.jpg',
       },
       {
         name: 'Miniature Model Horse',
         description: "It's small",
         breedId: 3,
         price: 25,
+        image: 'https://i.imgur.com/FCK3XaB.jpg',
       },
       {
         name: 'Bucking Bronco',
         description: "It's angry",
         breedId: 4,
         price: 50,
+        image: 'https://i.imgur.com/uGo00BC.jpg',
       },
       {
         name: 'Prancing Palomino',
         description: "It's fancy",
         breedId: 5,
         price: 100,
+        image: 'https://i.imgur.com/gDMzKo6.png',
       },
       {
         name: 'Lil Sebastian',
         description: "It's a Parks & Rec reference",
         breedId: 6,
         price: 150,
+        image: 'https://i.imgur.com/Sbs9wwh.jpg',
       },
     ];
 
