@@ -55,7 +55,7 @@ const buildTables = async () => {
 
         CREATE TABLE products (
             id SERIAL PRIMARY KEY,
-            image TEXT,
+            image VARCHAR(255),
             name VARCHAR(100) UNIQUE NOT NULL,
             description VARCHAR(255) NOT NULL,
             "breedId" INTEGER REFERENCES breeds(id),
@@ -174,7 +174,7 @@ const createInitialProducts = async () => {
         description: "It's beautiful",
         breedId: 1,
         price: 5000,
-        image: url('graceshopper-project/public/assets/Arabian 2.png'),
+        image: 'https://i.imgur.com/CNTCkCG.png',
       },
       {
         name: 'Horse drinking from stream',

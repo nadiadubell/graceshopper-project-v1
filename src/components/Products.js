@@ -24,7 +24,7 @@ export const Products = () => {
       {products.map((product, i) => {
         return (
           <div id="products" key={i}>
-            <img>{product.image}</img>
+            <img src={product.image} />
             <h2 id="product-name">{product.name}</h2>
             <div id="product-price">Price: {product.price}</div>
             <button id="add-to-cart">Add To Cart</button>
