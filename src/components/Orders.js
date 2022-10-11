@@ -4,7 +4,8 @@ const { BASE } = require('../api/index');
 
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
-  const userId = 1;
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -13,8 +14,6 @@ export const Orders = () => {
     };
     fetchOrder();
   }, []);
-
-  console.log(userOrder);
 
   const openOrder = async () => {
     const response = await fetch(`${BASE}/orders/${userId}`, {
@@ -26,8 +25,19 @@ export const Orders = () => {
     return data;
   };
 
-  const handleRemoveButtonClick = async () => {
-    const response = await fetch(`${BASE}`);
+  const handleRemoveButtonClick = async (orderId, productId) => {
+    const response = await fetch(
+      `${BASE}/orderproducts/${userId}/${orderId}/${productId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = response.json();
+    console.log(data);
   };
 
   return (
@@ -42,14 +52,16 @@ export const Orders = () => {
                   <h4>{product.name}</h4>
                   <ul>
                     <li>Price: {product.price}</li>
-                    <div class="quantity-wrapper">
-                      <li>Quantity:</li>
-                      <span class="plus">+</span>
-                      <span class="num">{product.quantity}</span>
-                      <span class="minus">-</span>
-                    </div>
+                    <li>Quantity:{product.quantity}</li>
                     <br></br>
-                    <button>Remove From Cart</button>
+                    <button
+                      onClick={async event => {
+                        event.preventDefault();
+                        handleRemoveButtonClick(order.id, product.id);
+                      }}
+                    >
+                      Remove From Cart
+                    </button>
                   </ul>
                 </div>
               );
