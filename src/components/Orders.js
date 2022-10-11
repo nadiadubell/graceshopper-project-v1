@@ -36,8 +36,9 @@ export const Orders = () => {
         },
       }
     );
-    const data = response.json();
+    const data = await response.json();
     console.log(data);
+    return data;
   };
 
   return (
@@ -48,7 +49,7 @@ export const Orders = () => {
             {order.products.map((product, i) => {
               return (
                 <div key={i}>
-                  {/* product image */}
+                  <img src={product.image} />
                   <h4>{product.name}</h4>
                   <ul>
                     <li>Price: {product.price}</li>
