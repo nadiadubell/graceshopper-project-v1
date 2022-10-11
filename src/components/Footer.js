@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <>
       <h2>&copy 2022</h2>
     
-      <nav class="footer-links">
+      <nav className="footer-links">
         <a href="https://www.linkedin.com/home" target="_blank" rel="noreferrer">
           <img 
             src="https://www.freeiconspng.com/thumbs/linkedin-logo-png/linkedin-logo-3.png" width="350"
@@ -38,5 +38,5 @@ const Footer = () => {
   )
 }
 
-export default Footer;
+
  

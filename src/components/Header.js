@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
-const Header = ({ isLoggedIn }) => {
+import { Link } from 'react-router-dom';
+
+
+export const Header = ({ isLoggedIn }) => {
 
   return (
     <div>
-      <h1><Link class="header-links" to="/">Horseplay</Link></h1>
+      <h1><Link className="header-links" to="/">Horseplay</Link></h1>
       
       <div>
         <Link to="profile">
@@ -16,7 +18,7 @@ const Header = ({ isLoggedIn }) => {
 
       {isLoggedIn ? (
         <>
-          <nav class="header-links">
+          <nav className="header-links">
             <Link to="profile">profile</Link>
             <Link to="products">products</Link>
             <Link to="cart">cart</Link>
@@ -25,7 +27,7 @@ const Header = ({ isLoggedIn }) => {
         </>
       ) : (
         <> 
-          <nav class="header-links">
+          <nav className="header-links">
             <Link to="login">login</Link>
             <Link to="products">products</Link>
             <Link to="cart">cart</Link>
@@ -36,5 +38,3 @@ const Header = ({ isLoggedIn }) => {
     </div>
   );
 }
-
-export default Header;

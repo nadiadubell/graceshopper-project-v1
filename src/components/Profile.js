@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { addProductToOrder, getOrderHistoryById } from "../../db";
 
-const Profile = () => {
+
+export const Profile = () => {
   const [info, setInfo] = useState ({});
   const [orderHistory, setOrderHistory] = useState ({});
 
