@@ -10,13 +10,13 @@
   background-color: tan;
 }
 
-.links {
-  justify-items: space-between;
-}
-
 #links {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
   color: antiquewhite;
   text-decoration: none;
+  letter-spacing: 1pt;
 }
 
 

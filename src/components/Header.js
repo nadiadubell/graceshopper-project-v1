@@ -17,16 +17,16 @@ export const Header = ({ isLoggedIn }) => {
 
       {isLoggedIn ? (
         <>
-          <nav>
-            <Link className="header" to="profile">profile</Link>
-            <Link className="header" to="products">products</Link>
-            <Link className="header" to="cart">cart</Link>
-            <Link className="header" to="contact">contact</Link>
+          <nav className="header">
+            <Link id="links" to="profile">profile</Link>
+            <Link id="links" to="products">products</Link>
+            <Link id="links" to="cart">cart</Link>
+            <Link id="links" to="contact">contact</Link>
           </nav>  
         </>
       ) : (
         <> 
-          <nav className="links">
+          <nav>
             <Link id="links" to="login">login</Link>
             <Link id="links" to="products">products</Link>
             <Link id="links" to="cart">cart</Link>

@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
-// import { getOrderHistoryById } from "../../db";
-
+import { useNavigate } from "react-router";
 
 export const Profile = (props) => {
   const [orderHistory, setOrderHistory] = useState ({});
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    setIsLoggedIn(false);
-    navigate('/');
-    setUsername("");
-    setPassword("");    
-  }
+  useEffect(() => {
+    getOrderHistoryInfo()
+  }, []);
 
+  let navigate = useNavigate();
 
   const getOrderHistoryInfo = async (id) => {
     try {
@@ -26,27 +21,26 @@ export const Profile = (props) => {
     }
   }
 
-  const reorderProduct = async () => {
-    try {
+  // const reorderProduct = async () => {
+  //   try {
       
-    } catch (error) {
-      console.log(error)
-    }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    props.setIsLoggedIn(false);
+    navigate('/');  
   }
-  useEffect(() => {
-    getUserInfo()
-  }, []);
-
-  useEffect(() => {
-    getOrderHistoryInfo()
-  }, [info]);
-
 
   return (
     <>
     <h3>Hello {props.isLoggedIn.username}!</h3>
     <h2>Order History</h2>
-    <span onClick={reorder} >Re-Order! </span>
+    <button onClick={reorder}>Re-Order!</button>
     <h4><Link to="login" onClick={logout}>logout</Link></h4>
     </>
   )
