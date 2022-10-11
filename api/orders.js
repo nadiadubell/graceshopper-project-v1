@@ -87,9 +87,13 @@ ordersRouter.delete('/:orderId/:productId', async (req, res, next) => {
     const order = await getOrderById(orderId);
 
     if (order && (order.userId === req.user.id || req.user.isAdmin === true)) {
-      const deletedProduct = await deleteProductFromOrder()
+      const deletedProduct = await deleteProductFromOrder();
+    }
+  } catch (error) {
+    console.log('Error deleting product from order');
+    throw error;
   }
-})
+});
 
 ordersRouter.delete('/:orderId', async (req, res, next) => {
   const { orderId } = req.params;
