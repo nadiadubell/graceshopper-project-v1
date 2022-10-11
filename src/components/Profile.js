@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+// import { getOrderHistoryById } from "../../db";
 
 
-export const Profile = () => {
-  const [info, setInfo] = useState ({});
+export const Profile = (props) => {
   const [orderHistory, setOrderHistory] = useState ({});
 
   const logout = () => {
@@ -14,24 +14,12 @@ export const Profile = () => {
     setPassword("");    
   }
 
-  const getUserInfo = async () => {
-    try {
-      const result = await getUser()
-      if(result){
-          setInfo(result)
-      }      
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
-  const getOrderHistoryInfo = async () => {
+  const getOrderHistoryInfo = async (id) => {
     try {
-      if (info && info.id) {
-        const orderHistoryResult = await getOrderHistoryById(info.id)
-        if (orderHistoryResult) {
-          setOrderHistory(orderHistoryResult)
-        }
+      const orderHistoryResult = await getOrderHistoryById(id)
+      if (orderHistoryResult) {
+        setOrderHistory(orderHistoryResult)
       }
     } catch (error) {
       console.log(error)
@@ -53,9 +41,10 @@ export const Profile = () => {
     getOrderHistoryInfo()
   }, [info]);
 
+
   return (
     <>
-    <h3>Hello {info.username}!</h3>
+    <h3>Hello {props.isLoggedIn.username}!</h3>
     <h2>Order History</h2>
     <span onClick={reorder} >Re-Order! </span>
     <h4><Link to="login" onClick={logout}>logout</Link></h4>

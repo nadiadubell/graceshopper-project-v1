@@ -1,0 +1,14 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: tan;
+  text-decoration: none;
+  color: antiquewhite;
+}
+
+
