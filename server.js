@@ -4,10 +4,13 @@ const server = express();
 const client = require('./db/client');
 const morgan = require('morgan');
 const apiRouter = require('./api');
+const CORS = require('cors');
 
 server.use(express.json());
 
 server.use(morgan('dev'));
+
+server.use(CORS())
 
 server.use((req, res, next) => {
   console.log('Starting body logger...');
@@ -35,7 +38,7 @@ server.get('/*', (req, res) => {
 
 client.connect();
 
-const PORT = process.env['PORT'] ?? 3000;
+const PORT = process.env['PORT'] ?? 4000;
 
 server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
