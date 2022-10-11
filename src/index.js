@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Header, Footer, Profile } from './components'
+import { Header, Footer, Profile, Register, Login } from './components'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,10 +32,10 @@ const App = () => {
             {/* <Route path='/order' element={<Order />}></Route> */}
             {/* <Route path='/checkout'element={<Checkout />}></Route> */}
             {/* <Route path='/:productId' element={<SingleProduct />}></Route> */}
-            {/* <Route path='/login' element={<Login />}></Route> */}
-            {/* <Route path='/register' element={<Register />}></Route>
-            <Route path='/order' element={<Order />}></Route>
-            <Route path='/checkout'element={<Checkout />}></Route> */}
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/register' element={<Register />}></Route>
+            {/* <Route path='/order' element={<Order />}></Route> */}
+            {/* <Route path='/checkout'element={<Checkout />}></Route> */}
             </Routes>
             {/* <Route path='/admin' element={<Admin />}></Route> */}
         <Footer />

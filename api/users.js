@@ -40,7 +40,7 @@ usersRouter.post('/login', async(req, res, next) =>{
 })
 
 usersRouter.post('/register', async(req, res, next) => {
-  const { username, password, isAdmin, firstName, lastName, email } = req.body;
+  const { username, password, firstName, lastName, email } = req.body;
 
   try {
     const _user = await getUserByUsername(username);
@@ -54,7 +54,6 @@ usersRouter.post('/register', async(req, res, next) => {
       const user = await createUser({
         username,
         password,
-        isAdmin,
         firstName,
         lastName,
         email
@@ -91,6 +90,8 @@ usersRouter.get('/me', requireUser, (req, res) => {
 
 usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
   const { username } = req.params;
+
+  const userName = await getUserByUsername(username)
   
   try {
     
@@ -99,13 +100,33 @@ usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
   }
 })
 
-usersRouter.get('/:userId/profile', requireUser, async(req, res, next) => {
-  const { userId } = req.params;
+usersRouter.get('/:username/profile', requireUser, async(req, res, next) => {
+  const { username } = req.params;
 
+  
   try {
-    if(req.user) {
-      const userOrderHistory = await getOrderHistoryById(userId);
-      res.send(userOrderHistory)
+    const userName = await getUserByUsername(username)
+    const userOrderHistory = await getOrderHistoryById(userId);
+    if(!userName) {
+      res.status(401)
+      res.send({
+        name: "UnauthorizedError",
+        message: "You must be logged in to perform this action!"
+      })
+    } else {
+      const user = await getUser({username, password})
+      if(user) {
+      const userContactOrderHistoryInfo = {
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.lastName
+      }
+    }
+      if(userOrderHistory) {
+        // userContactOrderHistoryInfo.
+      }
     }
   } catch({ name, message }) {
     next({ name, message })
