@@ -101,33 +101,46 @@ usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
 })
 
 usersRouter.get('/:username/profile', requireUser, async(req, res, next) => {
+  const user = req.user;
   const { username } = req.params;
 
-  
+  const userId = user.id;
+
   try {
-    const userName = await getUserByUsername(username)
-    const userOrderHistory = await getOrderHistoryById(userId);
-    if(!userName) {
+    const user = await getUserByUsername(username)
+    if(!user) {
       res.status(401)
       res.send({
         name: "UnauthorizedError",
-        message: "You must be logged in to perform this action!"
+        message: "You must be a registered user to view your profile!"
       })
     } else {
-      const user = await getUser({username, password})
-      if(user) {
       const userContactOrderHistoryInfo = {
-        id: user.id,
+        userId: user.id,
         username: user.username,
         firstName: user.firstName,
         lastName: user.lastName,
-        email: user.lastName
+        email: user.email
       }
-    }
-      if(userOrderHistory) {
-        // userContactOrderHistoryInfo.
+
+    const userOrderHistory = await getOrderHistoryById(userId);
+    if(!userOrderHistory) {
+      res.send({
+        name: "NoOrderHistoryError",
+        message: "No order history available"
+      })
+    } else {
+      if(userOrderHistory.name) {
+      userContactOrderHistoryInfo.productName = userOrderHistory.name
       }
-    }
+      if(userOrderHistory.price) {
+      userContactOrderHistoryInfo.productPrice = userOrderHistory.price
+      }
+      if(userOrderHistory.quantity) {
+      userContactOrderHistoryInfo.productQuantity = userOrderHistory.quantity
+    }}
+    res.send(userContactOrderHistoryInfo);
+  }
   } catch({ name, message }) {
     next({ name, message })
   }
