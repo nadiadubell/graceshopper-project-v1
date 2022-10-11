@@ -5,3 +5,7 @@ export { Footer } from './Footer';
 export { Profile } from './Profile';
 
 export { Orders } from './Orders';
+
+export { Register } from './Register';
+
+export { Login } from './Login';
