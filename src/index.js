@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
+  const BASE_URL = "http://localhost:3000/api"
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [username, setUsername] = useState("");
@@ -27,17 +28,17 @@ const App = () => {
         {isLoggedIn ? (
           <Routes>
             <Route path='/' element={<h1>Welcome to HorsePlay!</h1>}></Route>
-            <Route path='/products' element={<Products />}></Route>
-            <Route path='/products/:productId' element={<SingleProduct />}></Route>
-            <Route path='/profile' element={<Profile />}></Route>
-            <Route path='/order' element={<Order />}></Route>
-            <Route path='/checkout'element={<Checkout />}></Route>
-            <Route path='/' element={<Footer />}></Route>
+            <Route path='/products' element={<Products BASE_URL={BASE_URL} />}></Route>
+            <Route path='/products/:productId' element={<SingleProduct BASE_URL={BASE_URL} />}></Route>
+            <Route path='/profile' element={<Profile BASE_URL={BASE_URL} />}></Route>
+            <Route path='/order' element={<Order BASE_URL={BASE_URL} />}></Route>
+            <Route path='/checkout'element={<Checkout BASE_URL={BASE_URL} />}></Route>
+            <Route path='/' element={<Footer BASE_URL={BASE_URL} />}></Route>
           </Routes>
         ) : (
           <div>
             <Routes>
-              <Route path='/' element={<h1>Welcome to HorsePlay!</h1>}></Route>
+              <Route exact path='/' element={<h1>Welcome to HorsePlay!</h1>}> </Route>
               <Route path='/products' element={<Products />}></Route>
               <Route path='/:productId' element={<SingleProduct />}></Route>
               <Route path='users/login' element={<Login />}></Route>
