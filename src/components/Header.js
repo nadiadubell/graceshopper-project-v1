@@ -5,17 +5,15 @@ import './Header.css'
 export const Header = ({ isLoggedIn }) => {
 
   return (
-    <div>
-      <div>
+    <div className='header'>
         <Link to="profile">
           <img 
-            className="header"
+            id="logo"
             src="https://www.freeiconspng.com/uploads/white-horse-png-23.png" width="50" 
             alt="Horse Logo Image" 
             
           />
         </Link>
-      </div>
 
       {isLoggedIn ? (
         <>
@@ -28,11 +26,11 @@ export const Header = ({ isLoggedIn }) => {
         </>
       ) : (
         <> 
-          <nav>
-            <Link className="header" to="login">login</Link>
-            <Link className="header" to="products">products</Link>
-            <Link className="header" to="cart">cart</Link>
-            <Link className="header" to="contact">contact</Link>
+          <nav className="links">
+            <Link id="links" to="login">login</Link>
+            <Link id="links" to="products">products</Link>
+            <Link id="links" to="cart">cart</Link>
+            <Link id="links" to="contact">contact</Link>
           </nav> 
         </>
       )}

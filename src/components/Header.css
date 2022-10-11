@@ -6,9 +6,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: tan;
-  text-decoration: none;
+}
+
+.links {
+  justify-items: space-between;
+}
+
+#links {
   color: antiquewhite;
+  text-decoration: none;
 }
 
 
