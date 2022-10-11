@@ -26,6 +26,10 @@ export const Orders = () => {
     return data;
   };
 
+  const handleRemoveButtonClick = async () => {
+    const response = await fetch(`${BASE}`);
+  };
+
   return (
     <div>
       {userOrder.map((order, i) => {

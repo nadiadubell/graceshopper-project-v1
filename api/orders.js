@@ -81,6 +81,16 @@ ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
   }
 });
 
+ordersRouter.delete('/:orderId/:productId', async (req, res, next) => {
+  const { orderId, productId } = req.params;
+  try {
+    const order = await getOrderById(orderId);
+
+    if (order && (order.userId === req.user.id || req.user.isAdmin === true)) {
+      const deletedProduct = await deleteProductFromOrder()
+  }
+})
+
 ordersRouter.delete('/:orderId', async (req, res, next) => {
   const { orderId } = req.params;
   try {

@@ -79,7 +79,7 @@ const updateOrderProduct = async (id, fields = {}) => {
   }
 };
 
-const deleteProductFromOrder = async id => {
+const deleteProductFromOrder = async (orderId, productId) => {
   try {
     const deletedProductFromOrder = await getOrderProductById(id);
     await client.query(`
