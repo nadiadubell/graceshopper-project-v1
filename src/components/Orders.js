@@ -40,8 +40,6 @@ export const Orders = () => {
     console.log(data);
     return data;
   };
-  
-  let select = '';
 
   return (
     <div>
@@ -56,15 +54,21 @@ export const Orders = () => {
                   <ul>
                     <li>Price: {product.price}</li>
                     <span>
-                    <li>Quantity:</li>
+                      <li>Quantity:</li>
                       <select required>
                         <option value="quantity">{product.quantity}</option>
-                        for (i=1; i<=10; i++){
-                          return (
-
-                            select += <option val=${i}>${i}</option>;
-                            )
-                        }}
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                        <option value={9}>9</option>
+                        {/* need to figure out how to make an input field that allows you
+                        to manually enter a number larger than 10 if the below is selected */}
+                        <option value={10}>10+</option>
                       </select>
                     </span>
                     <br></br>
