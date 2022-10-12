@@ -1,4 +1,5 @@
 const client = require('./client');
+const { getOpenOrderByUserId } = require('./orders');
 
 const getOrderProductById = async id => {
   try {
@@ -79,15 +80,16 @@ const updateOrderProduct = async (id, fields = {}) => {
   }
 };
 
-const deleteProductFromOrder = async id => {
+const deleteProductFromOrder = async (userId, orderId, productId) => {
   try {
-    const deletedProductFromOrder = await getOrderProductById(id);
     await client.query(`
-      DELETE FROM orderproducts
-      WHERE id=${id}
+    DELETE FROM orderproducts
+    WHERE "orderId"=${orderId} AND "productId"=${productId};
     `);
 
-    return deletedProductFromOrder;
+    const openOrder = await getOpenOrderByUserId(userId);
+
+    return openOrder;
   } catch (error) {
     console.log('Error deleting product from order');
     throw error;

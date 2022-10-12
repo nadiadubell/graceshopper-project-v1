@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Products.css';
 
-export const Products = () => {
+export const Products = props => {
   const [products, setProducts] = useState([]);
+
+  const { setProductId } = props;
 
   useEffect(() => {
     const getProducts = async () => {
@@ -22,7 +24,6 @@ export const Products = () => {
   return (
     <div id="products">
       <h1 id="products-header">Products</h1>
-      {console.log('products', products)}
       {products.map((product, i) => {
         return (
           <div id="single-product" key={i}>

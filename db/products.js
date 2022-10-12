@@ -37,9 +37,10 @@ const getProductById = async id => {
   try {
     const { rows: products } = await client.query(
       `
-            SELECT *
+            SELECT products.*, breeds.name AS breedname
             FROM products
-            WHERE id = $1;
+            JOIN breeds ON products."breedId" = breeds.id
+            WHERE products.id = $1;
         `,
       [id]
     );
