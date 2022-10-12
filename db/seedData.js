@@ -57,7 +57,7 @@ const buildTables = async () => {
             id SERIAL PRIMARY KEY,
             image VARCHAR(255),
             name VARCHAR(100) UNIQUE NOT NULL,
-            description VARCHAR(255) NOT NULL,
+            description TEXT NOT NULL,
             "breedId" INTEGER REFERENCES breeds(id),
             price DECIMAL NOT NULL
         );
@@ -112,7 +112,7 @@ const createInitialUsers = async () => {
         email: 'treybyars93@gmail.com',
       },
       {
-        username: 'nadia',
+        username: 'nadiadb',
         password: 'gamergirl20',
         isAdmin: true,
         firstName: 'Nadia',
@@ -171,10 +171,18 @@ const createInitialProducts = async () => {
     const productsToCreate = [
       {
         name: 'Breyer Horse',
-        description: "It's beautiful",
+        description: `Thoroughbreds are best known for their use in horse racing. 
+        They are high-spirited, agile, and quick. Developed in the 17th and 18th 
+        centuries, this breed is the result of crossbreeding of imported Arabian, 
+        Barb, and Turkoman stallions with foundation English mares. All modern 
+        Thoroughbreds are said to be able to trace back to three original stallions. 
+        Good Thoroughbreds have well-balanced conformation with lean body and long 
+        legs. They can be seen in a variety of colors and coat patterns.  
+        Thoroughbreds are also used in other riding disciplines and are 
+        often crossbred to improve other horse breeds.`,
         breedId: 1,
         price: 5000,
-        image: 'https://i.imgur.com/Kp0A6zL.jpg',
+        image: 'https://i.imgur.com/9RhQMDK.jpg',
       },
       {
         name: 'Horse drinking from stream',

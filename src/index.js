@@ -34,7 +34,10 @@ const App = () => {
         setPassword={setPassword}
       />
       <Routes>
-        <Route path="/products" element={<Products />} />
+        <Route
+          path="/products"
+          element={<Products setProductId={setProductId} />}
+        />
         {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
         <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path='/order' element={<Order />}></Route> */}

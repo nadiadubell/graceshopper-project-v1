@@ -36,7 +36,14 @@ export const Products = props => {
               />
             </Link>
             <Link to="/:productId">
-              <h2 id="product-name">{product.name}</h2>
+              <h2
+                id="product-name"
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              >
+                {product.name}
+              </h2>
             </Link>
             <div id="product-price">Price: {product.price}</div>
             <button id="add-to-cart">Add To Cart</button>

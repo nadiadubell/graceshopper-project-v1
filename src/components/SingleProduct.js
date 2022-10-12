@@ -1,5 +1,6 @@
 import { BASE } from '../api/index';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const SingleProduct = props => {
@@ -29,7 +30,15 @@ export const SingleProduct = props => {
           <div id="single-product" key={i}>
             <h1 id="single-product-name">{singleProduct.name}</h1>
             <img id="single-product-image" src={singleProduct.image} />
-            <div>{singleProduct.breedname}</div>
+            <h3 id="single-product-description">
+              Description: {singleProduct.description}
+            </h3>
+            <h3 id="single-product-breed">Breed: {singleProduct.breedname}</h3>
+            <h3 id="single-product-price">Price: {singleProduct.price}</h3>
+            <button id="single-product-add-to-cart">Add To Cart</button>
+            <Link to="/products">
+              <div>Back to all products</div>
+            </Link>
           </div>
         );
       })}
