@@ -34,7 +34,6 @@ export const Products = props => {
               <img id="product-image" src={product.image} />
             </Link>
             <div id="product-price">Price: {product.price}</div>
-            <button id="add-to-cart">Add To Cart</button>
           </div>
         );
       })}
