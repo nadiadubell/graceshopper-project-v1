@@ -34,11 +34,7 @@ const App = () => {
         setPassword={setPassword}
       />
       <Routes>
-        <Route path="/" element={<h1>Welcome to HorsePlay!</h1>}></Route>
-        <Route
-          path="/products"
-          element={<Products setProductId={setProductId} />}
-        />
+        <Route path="/products" element={<Products />} />
         {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
         <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path='/order' element={<Order />}></Route> */}
