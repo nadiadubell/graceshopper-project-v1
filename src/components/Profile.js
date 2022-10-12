@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUserProfileInfo } from "../api";
+import './Profile.css';
 
 
 export const Profile = (props) => {
@@ -28,37 +29,42 @@ export const Profile = (props) => {
   // }
 
   return (
-    <>
-        <h2>Hello {props.isLoggedIn.username}!</h2>
-        <div id='user-profile-container'>
-        <span>
-          {/* <img id='user-image' src/> */}
-          <div>User Profile Picture Here</div>
-          <h3 id='user-info-title'>Your Profile Info</h3>
+    <div id="profile-page">
+        <h1 id="user-profile-title">Welcome back, {props.isLoggedIn.username}!</h1>
+        <br/>
+        <h2 id='user-info-title'>Profile Info</h2>
+        <span id='user-profile-container'>
+          <p id='user-profile-picture'>User Profile Picture Here</p>
+          <div id="user-profile-info">
             {userProfileInfo.map((userProfile, i) => {
               return (
                 <div id='user-info' key={i}>
-                  <p>First Name: {userProfile.firstName}</p>
-                  <p>Last Name: {userProfile.lastName}</p>
-                  <p>Email: {userProfile.email}</p>
+                  <h4>First Name: {userProfile.firstName}</h4>
+                  <br/>
+                  <h4>Last Name: {userProfile.lastName}</h4>
+                  <br/>
+                  <h4>Email: {userProfile.email}</h4>
                 </div>
               )
             })}
+          </div>
         </span>
             <br/>
-          <h3 id='user-order-history-title'>Your Order History</h3>
+          <h2 id='user-order-history-title'>Order History</h2>
+            <div id='user-order-history-container'>
             {userOrderHistory.map((orderHistory, i) => {
               return (
                 <div id='user-order-history' key={i}>
-                  <br/>
                   <h4>{orderHistory.name}</h4>
-                  <p>Price: {orderHistory.price}</p>
-                  <p>Quantity: {orderHistory.quantity}</p>
                   <br/>
+                  <p>Price: {orderHistory.price}</p>
+                  <br/>
+                  <p>Quantity: {orderHistory.quantity}</p>
+
                 </div>
               )
             })}
-        </div>
-    </>
+            </div>
+    </div>
   )
 }

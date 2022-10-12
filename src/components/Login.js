@@ -28,13 +28,13 @@ export const Login = props => {
   };
 
   return (
-    <div id="login-form">
-      <h1>Please Sign In</h1>
-      <br />
+    <div id="login-page">
+      <div id="login-form">
+      <h2>Please Sign In</h2>
       <form className="input-container" onSubmit={handleSubmit}>
-        <div className="input-username">
+        <div className="form-input">
           <label>Username</label>
-          <input
+          <input className="input-bar"
             type="text"
             placeholder="Username"
             value={usernameLogin}
@@ -45,11 +45,11 @@ export const Login = props => {
             required
           ></input>
         </div>
-        <div className="input-password">
-          <label>PASSWORD</label>
-          <input
+        <div className="form-input">
+          <label>Password</label>
+          <input className="input-bar"
             type="password"
-            placeholder="PASSWORD"
+            placeholder="Password"
             value={passwordLogin}
             onChange={event => {
               setPasswordLogin(event.target.value);
@@ -66,6 +66,7 @@ export const Login = props => {
       </form>
       <br />
       <Link to="/register">Not a registered user? Click here to sign up!</Link>
+      </div>
     </div>
   );
 };
