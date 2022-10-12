@@ -27,14 +27,14 @@ export const Header = ({ isLoggedIn }) => {
       {isLoggedIn ? (
         <>
           <nav className="header">
-            <Link id="links" to="profile">
-              profile
-            </Link>
             <Link id="links" to="products">
               products
             </Link>
             <Link id="links" to="orders">
               cart
+            </Link>
+            <Link id="links" to="profile">
+              profile
             </Link>
             <Link id="links" to="/" onClick={handleLogout}>
               logout
@@ -44,14 +44,14 @@ export const Header = ({ isLoggedIn }) => {
       ) : (
         <>
           <nav className="header">
-            <Link id="links" to="register">
-              register
-            </Link>
             <Link id="links" to="products">
               products
             </Link>
             <Link id="links" to="orders">
               cart
+            </Link>
+            <Link id="links" to="register">
+              register
             </Link>
             <Link id="links" to="login">
               login
