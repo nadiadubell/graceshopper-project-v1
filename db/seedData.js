@@ -143,7 +143,7 @@ const createInitialBreeds = async () => {
       { name: 'Thoroughbred' },
       { name: 'Friesian' },
       { name: 'American Quarter' },
-      { name: 'Akhal-Teke' },
+      { name: 'Andalusian' },
       { name: 'Arabian' },
       { name: 'Lipizzan' },
       { name: 'Palomino' },
@@ -170,7 +170,7 @@ const createInitialProducts = async () => {
   try {
     const productsToCreate = [
       {
-        name: 'Breyer Horse',
+        name: 'Thoroughbred Model Horse',
         description: `Thoroughbreds are best known for their use in horse racing. 
         They are high-spirited, agile, and quick. Developed in the 17th and 18th 
         centuries, this breed is the result of crossbreeding of imported Arabian, 
@@ -185,39 +185,66 @@ const createInitialProducts = async () => {
         image: 'https://i.imgur.com/9RhQMDK.jpg',
       },
       {
-        name: 'Horse drinking from stream',
-        description: "It's thirsty",
+        name: 'Bucking Friesian Model Horse',
+        description: `Friesian horses are a light draft type of horse, named for where 
+        they originated in Friesland, Netherlands. They are easily recognized by their 
+        black coat (although some can be chestnut in color). They stand tall and 
+        muscular with proportionally shorter limbs, beautifully shaped heads and long 
+        flowing mane and tail. Friesians are graceful and agile and are often used as 
+        sporting horses today.`,
         breedId: 2,
         price: 10,
-        image: 'https://i.imgur.com/BOdkcCY.jpg',
+        image: 'https://i.imgur.com/FLqRtqe.jpg',
       },
       {
-        name: 'Miniature Model Horse',
-        description: "It's small",
+        name: 'American Quarter Model Horse',
+        description: `American Quarter Horses are the most owned horse breed in the USA 
+        today. They are the result of breeding the Thoroughbred horse with 'native'
+        breeds in America. Quarter Horses are great sprinters and often race in ¼ mile 
+        racing. Most are compact built with good conformation and are bred in many 
+        recognized colors. These horses are intelligent and sensible with a natural 
+        instinct to work well with their human counterparts, making them valuable 
+        partners for ranchers and cattlemen.`,
         breedId: 3,
         price: 25,
-        image: 'https://i.imgur.com/FCK3XaB.jpg',
+        image: 'https://i.imgur.com/Vq69eiB.jpg',
       },
       {
-        name: 'Bucking Bronco',
-        description: "It's angry",
+        name: 'Andalusian Model Horse',
+        description: `Andalusian horses are also known as Pure Spanish Horses (PRE). They 
+        were established as a breed in the 15th century in the Iberian Peninsula. Because 
+        of their strength and elegance, they were originally known as military mounts 
+        ridden by diplomats and nobility all across Europe. These exceptionally 
+        beautiful and athletic animals have a docile nature and were used in breeding to 
+        create other breeds. Andalusians can be identified by their muscular size and very 
+        full manes and tails. They are most commonly grey-coated, but can be seen in other 
+        colors. You will often see them used in movies and a variety of equestrian activities.`,
         breedId: 4,
         price: 50,
-        image: 'https://i.imgur.com/uGo00BC.jpg',
+        image: 'https://i.imgur.com/p2MTXB9.jpg',
       },
       {
-        name: 'Prancing Palomino',
-        description: "It's fancy",
+        name: 'Arabian Running Model Horse',
+        description: `Originally came from the Middle East in the Arabian Peninsula. They are 
+        one of the oldest breeds in the world and are widely identified by having a slender 
+        appearance with arched neck and high tail carriage. These horses have high endurance 
+        and high speed and are now often found participating in endurance racing.`,
         breedId: 5,
         price: 100,
-        image: 'https://i.imgur.com/gDMzKo6.png',
+        image: 'https://i.imgur.com/V03UdeV.jpg',
       },
       {
-        name: 'Lil Sebastian',
-        description: "It's a Parks & Rec reference",
+        name: 'Realistic Lipizzan Prancing Model Horse',
+        description: `The Lippizan was named after a famous stud belonging to the Austrian 
+        Habsburg monarchy in the 16th century.. These horses are renown for their 
+        performances at the Spanish Riding School in Vienna, Austria and their 
+        accomplished high level dressage. Most are light gray to white in color. Lippizans 
+        are bred selectively to preserve the breed lines and are considered rare with only 
+        approximately 11,600 purebreds worldwide. This breed possesses the rare combination 
+        of beauty and nobility along with courage, strength, temperament and intelligence.`,
         breedId: 6,
         price: 150,
-        image: 'https://i.imgur.com/Sbs9wwh.jpg',
+        image: 'https://i.imgur.com/Dsh9r2h.jpg',
       },
     ];
 

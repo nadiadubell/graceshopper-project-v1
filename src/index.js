@@ -15,33 +15,44 @@ import { getCurrentUser } from '../src/auth';
 import { userCheck } from './api';
 
 const App = () => {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser);
   const [productId, setProductId] = useState('');
 
-const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser)
-    
   const currentToken = localStorage.getItem('token');
-  
-  useEffect(() => {
-        userCheck(currentToken);
-  }, [isLoggedIn])
 
+  useEffect(() => {
+    userCheck(currentToken);
+  }, [isLoggedIn]);
 
   return (
     <div>
-      <Header
-      isLoggedIn={isLoggedIn}
-      setIsLoggedIn={setIsLoggedIn}
-      />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        <Route exact path='/' element={<Products isLoggedIn={isLoggedIn} setProductId={setProductId}/>}></Route>
-        <Route path='/products' element={<Products isLoggedIn={isLoggedIn}/>}></Route>
-        <Route path='/users/profile' element={<Profile isLoggedIn={isLoggedIn}/>}></Route>
-        <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />}></Route>
-        <Route path='/register' element={<Register setIsLoggedIn={setIsLoggedIn} />}></Route>
+        <Route
+          exact
+          path="/"
+          element={
+            <Products isLoggedIn={isLoggedIn} setProductId={setProductId} />
+          }
+        ></Route>
+        <Route
+          path="/products"
+          element={
+            <Products isLoggedIn={isLoggedIn} setProductId={setProductId} />
+          }
+        ></Route>
+        <Route
+          path="/profile"
+          element={<Profile isLoggedIn={isLoggedIn} />}
+        ></Route>
+        <Route
+          path="/login"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        ></Route>
+        <Route
+          path="/register"
+          element={<Register setIsLoggedIn={setIsLoggedIn} />}
+        ></Route>
         {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
         {/* <Route path='/order' element={<Order />}></Route> */}
         {/* <Route path='/checkout'element={<Checkout />}></Route> */}
@@ -69,7 +80,7 @@ const App = () => {
 const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
-  <BrowserRouter> 
-    <App /> 
+  <BrowserRouter>
+    <App />
   </BrowserRouter>
-  )
+);
