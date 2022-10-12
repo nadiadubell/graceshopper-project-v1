@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BASE } from '../api/index';
+import { storeCurrentUser } from '../auth';
 
 export const Login = props => {
   const [usernameLogin, setUsernameLogin] = useState('');
@@ -14,8 +15,7 @@ export const Login = props => {
       username: usernameLogin,
       password: passwordLogin,
     });
-    localStorage.setItem('token', data.data.token);
-    localStorage.setItem('userId', data.data.user.id);
+    storeCurrentUser(data);
     props.setIsLoggedIn(data.data.user);
     return data;
   };
@@ -23,7 +23,7 @@ export const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     loginUser();
-    // navigate('/home');
+    // navigate('/home')
   };
 
   return (
