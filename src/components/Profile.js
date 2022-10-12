@@ -32,6 +32,7 @@ export const Profile = (props) => {
         <h2>Hello {props.isLoggedIn.username}!</h2>
         <div id='user-profile-container'>
         <span>
+          {/* <img id='user-image' src/> */}
           <div>User Profile Picture Here</div>
           <h3 id='user-info-title'>Your Profile Info</h3>
             {userProfileInfo.map((userProfile, i) => {
