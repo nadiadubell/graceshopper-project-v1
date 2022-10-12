@@ -6,6 +6,7 @@ import { getUserProfileInfo } from "../api";
 export const Profile = (props) => {
   const userId = localStorage.getItem('userId');
   const [userProfileInfo, setUserProfileInfo] = useState ([]);
+  const [userOrderHistory, setUserOrderHistory] = useState([])
   
 
   useEffect(() => {
@@ -16,8 +17,8 @@ export const Profile = (props) => {
   const getProfileInfo = async (userId) => {
         const userInfo = await getUserProfileInfo(userId);
         setUserProfileInfo([userInfo])
+        setUserOrderHistory(userInfo.products)
       }
-  console.log("USERINFO:", userProfileInfo)
   
   // const reorderProduct = async () => {
   //   try {
@@ -29,13 +30,31 @@ export const Profile = (props) => {
 
   return (
     <>
-        <h3>Hello {props.isLoggedIn.username}!</h3>
+        <h2>Hello {props.isLoggedIn.username}!</h2>
         <div id='user-profile-container'>
-          <h4>Your Profile</h4>
+        <span>
+          <div>User Profile Picture Here</div>
+          <h3 id='user-info-title'>Your Profile Info</h3>
             {userProfileInfo.map((userProfile, i) => {
               return (
-                <div id='user-profile-info' key={i}>
-                  <p>{userProfile.name}</p>
+                <div id='user-info' key={i}>
+                  <p>First Name: {userProfile.firstName}</p>
+                  <p>Last Name: {userProfile.lastName}</p>
+                  <p>Email: {userProfile.email}</p>
+                </div>
+              )
+            })}
+        </span>
+            <br/>
+          <h3 id='user-order-history-title'>Your Order History</h3>
+            {userOrderHistory.map((orderHistory, i) => {
+              return (
+                <div id='user-order-history' key={i}>
+                  <br/>
+                  <h4>{orderHistory.name}</h4>
+                  <p>Price: {orderHistory.price}</p>
+                  <p>Quantity: {orderHistory.quantity}</p>
+                  <br/>
                 </div>
               )
             })}

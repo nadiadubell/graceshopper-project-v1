@@ -33,7 +33,7 @@ const App = () => {
       <Routes>
         <Route exact path='/' element={<Products isLoggedIn={isLoggedIn}/>}></Route>
         <Route path='/products' element={<Products isLoggedIn={isLoggedIn}/>}></Route>
-        <Route path='/users/profile' element={<Profile isLoggedIn={isLoggedIn}/>}></Route>
+        <Route path='/profile' element={<Profile isLoggedIn={isLoggedIn}/>}></Route>
         <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />}></Route>
         <Route path='/register' element={<Register setIsLoggedIn={setIsLoggedIn} />}></Route>
         {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}

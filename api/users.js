@@ -103,7 +103,6 @@ usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
 usersRouter.get('/:userId/profile', async(req, res, next) => {
   const { userId } = req.params;
   const user = await getUserById(userId)
-  console.log('USER:', user)
   
   if(!user) {
     next({
@@ -120,6 +119,16 @@ usersRouter.get('/:userId/profile', async(req, res, next) => {
         message: 'No order history available'
       })
     } else {
+      const _user = await getUserByUsername(user.username);
+      if(_user.email) {
+        userOrderHistory.email = _user.email
+      }
+      if(_user.firstName) {
+        userOrderHistory.firstName = _user.firstName
+      }
+      if(_user.lastName) {
+        userOrderHistory.lastName = _user.lastName
+      }
       console.log("ORDER HISTORY:", userOrderHistory)
       res.send(userOrderHistory)
     }
