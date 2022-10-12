@@ -1,40 +1,54 @@
 import { Link } from 'react-router-dom';
+import './Header.css';
 
 export const Header = ({ isLoggedIn }) => {
   return (
-    <div>
-      <h1>
-        <Link className="header-links" to="/">
-          Horseplay
-        </Link>
+    <div className="header">
+      <Link to="profile">
+        <img
+          id="logo"
+          src="https://www.freeiconspng.com/uploads/white-horse-png-23.png"
+          width="50"
+          alt="Horse Logo Image"
+        />
+      </Link>
+      <h1 className="header" id="banner">
+        {' '}
+        Welcome to HorsePlay!
       </h1>
-
-      <div>
-        <Link to="profile">
-          <img
-            src="https://www.freeiconspng.com/uploads/white-horse-png-23.png"
-            width="350"
-            alt="Horse Logo Image"
-          />
-        </Link>
-      </div>
 
       {isLoggedIn ? (
         <>
-          <nav className="header-links">
-            <Link to="profile">profile</Link>
-            <Link to="products">products</Link>
-            <Link to="cart">cart</Link>
-            <Link to="contact">contact</Link>
+          <nav className="header">
+            <Link id="links" to="profile">
+              profile
+            </Link>
+            <Link id="links" to="products">
+              products
+            </Link>
+            <Link id="links" to="cart">
+              cart
+            </Link>
+            <Link id="links" to="contact">
+              contact
+            </Link>
           </nav>
         </>
       ) : (
         <>
-          <nav className="header-links">
-            <Link to="login">login</Link>
-            <Link to="products">products</Link>
-            <Link to="cart">cart</Link>
-            <Link to="contact">contact</Link>
+          <nav>
+            <Link id="links" to="login">
+              login
+            </Link>
+            <Link id="links" to="products">
+              products
+            </Link>
+            <Link id="links" to="cart">
+              cart
+            </Link>
+            <Link id="links" to="contact">
+              contact
+            </Link>
           </nav>
         </>
       )}

@@ -1,0 +1,28 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: tan;
+}
+
+#banner {
+  color: antiquewhite;
+  text-decoration: underline;
+  letter-spacing: 1pt;
+}
+
+#links {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  color: antiquewhite;
+  text-decoration: none;
+  letter-spacing: 1pt;
+}
+
+
