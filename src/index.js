@@ -8,15 +8,16 @@ import {
   Profile,
   Products,
   Orders,
+  SingleProduct,
   Register,
   Login,
 } from './components';
-
 import { getCurrentUser } from '../src/auth';
 import { userCheck } from './api';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser);
+  const [productId, setProductId] = useState('');
 
   const currentToken = localStorage.getItem('token');
 
@@ -31,11 +32,15 @@ const App = () => {
         <Route
           exact
           path="/"
-          element={<Products isLoggedIn={isLoggedIn} />}
+          element={
+            <Products isLoggedIn={isLoggedIn} setProductId={setProductId} />
+          }
         ></Route>
         <Route
           path="/products"
-          element={<Products isLoggedIn={isLoggedIn} />}
+          element={
+            <Products isLoggedIn={isLoggedIn} setProductId={setProductId} />
+          }
         ></Route>
         <Route
           path="/profile"
@@ -49,20 +54,12 @@ const App = () => {
           path="/register"
           element={<Register setIsLoggedIn={setIsLoggedIn} />}
         ></Route>
-        {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
         <Route path="/orders" element={<Orders />}></Route>
         {/* <Route path='/checkout'element={<Checkout />}></Route> */}
-        {/* <Route path='/:productId' element={<SingleProduct />}></Route> */}
         <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          path="/:productId"
+          element={<SingleProduct productId={productId} />}
         ></Route>
-        <Route
-          path="/register"
-          element={<Register setIsLoggedIn={setIsLoggedIn} />}
-        ></Route>
-        <Route path="/orders" element={<Orders />}></Route>
-        {/* <Route path='/checkout'element={<Checkout />}></Route> */}
         {/* <Route path='/admin' element={<Admin />}></Route> */}
       </Routes>
       <Footer />

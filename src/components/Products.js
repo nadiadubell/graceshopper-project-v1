@@ -3,8 +3,10 @@ import { BASE } from '../api/index';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const Products = () => {
+export const Products = props => {
   const [products, setProducts] = useState([]);
+
+  const { setProductId } = props;
 
   useEffect(() => {
     const getProducts = async () => {
@@ -21,15 +23,27 @@ export const Products = () => {
   return (
     <div>
       <h1 id="products-header">Products</h1>
-      {console.log('products', products)}
       {products.map((product, i) => {
         return (
           <div id="products" key={i}>
             <Link to="/:productId">
-              <img id="product-image" src={product.image} />
+              <img
+                id="product-image"
+                src={product.image}
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              />
             </Link>
             <Link to="/:productId">
-              <h2 id="product-name">{product.name}</h2>
+              <h2
+                id="product-name"
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              >
+                {product.name}
+              </h2>
             </Link>
             <div id="product-price">Price: {product.price}</div>
             <button id="add-to-cart">Add To Cart</button>

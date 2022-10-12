@@ -8,6 +8,8 @@ export { Orders } from './Orders';
 
 export { Products } from './Products';
 
+export { SingleProduct } from './SingleProduct';
+
 export { Register } from './Register';
 
 export { Login } from './Login';
