@@ -4,6 +4,7 @@ const { BASE } = require('../api/index');
 
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
+  const [total, setTotal] = useState('');
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
 
@@ -11,6 +12,7 @@ export const Orders = () => {
     const fetchOrder = async () => {
       const results = await openOrder();
       setUserOrder([results]);
+      getTotal(results);
     };
     fetchOrder();
   }, []);
@@ -39,6 +41,19 @@ export const Orders = () => {
     const data = await response.json();
     console.log(data);
     return data;
+  };
+
+  const getTotal = order => {
+    let totalPrice = 0;
+    let products = order.products;
+    console.log(products);
+    for (const product of products) {
+      totalPrice += product.price * product.quantity;
+      console.log('PRODUCT PRICE', product.price);
+      console.log('TOTAL PRICE', totalPrice);
+    }
+    setTotal(totalPrice);
+    console.log(total);
   };
 
   return (
@@ -86,7 +101,14 @@ export const Orders = () => {
                 );
               })}
             </div>
-            <div id="order-summary"></div>
+            <div id="order-summary">
+              <h3>Order Summary</h3>
+              <h5>Subtotal: ${total}</h5>
+              <h5>Estimated Shipping & Handling:</h5>
+              <h5>Estimated Tax: ${total * 0.1}</h5>
+              <h3>Total:</h3>
+              <button>Checkout</button>
+            </div>
           </div>
         );
       })}

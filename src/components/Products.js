@@ -27,11 +27,24 @@ export const Products = props => {
       {products.map((product, i) => {
         return (
           <div id="single-product" key={i}>
-             <Link to="/:productId">
-              <h2 id="product-name">{product.name}</h2>
+            <Link to="/:productId">
+              <h2
+                id="product-name"
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              >
+                {product.name}
+              </h2>
             </Link>
             <Link to="/:productId">
-              <img id="product-image" src={product.image} />
+              <img
+                id="product-image"
+                src={product.image}
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              />
             </Link>
             <div id="product-price">Price: {product.price}</div>
           </div>
