@@ -38,6 +38,7 @@ Link {
 #product-image {
   width: 300px;
   height: 200px;
+  padding: 10px;
 }
 
  #product-price {
