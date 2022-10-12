@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 export const Header = ({ isLoggedIn }) => {
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     props.setIsLoggedIn(false);
-    navigate('/');  
-  }
+    navigate('/');
+  };
 
   return (
     <div className="header">
@@ -28,20 +27,36 @@ export const Header = ({ isLoggedIn }) => {
       {isLoggedIn ? (
         <>
           <nav className="header">
-            <Link id="links" to="profile">profile</Link>
-            <Link id="links" to="products">products</Link>
-            <Link id="links" to="orders">cart</Link>
-            <Link id="links" to="/" onClick={handleLogout}>logout</Link>
-          </nav>  
+            <Link id="links" to="products">
+              products
+            </Link>
+            <Link id="links" to="orders">
+              cart
+            </Link>
+            <Link id="links" to="profile">
+              profile
+            </Link>
+            <Link id="links" to="/" onClick={handleLogout}>
+              logout
+            </Link>
+          </nav>
         </>
       ) : (
-        <> 
+        <>
           <nav className="header">
-            <Link id="links" to="register">register</Link>
-            <Link id="links" to="products">products</Link>
-            <Link id="links" to="orders">cart</Link>
-            <Link id="links" to="login">login</Link>
-          </nav> 
+            <Link id="links" to="products">
+              products
+            </Link>
+            <Link id="links" to="orders">
+              cart
+            </Link>
+            <Link id="links" to="register">
+              register
+            </Link>
+            <Link id="links" to="login">
+              login
+            </Link>
+          </nav>
         </>
       )}
     </div>

@@ -1,12 +1,14 @@
 import { BASE } from '../api/index';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const SingleProduct = props => {
   const [product, setProduct] = useState([]);
   const { productId } = props;
   const userId = localStorage.getItem('userId');
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     const getSingleProduct = async productId => {
@@ -65,6 +67,7 @@ export const SingleProduct = props => {
               id="single-product-add-to-cart"
               onClick={() => {
                 handleAddToCart(singleProduct.id);
+                navigate('/products');
               }}
             >
               Add To Cart
