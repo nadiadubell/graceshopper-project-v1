@@ -53,7 +53,16 @@ export const Orders = () => {
                   <h4>{product.name}</h4>
                   <ul>
                     <li>Price: {product.price}</li>
-                    <li>Quantity:{product.quantity}</li>
+                    <li>Quantity:</li>
+                    <span>
+                      <select required>
+                        <option value="quantity">{product.quantity}</option>
+                        {let select = '';
+                        for (i=1; i<=10; i++){
+                          select += <option val=`${i}`>`${i}`</option>;
+                        }}
+                      </select>
+                    </span>
                     <br></br>
                     <button
                       onClick={async event => {
