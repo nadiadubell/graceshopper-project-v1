@@ -31,7 +31,7 @@ export const Header = ({ isLoggedIn }) => {
             <Link id="links" to="profile">profile</Link>
             <Link id="links" to="products">products</Link>
             <Link id="links" to="orders">cart</Link>
-            <Link id="links" to="logout" onClick={handleLogout}>logout</Link>
+            <Link id="links" to="/" onClick={handleLogout}>logout</Link>
           </nav>  
         </>
       ) : (
