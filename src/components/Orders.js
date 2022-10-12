@@ -5,6 +5,7 @@ const { BASE } = require('../api/index');
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [total, setTotal] = useState('');
+  const [renderer, setRenderer] = useState(false);
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
 
@@ -15,7 +16,7 @@ export const Orders = () => {
       getTotal(results);
     };
     fetchOrder();
-  }, []);
+  }, [renderer]);
 
   const openOrder = async () => {
     const response = await fetch(`${BASE}/orders/${userId}`, {
@@ -25,6 +26,14 @@ export const Orders = () => {
     });
     const data = await response.json();
     return data;
+  };
+
+  const getOrderProduct = async (orderId, productId) => {
+    const response = await fetch(
+      `${BASE}/orderproducts/${orderId}/${productId}`
+    );
+    const data = await response.json();
+    return data.id;
   };
 
   const handleRemoveButtonClick = async (orderId, productId) => {
@@ -39,12 +48,13 @@ export const Orders = () => {
       }
     );
     const data = await response.json();
-    console.log(data);
+    setRenderer(!renderer);
     return data;
   };
 
-  const handleQuantityChange = async (orderId, productId, orderProductId) => {
-    const select = document.getElementById('quantity-select');
+  const handleQuantityChange = async (i, orderId, productId) => {
+    const orderProductId = await getOrderProduct(orderId, productId);
+    const select = document.getElementById(`quantity-select-${i}`);
     const value = select.options[select.selectedIndex].value;
     const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
       method: 'PATCH',
@@ -53,29 +63,22 @@ export const Orders = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        orderId,
-        productId,
         quantity: `${value}`,
       }),
     });
     const data = await response.json();
-    console.log('DATAAAAAAAAAAAAAAAAAAAAAA', data);
+    setRenderer(!renderer);
+    return data;
   };
 
   const getTotal = order => {
     let totalPrice = 0;
     let products = order.products;
-    console.log(products);
     for (const product of products) {
       totalPrice += product.price * product.quantity;
-      console.log('PRODUCT PRICE', product.price);
-      console.log('TOTAL PRICE', totalPrice);
     }
     setTotal(totalPrice);
-    console.log(total);
   };
-
-  console.log('USER ORDER', userOrder);
 
   return (
     <div id="order-page">
@@ -93,14 +96,11 @@ export const Orders = () => {
                       <span>
                         <li>Quantity:</li>
                         <select
-                          id="quantity-select"
+                          id={`quantity-select-${i}`}
                           required
-                          onChange={() => {
-                            handleQuantityChange(
-                              order.id,
-                              product.id,
-                              order.orderProductId
-                            );
+                          onChange={event => {
+                            event.preventDefault();
+                            handleQuantityChange(i, order.id, product.id);
                           }}
                         >
                           <option value="quantity">{product.quantity}</option>

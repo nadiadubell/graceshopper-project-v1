@@ -55,21 +55,16 @@ const addProductToOrder = async ({ orderId, productId, quantity }) => {
   }
 };
 
-const updateOrderProduct = async (id, fields = {}) => {
-  const setString = Object.keys(fields)
-    .map((key, index) => `"${key}"=$${index + 1}`)
-    .join(', ');
-
+const updateOrderProduct = async (id, quantity) => {
   try {
-    if (setString.length > 0) {
+    {
       await client.query(
         `
         UPDATE orderproducts
-        SET ${setString}
+        SET quantity = ${quantity}
         WHERE id=${id}
         RETURNING *;
-      `,
-        Object.values(fields)
+      `
       );
     }
 

@@ -72,7 +72,7 @@ const getAllOrders = async () => {
 const getOpenOrderByUserId = async id => {
   try {
     const { rows } = await client.query(`
-    SELECT orders.*, username, orderproducts.id AS "orderProductId",
+    SELECT orders.*, username,
     jsonb_agg(jsonb_build_object(
       'id', products.id,
       'name', products.name,
@@ -85,7 +85,7 @@ const getOpenOrderByUserId = async id => {
     JOIN orderproducts ON orderproducts."orderId" = orders.id
     JOIN products ON orderproducts."productId" = products.id
     WHERE users.id=${id} AND "isOpen" = true
-    GROUP BY users.id, orders.id, orderproducts.id, orderproducts.quantity;
+    GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
 
     const result = makeProductArray(rows);
