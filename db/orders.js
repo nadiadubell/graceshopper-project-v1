@@ -2,7 +2,6 @@ const client = require('./client');
 
 const makeProductArray = rows => {
   let productArr = [];
-  //The dreaded double for loop -- but I couldn't think of a better solution
   for (let i = 0; i < rows.length; i++) {
     for (let j = 0; j < rows[i].products.length; j++) {
       productArr.push(rows[i].products[j]);
@@ -52,7 +51,8 @@ const getAllOrders = async () => {
       'id', products.id,
       'name', products.name,
       'price', products.price,
-      'quantity', orderproducts.quantity
+      'quantity', orderproducts.quantity,
+      'image', products.image
     )) AS products
     FROM orders
     JOIN orderproducts ON orderproducts."orderId" = orders.id
@@ -77,7 +77,8 @@ const getOpenOrderByUserId = async id => {
       'id', products.id,
       'name', products.name,
       'price', products.price,
-      'quantity', orderproducts.quantity
+      'quantity', orderproducts.quantity,
+      'image', products.image
     )) AS products
     FROM orders
     JOIN users ON users.id = orders."userId"

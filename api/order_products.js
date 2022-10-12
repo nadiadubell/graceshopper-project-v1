@@ -2,7 +2,9 @@ const express = require('express');
 const {
   getOrderProductById,
   updateOrderProduct,
+  deleteProductFromOrder,
 } = require('../db/order_products');
+const { getOpenOrderByUserId } = require('../db/orders');
 const orderProductsRouter = express.Router();
 
 orderProductsRouter.get('/:orderProductId', async (req, res, next) => {
@@ -48,5 +50,35 @@ orderProductsRouter.patch('/:orderProductId', async (req, res, next) => {
     next({ name, message });
   }
 });
+
+orderProductsRouter.delete(
+  '/:userId/:orderId/:productId',
+  async (req, res, next) => {
+    const { userId, orderId, productId } = req.params;
+    try {
+      const order = await getOpenOrderByUserId(userId);
+
+      if (
+        order &&
+        (order.userId === req.user.id || req.user.isAdmin === true)
+      ) {
+        console.log('HERE!!!!!!!!');
+        const updatedOrder = await deleteProductFromOrder(
+          userId,
+          orderId,
+          productId
+        );
+
+        res.send(updatedOrder);
+      } else
+        next({
+          name: 'DeleteProductFromOrderError',
+          message: 'Unable to delete product from the order. Please try again',
+        });
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
+  }
+);
 
 module.exports = orderProductsRouter;

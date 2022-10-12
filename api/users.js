@@ -4,120 +4,129 @@ const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
 
 const jwt = require('jsonwebtoken');
-const { getUser, getUserByUsername, createUser, getUserById } = require('../db/users');
+const {
+  getUser,
+  getUserByUsername,
+  createUser,
+  getUserById,
+} = require('../db/users');
 const { getOrderHistoryById } = require('../db');
 const { JWT_SECRET } = process.env;
 
-usersRouter.post('/login', async(req, res, next) =>{
+usersRouter.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
   const user = await getUser({ username, password });
 
-  if(!username || !password) {
+  if (!username || !password) {
     next({
       name: 'MissingCredentialError',
-      message: 'Please supply both a username and a password'
+      message: 'Please supply both a username and a password',
     });
   }
 
   try {
-    
-    if(user) {
-      const token = jwt.sign(user, JWT_SECRET, {expiresIn: '1w'});
+    if (user) {
+      const token = jwt.sign(user, JWT_SECRET, { expiresIn: '1w' });
       res.send({
         user,
         message: "you're logged in!",
-        token
-      })
+        token,
+      });
     } else {
       next({
         name: 'InvalidCredentialsError',
-        message: "Username or password is incorrect"
-      })
+        message: 'Username or password is incorrect',
+      });
     }
   } catch ({ name, message }) {
-    next ({ name, message })
+    next({ name, message });
   }
-})
+});
 
-usersRouter.post('/register', async(req, res, next) => {
+usersRouter.post('/register', async (req, res, next) => {
   const { username, password, firstName, lastName, email } = req.body;
 
   try {
     const _user = await getUserByUsername(username);
 
-    if(_user) {
+    if (_user) {
       next({
         name: 'UsernameTakenError',
-        message: "The username you've chose already exists, please choose another"
-      })
+        message:
+          "The username you've chose already exists, please choose another",
+      });
     } else {
       const user = await createUser({
         username,
         password,
         firstName,
         lastName,
-        email
+        email,
       });
 
-      const token = jwt.sign({
-        id: user.id,
-        username
-      }, JWT_SECRET, {
-        expiresIn: '1w'
-      });
+      const token = jwt.sign(
+        {
+          id: user.id,
+          username,
+        },
+        JWT_SECRET,
+        {
+          expiresIn: '1w',
+        }
+      );
 
       const data = await getUser({
         username,
-        password
+        password,
       });
 
       res.send({
         user: data,
-        message: "Thanks for signing up!",
-        token
+        message: 'Thanks for signing up!',
+        token,
       });
     }
-  } catch({ name, message }) {
-    next({ name, message })
+  } catch ({ name, message }) {
+    next({ name, message });
   }
-})
+});
 
 usersRouter.get('/me', requireUser, (req, res) => {
-  const user = req.user
+  const user = req.user;
 
   res.send(user);
-})
+});
 
-usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
+usersRouter.get('/:username/admin', requireAdmin, async (req, res, next) => {
   const { username } = req.params;
 
-  const userName = await getUserByUsername(username)
-  
-  try {
-    
-  } catch({ name, message }) {
-    next({ name, message })
-  }
-})
+  const userName = await getUserByUsername(username);
 
-usersRouter.get('/:userId/profile', async(req, res, next) => {
+  try {
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
+
+usersRouter.get('/:userId/profile', async (req, res, next) => {
   const { userId } = req.params;
-  const user = await getUserById(userId)
-  
-  if(!user) {
+  const user = await getUserById(userId);
+  console.log('USER:', user);
+
+  if (!user) {
     next({
       name: 'UnauthorizedError',
-      message: 'You must be a registered user to view this page'
-    })
+      message: 'You must be a registered user to view this page',
+    });
   }
-  
+
   try {
     const userOrderHistory = await getOrderHistoryById(user.id);
-    if(!userOrderHistory) {
+    if (!userOrderHistory) {
       next({
         name: 'UnavailableOrderHistoryError',
-        message: 'No order history available'
-      })
+        message: 'No order history available',
+      });
     } else {
       const _user = await getUserByUsername(user.username);
       if(_user.email) {
@@ -132,9 +141,9 @@ usersRouter.get('/:userId/profile', async(req, res, next) => {
       console.log("ORDER HISTORY:", userOrderHistory)
       res.send(userOrderHistory)
     }
-  } catch({ name, message }) {
-    next({ name, message })
+  } catch ({ name, message }) {
+    next({ name, message });
   }
-})
+});
 
 module.exports = usersRouter;
