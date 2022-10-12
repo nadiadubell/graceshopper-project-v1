@@ -4,7 +4,7 @@ const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
 
 const jwt = require('jsonwebtoken');
-const { getUser, getUserByUsername, createUser } = require('../db/users');
+const { getUser, getUserByUsername, createUser, getUserById } = require('../db/users');
 const { getOrderHistoryById } = require('../db');
 const { JWT_SECRET } = process.env;
 
@@ -100,33 +100,28 @@ usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
   }
 })
 
-usersRouter.get('/:username/profile', requireUser, async(req, res, next) => {
-  const { username } = req.params;
-
+usersRouter.get('/:userId/profile', async(req, res, next) => {
+  const { userId } = req.params;
+  const user = await getUserById(userId)
+  console.log('USER:', user)
+  
+  if(!user) {
+    next({
+      name: 'UnauthorizedError',
+      message: 'You must be a registered user to view this page'
+    })
+  }
   
   try {
-    const userName = await getUserByUsername(username)
-    const userOrderHistory = await getOrderHistoryById(userId);
-    if(!userName) {
-      res.status(401)
-      res.send({
-        name: "UnauthorizedError",
-        message: "You must be logged in to perform this action!"
+    const userOrderHistory = await getOrderHistoryById(user.id);
+    if(!userOrderHistory) {
+      next({
+        name: 'UnavailableOrderHistoryError',
+        message: 'No order history available'
       })
     } else {
-      const user = await getUser({username, password})
-      if(user) {
-      const userContactOrderHistoryInfo = {
-        id: user.id,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.lastName
-      }
-    }
-      if(userOrderHistory) {
-        // userContactOrderHistoryInfo.
-      }
+      console.log("ORDER HISTORY:", userOrderHistory)
+      res.send(userOrderHistory)
     }
   } catch({ name, message }) {
     next({ name, message })

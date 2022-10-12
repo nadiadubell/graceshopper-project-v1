@@ -20,12 +20,12 @@ export const Products = () => {
     getProducts();
   }, []);
   return (
-    <div>
+    <div id="products">
       <h1 id="products-header">Products</h1>
       {console.log('products', products)}
       {products.map((product, i) => {
         return (
-          <div id="products" key={i}>
+          <div id="single-product" key={i}>
              <Link to="/:productId">
               <h2 id="product-name">{product.name}</h2>
             </Link>
