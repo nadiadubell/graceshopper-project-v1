@@ -11,9 +11,9 @@ export const Header = ({ isLoggedIn }) => {
             id="logo"
             src="https://www.freeiconspng.com/uploads/white-horse-png-23.png" width="50" 
             alt="Horse Logo Image" 
-            
           />
         </Link>
+        <h1 className="header" id="banner"> Welcome to HorsePlay!</h1>
 
       {isLoggedIn ? (
         <>

@@ -10,6 +10,12 @@
   background-color: tan;
 }
 
+#banner {
+  color: antiquewhite;
+  text-decoration: underline;
+  letter-spacing: 1pt;
+}
+
 #links {
   padding: 30px;
   display: flex;
