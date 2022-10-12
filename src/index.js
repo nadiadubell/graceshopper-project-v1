@@ -53,20 +53,9 @@ const App = () => {
           path="/register"
           element={<Register setIsLoggedIn={setIsLoggedIn} />}
         ></Route>
-        {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
-        {/* <Route path='/order' element={<Order />}></Route> */}
-        {/* <Route path='/checkout'element={<Checkout />}></Route> */}
         <Route
           path="/:productId"
           element={<SingleProduct productId={productId} />}
-        ></Route>
-        <Route
-          path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
-        ></Route>
-        <Route
-          path="/register"
-          element={<Register setIsLoggedIn={setIsLoggedIn} />}
         ></Route>
         {/* <Route path='/order' element={<Order />}></Route>
             <Route path='/checkout'element={<Checkout />}></Route> */}
