@@ -11,35 +11,38 @@ import {
   Register,
   Login,
 } from './components';
+import { getCurrentUser } from '../src/auth';
+import { userCheck } from './api';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [productId, setProductId] = useState('');
 
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser)
+    
+  const currentToken = localStorage.getItem('token');
+  
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+        userCheck(currentToken);
+  }, [isLoggedIn])
+
 
   return (
     <div>
       <Header
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        setUsername={setUsername}
-        setPassword={setPassword}
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn={setIsLoggedIn}
       />
       <Routes>
-        <Route
-          path="/products"
-          element={<Products setProductId={setProductId} />}
-        />
+        <Route exact path='/' element={<Products isLoggedIn={isLoggedIn} setProductId={setProductId}/>}></Route>
+        <Route path='/products' element={<Products isLoggedIn={isLoggedIn}/>}></Route>
+        <Route path='/users/profile' element={<Profile isLoggedIn={isLoggedIn}/>}></Route>
+        <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />}></Route>
+        <Route path='/register' element={<Register setIsLoggedIn={setIsLoggedIn} />}></Route>
         {/* <Route path='/products/:productId' element={<SingleProduct />}></Route> */}
-        <Route path="/profile" element={<Profile />}></Route>
         {/* <Route path='/order' element={<Order />}></Route> */}
         {/* <Route path='/checkout'element={<Checkout />}></Route> */}
         <Route
@@ -56,8 +59,8 @@ const App = () => {
         ></Route>
         {/* <Route path='/order' element={<Order />}></Route>
             <Route path='/checkout'element={<Checkout />}></Route> */}
+        {/* <Route path='/admin' element={<Admin />}></Route> */}
       </Routes>
-      {/* <Route path='/admin' element={<Admin />}></Route> */}
       <Footer />
     </div>
   );
@@ -66,7 +69,7 @@ const App = () => {
 const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
-  <BrowserRouter>
-    <App />
+  <BrowserRouter> 
+    <App /> 
   </BrowserRouter>
-);
+  )

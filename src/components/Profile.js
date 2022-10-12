@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useParams } from "react-router";
+import { getUserProfileInfo } from "../api";
+
 
 export const Profile = (props) => {
-  const [orderHistory, setOrderHistory] = useState ({});
+  const userId = localStorage.getItem('userId');
+  const [userProfileInfo, setUserProfileInfo] = useState ([]);
+  
 
   useEffect(() => {
-    getOrderHistoryInfo()
+      getProfileInfo(userId)
   }, []);
+  
 
-  let navigate = useNavigate();
-
-  const getOrderHistoryInfo = async (id) => {
-    try {
-      const orderHistoryResult = await getOrderHistoryById(id)
-      if (orderHistoryResult) {
-        setOrderHistory(orderHistoryResult)
+  const getProfileInfo = async (userId) => {
+        const userInfo = await getUserProfileInfo(userId);
+        setUserProfileInfo([userInfo])
       }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
+  console.log("USERINFO:", userProfileInfo)
+  
   // const reorderProduct = async () => {
   //   try {
       
@@ -29,19 +27,19 @@ export const Profile = (props) => {
   //   }
   // }
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    props.setIsLoggedIn(false);
-    navigate('/');  
-  }
-
   return (
     <>
-    <h3>Hello {props.isLoggedIn.username}!</h3>
-    <h2>Order History</h2>
-    <button onClick={reorder}>Re-Order!</button>
-    <h4><Link to="login" onClick={logout}>logout</Link></h4>
+        <h3>Hello {props.isLoggedIn.username}!</h3>
+        <div id='user-profile-container'>
+          <h4>Your Profile</h4>
+            {userProfileInfo.map((userProfile, i) => {
+              return (
+                <div id='user-profile-info' key={i}>
+                  <p>{userProfile.name}</p>
+                </div>
+              )
+            })}
+        </div>
     </>
   )
 }
