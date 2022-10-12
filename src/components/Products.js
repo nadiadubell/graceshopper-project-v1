@@ -2,6 +2,7 @@ import axios from 'axios';
 import { BASE } from '../api/index';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Products.css';
 
 export const Products = props => {
   const [products, setProducts] = useState([]);
@@ -21,29 +22,16 @@ export const Products = props => {
     getProducts();
   }, []);
   return (
-    <div>
+    <div id="products">
       <h1 id="products-header">Products</h1>
       {products.map((product, i) => {
         return (
-          <div id="products" key={i}>
-            <Link to="/:productId">
-              <img
-                id="product-image"
-                src={product.image}
-                onClick={() => {
-                  setProductId(product.id);
-                }}
-              />
+          <div id="single-product" key={i}>
+             <Link to="/:productId">
+              <h2 id="product-name">{product.name}</h2>
             </Link>
             <Link to="/:productId">
-              <h2
-                id="product-name"
-                onClick={() => {
-                  setProductId(product.id);
-                }}
-              >
-                {product.name}
-              </h2>
+              <img id="product-image" src={product.image} />
             </Link>
             <div id="product-price">Price: {product.price}</div>
             <button id="add-to-cart">Add To Cart</button>
