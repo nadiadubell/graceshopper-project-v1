@@ -46,7 +46,6 @@ export const Products = props => {
               </h2>
             </Link>
             <div id="product-price">Price: {product.price}</div>
-            <button id="add-to-cart">Add To Cart</button>
           </div>
         );
       })}
