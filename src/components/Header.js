@@ -4,6 +4,13 @@ import './Header.css'
 
 export const Header = ({ isLoggedIn }) => {
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    props.setIsLoggedIn(false);
+    navigate('/');  
+  }
+
   return (
     <div className='header'>
         <Link to="profile">
@@ -21,16 +28,16 @@ export const Header = ({ isLoggedIn }) => {
             <Link id="links" to="profile">profile</Link>
             <Link id="links" to="products">products</Link>
             <Link id="links" to="cart">cart</Link>
-            <Link id="links" to="contact">contact</Link>
+            <Link id="links" to="logout" onClick={handleLogout}>logout</Link>
           </nav>  
         </>
       ) : (
         <> 
-          <nav>
-            <Link id="links" to="login">login</Link>
+          <nav className="header">
+            <Link id="links" to="register">register</Link>
             <Link id="links" to="products">products</Link>
             <Link id="links" to="cart">cart</Link>
-            <Link id="links" to="contact">contact</Link>
+            <Link id="links" to="login">login</Link>
           </nav> 
         </>
       )}
