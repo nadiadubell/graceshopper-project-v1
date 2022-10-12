@@ -1,0 +1,28 @@
+ #products-header {
+  display: flex;
+  justify-content: space-around;
+  color:gray;
+  background-color:beige;
+}
+
+#products {
+  display: flex;
+  background-color:beige;
+} 
+
+#product-name {
+  color: black;
+  text-decoration: none;
+  }
+
+#product-image {
+  width: 400px;
+}
+
+ /* #product-price */
+
+
+#add-to-cart {
+  background-color: tan;
+  padding: 3px;
+}
