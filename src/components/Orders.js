@@ -43,6 +43,25 @@ export const Orders = () => {
     return data;
   };
 
+  const handleQuantityChange = async (orderId, productId, orderProductId) => {
+    const select = document.getElementById('quantity-select');
+    const value = select.options[select.selectedIndex].value;
+    const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        orderId,
+        productId,
+        quantity: `${value}`,
+      }),
+    });
+    const data = await response.json();
+    console.log('DATAAAAAAAAAAAAAAAAAAAAAA', data);
+  };
+
   const getTotal = order => {
     let totalPrice = 0;
     let products = order.products;
@@ -56,12 +75,14 @@ export const Orders = () => {
     console.log(total);
   };
 
+  console.log('USER ORDER', userOrder);
+
   return (
-    <div>
+    <div id="order-page">
       {userOrder.map((order, i) => {
         return (
-          <div id="order-page">
-            <div key={i} id="order-products">
+          <div key={i}>
+            <div id="order-products">
               {order.products.map((product, i) => {
                 return (
                   <div key={i}>
@@ -71,7 +92,17 @@ export const Orders = () => {
                       <li>Price: {product.price}</li>
                       <span>
                         <li>Quantity:</li>
-                        <select required>
+                        <select
+                          id="quantity-select"
+                          required
+                          onChange={() => {
+                            handleQuantityChange(
+                              order.id,
+                              product.id,
+                              order.orderProductId
+                            );
+                          }}
+                        >
                           <option value="quantity">{product.quantity}</option>
                           <option value={1}>1</option>
                           <option value={2}>2</option>
