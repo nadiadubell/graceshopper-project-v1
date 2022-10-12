@@ -21,17 +21,15 @@ export const Register = (props) => {
         lastName: createLastName,
         email: createEmail
     });
-    localStorage.setItem('token', data.data.token)
-    localStorage.setItem('userId', data.data.user.id)
+    storeCurrentUser(data);
     props.setIsLoggedIn(data.data.user)
-    console.log("DATA:", data)
     return data;
   }
 
   const handleSubmit = async(event) => {
     event.preventDefault();
     registerUser();
-    // navigate('/products');
+    navigate('/products');
   }
 
   return (

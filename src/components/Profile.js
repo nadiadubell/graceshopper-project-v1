@@ -1,64 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { getUserProfileInfo } from "../api";
 
 
-export const Profile = () => {
-  const [info, setInfo] = useState ({});
-  const [orderHistory, setOrderHistory] = useState ({});
+export const Profile = (props) => {
+  const userId = localStorage.getItem('userId');
+  const [userProfileInfo, setUserProfileInfo] = useState ([]);
+  
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    setIsLoggedIn(false);
-    navigate('/');
-    setUsername("");
-    setPassword("");    
-  }
-
-  const getUserInfo = async () => {
-    try {
-      const result = await getUser()
-      if(result){
-          setInfo(result)
-      }      
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const getOrderHistoryInfo = async () => {
-    try {
-      if (info && info.id) {
-        const orderHistoryResult = await getOrderHistoryById(info.id)
-        if (orderHistoryResult) {
-          setOrderHistory(orderHistoryResult)
-        }
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const reorderProduct = async () => {
-    try {
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }
   useEffect(() => {
-    getUserInfo()
+      getProfileInfo(userId)
   }, []);
+  
 
-  useEffect(() => {
-    getOrderHistoryInfo()
-  }, [info]);
+  const getProfileInfo = async (userId) => {
+        const userInfo = await getUserProfileInfo(userId);
+        setUserProfileInfo([userInfo])
+      }
+  console.log("USERINFO:", userProfileInfo)
+  
+  // const reorderProduct = async () => {
+  //   try {
+      
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <>
-    <h3>Hello {info.username}!</h3>
-    <h2>Order History</h2>
-    <span onClick={reorder} >Re-Order! </span>
-    <h4><Link to="login" onClick={logout}>logout</Link></h4>
+        <h3>Hello {props.isLoggedIn.username}!</h3>
+        <div id='user-profile-container'>
+          <h4>Your Profile</h4>
+            {userProfileInfo.map((userProfile, i) => {
+              return (
+                <div id='user-profile-info' key={i}>
+                  <p>{userProfile.name}</p>
+                </div>
+              )
+            })}
+        </div>
     </>
   )
 }

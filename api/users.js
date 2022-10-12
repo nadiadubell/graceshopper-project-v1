@@ -4,7 +4,7 @@ const usersRouter = express.Router();
 const { requireUser, requireAdmin } = require('./utils');
 
 const jwt = require('jsonwebtoken');
-const { getUser, getUserByUsername, createUser } = require('../db/users');
+const { getUser, getUserByUsername, createUser, getUserById } = require('../db/users');
 const { getOrderHistoryById } = require('../db');
 const { JWT_SECRET } = process.env;
 
@@ -100,47 +100,29 @@ usersRouter.get('/:username/admin', requireAdmin, async(req, res, next) => {
   }
 })
 
-usersRouter.get('/:username/profile', requireUser, async(req, res, next) => {
-  const user = req.user;
-  const { username } = req.params;
-
-  const userId = user.id;
-
-  try {
-    const user = await getUserByUsername(username)
-    if(!user) {
-      res.status(401)
-      res.send({
-        name: "UnauthorizedError",
-        message: "You must be a registered user to view your profile!"
-      })
-    } else {
-      const userContactOrderHistoryInfo = {
-        userId: user.id,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email
-      }
-
-    const userOrderHistory = await getOrderHistoryById(userId);
-    if(!userOrderHistory) {
-      res.send({
-        name: "NoOrderHistoryError",
-        message: "No order history available"
-      })
-    } else {
-      if(userOrderHistory.name) {
-      userContactOrderHistoryInfo.productName = userOrderHistory.name
-      }
-      if(userOrderHistory.price) {
-      userContactOrderHistoryInfo.productPrice = userOrderHistory.price
-      }
-      if(userOrderHistory.quantity) {
-      userContactOrderHistoryInfo.productQuantity = userOrderHistory.quantity
-    }}
-    res.send(userContactOrderHistoryInfo);
+usersRouter.get('/:userId/profile', async(req, res, next) => {
+  const { userId } = req.params;
+  const user = await getUserById(userId)
+  console.log('USER:', user)
+  
+  if(!user) {
+    next({
+      name: 'UnauthorizedError',
+      message: 'You must be a registered user to view this page'
+    })
   }
+  
+  try {
+    const userOrderHistory = await getOrderHistoryById(user.id);
+    if(!userOrderHistory) {
+      next({
+        name: 'UnavailableOrderHistoryError',
+        message: 'No order history available'
+      })
+    } else {
+      console.log("ORDER HISTORY:", userOrderHistory)
+      res.send(userOrderHistory)
+    }
   } catch({ name, message }) {
     next({ name, message })
   }
