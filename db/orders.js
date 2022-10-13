@@ -176,6 +176,7 @@ const getOrderHistoryById = async id => {
       'id', products.id,
       'name', products.name,
       'price', products.price,
+      'image', products.image,
       'quantity', orderproducts.quantity
     )) AS products
     FROM orders
