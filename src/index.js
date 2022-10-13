@@ -12,12 +12,14 @@ import {
   SingleProduct,
   Register,
   Login,
+  Admin,
 } from './components';
 import { getCurrentUser } from '../src/auth';
 import { userCheck } from './api';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser);
+  const [isAdmin, setIsAdmin] = useState(getCurrentUser);
   const [productId, setProductId] = useState('');
 
   const currentToken = localStorage.getItem('token');
@@ -28,7 +30,11 @@ const App = () => {
 
   return (
     <div>
-      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Header
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        isAdmin={isAdmin}
+      />
       <Routes>
         <Route
           exact
@@ -51,11 +57,15 @@ const App = () => {
         ></Route>
         <Route
           path="/login"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          element={
+            <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+          }
         ></Route>
         <Route
           path="/register"
-          element={<Register setIsLoggedIn={setIsLoggedIn} />}
+          element={
+            <Register setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+          }
         ></Route>
         <Route path="/orders" element={<Orders />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
@@ -63,7 +73,7 @@ const App = () => {
           path="/:productId"
           element={<SingleProduct productId={productId} />}
         ></Route>
-        {/* <Route path="/admin" element={<Admin />}></Route> */}
+        <Route path="/admin" element={<Admin />}></Route>
       </Routes>
       <Footer />
     </div>
