@@ -24,7 +24,7 @@ export const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     loginUser();
-    navigate('/')
+    navigate('/');
   };
 
   return (
