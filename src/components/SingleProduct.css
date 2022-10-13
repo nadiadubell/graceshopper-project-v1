@@ -25,9 +25,6 @@
   justify-content: space-between;
   margin: 20px;
   width: 50%;
-  /* border: 3px groove black;
-  box-shadow: 15px -12px 10px darkgray;
-  background-color: burlywood; */
   padding: 20px;
 }
 
@@ -69,9 +66,6 @@
 
 #single-product-quantity-select {
   margin: 8px;
-  /* border: 3px groove black;
-  box-shadow: 3px 12px 10px darkgray;
-  background-color: bisque; */
 }
 
 #single-product-add-to-cart {
