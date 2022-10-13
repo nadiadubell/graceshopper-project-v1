@@ -5,4 +5,5 @@ module.exports = {
   ...require('./breeds'),
   ...require('./orders'),
   ...require('./order_products'),
+  ...require('./guest_users')
 };
