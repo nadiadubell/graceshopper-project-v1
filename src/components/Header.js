@@ -27,6 +27,9 @@ export const Header = ({ isLoggedIn }) => {
       {isLoggedIn ? (
         <>
           <nav className="header">
+            <Link id="links" to="admin">
+              admin
+            </Link>
             <Link id="links" to="products">
               products
             </Link>

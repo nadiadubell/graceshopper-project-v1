@@ -13,3 +13,5 @@ export { SingleProduct } from './SingleProduct';
 export { Register } from './Register';
 
 export { Login } from './Login';
+
+export { Admin } from './Admin';

@@ -11,6 +11,7 @@ import {
   SingleProduct,
   Register,
   Login,
+  Admin,
 } from './components';
 import { getCurrentUser } from '../src/auth';
 import { userCheck } from './api';
@@ -60,7 +61,7 @@ const App = () => {
           path="/:productId"
           element={<SingleProduct productId={productId} />}
         ></Route>
-        {/* <Route path='/admin' element={<Admin />}></Route> */}
+        <Route path="/admin" element={<Admin />}></Route>
       </Routes>
       <Footer />
     </div>
