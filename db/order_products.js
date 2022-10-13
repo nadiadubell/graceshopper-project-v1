@@ -39,6 +39,7 @@ const checkForOrderProductPair = async (userId, orderId, productId) => {
 };
 
 const addProductToOrder = async ({ userId, orderId, productId, quantity }) => {
+  console.log('USERID>>>>>>>>>>>>>', userId, productId, quantity);
   try {
     const check = await checkForOrderProductPair(userId, orderId, productId);
     if (!check) {
