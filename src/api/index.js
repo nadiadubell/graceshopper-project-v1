@@ -9,7 +9,6 @@ export const userCheck = async token => {
     },
   });
   if (data) {
-    console.log('DATA:', data.data);
     return data.data;
   }
 };
