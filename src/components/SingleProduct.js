@@ -27,6 +27,7 @@ export const SingleProduct = props => {
 
   const handleAddToCart = async productId => {
     try {
+      if (!userId) createGuestUser();
       const select = document.getElementById('single-product-quantity-select');
       const value = select.options[select.selectedIndex].value;
       const addItemToOrder = await axios.post(`${BASE}/orders/${userId}`, {

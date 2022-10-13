@@ -23,6 +23,7 @@ const dropTables = async () => {
             DROP TABLE IF EXISTS orders;
             DROP TABLE IF EXISTS products;
             DROP TABLE IF EXISTS breeds;
+            DROP TABLE IF EXISTS guests;
             DROP TABLE IF EXISTS users;
         `);
   } catch (error) {
@@ -49,6 +50,12 @@ const buildTables = async () => {
             UNIQUE(username, email)
         );
 
+        CREATE TABLE guests (
+          id SERIAL PRIMARY KEY,
+          guestname VARCHAR(50) NOT NULL DEFAULT 'Guest',
+          "isAdmin" BOOLEAN DEFAULT false
+        );
+
         CREATE TABLE breeds (
           id SERIAL PRIMARY KEY,
           name VARCHAR(100) UNIQUE NOT NULL
@@ -66,6 +73,7 @@ const buildTables = async () => {
         CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
             "userId" INTEGER REFERENCES users(id),
+            "guestId" INTEGER REFERENCES guests(id),
             "isOpen" BOOLEAN DEFAULT true
         );
 
