@@ -26,7 +26,7 @@ export const Products = props => {
       <h1 id="products-header">Products</h1>
       {products.map((product, i) => {
         return (
-          <div id="single-product" key={i}>
+          <div id="product-view" key={i}>
              <Link to="/:productId">
               <h2 id="product-name" onClick={()=>{
                 setProductId(product.id)
