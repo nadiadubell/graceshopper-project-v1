@@ -38,7 +38,6 @@ const getAllUsers = async () => {
     SELECT username, "isAdmin", "firstName", "lastName", email
     FROM users;
     `);
-    console.log('users', users);
     return users;
   } catch (error) {
     console.error(error);

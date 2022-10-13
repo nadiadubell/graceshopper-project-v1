@@ -95,7 +95,6 @@ usersRouter.post('/register', async (req, res, next) => {
 usersRouter.get('/', requireAdmin, async (req, res, next) => {
   try {
     const users = await getAllUsers();
-    console.log('users', users);
     res.send(users);
   } catch ({ name, message }) {
     next({ name, message });
