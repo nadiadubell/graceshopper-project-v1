@@ -45,7 +45,7 @@ const App = () => {
         ></Route>
         <Route
           path="/profile"
-          element={<Profile isLoggedIn={isLoggedIn} />}
+          element={<Profile isLoggedIn={isLoggedIn} setProductId={setProductId}/>}
         ></Route>
         <Route
           path="/login"

@@ -138,8 +138,20 @@ usersRouter.get('/:userId/profile', async (req, res, next) => {
         message: 'No order history available',
       });
     } else {
-      console.log('ORDER HISTORY:', userOrderHistory);
-      res.send(userOrderHistory);
+      const _user = await getUserByUsername(user.username);
+      if(_user.email) {
+        userOrderHistory.email = _user.email
+      }
+      if(_user.firstName) {
+        userOrderHistory.firstName = _user.firstName
+      }
+      if(_user.lastName) {
+        userOrderHistory.lastName = _user.lastName
+      }
+      if(_user.profilePicture) {
+        userOrderHistory.profilePicture = _user.profilePicture
+      }
+      res.send(userOrderHistory)
     }
   } catch ({ name, message }) {
     next({ name, message });
