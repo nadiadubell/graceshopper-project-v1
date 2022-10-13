@@ -21,6 +21,7 @@
   #product-view {
     flex-basis: 40%;
     flex-direction: column;
+    font-size: xx-large;
   }
 }
 #product-view {
