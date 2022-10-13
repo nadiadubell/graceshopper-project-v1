@@ -10,6 +10,7 @@ const {
   getOrderHistoryById,
 } = require('../db/orders');
 const { addProductToOrder } = require('../db/order_products');
+const { getUserById } = require('../db/users');
 
 // GET api/orders/:userId
 ordersRouter.get('/:userId', async (req, res, next) => {
@@ -63,11 +64,11 @@ ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
   const updateFields = {};
 
   if (isOpen || !isOpen) updateFields.isOpen = isOpen;
-  updateFields.userId = userId;
 
   try {
+    const userCheck = await getUserById(userId);
     const originalOrder = await getOrderById(orderId);
-    if (originalOrder.userId === req.user.id || req.user.isAdmin === true) {
+    if (originalOrder.userId === userCheck.id || req.user.isAdmin === true) {
       const updatedOrder = await updateOrder(originalOrder.id, updateFields);
       res.send({ order: updatedOrder });
     } else {
