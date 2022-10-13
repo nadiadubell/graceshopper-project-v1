@@ -107,15 +107,19 @@ usersRouter.get('/me', requireUser, (req, res) => {
   res.send(user);
 });
 
-usersRouter.get('/:username/admin', requireAdmin, async (req, res, next) => {
-  const { username } = req.params;
 
-  const userName = await getUserByUsername(username);
+usersRouter.get('/info', requireUser, async (req, res, next) => {
+  const user = req.user;
 
   try {
-  } catch ({ name, message }) {
-    next({ name, message });
+    const _user = await getUserByUsername(user.username);
+    if(_user) {
+      res.send(_user);
+    }
+  } catch({ name, message }) {
+    next({ name, message })
   }
+
 });
 
 usersRouter.get('/:userId/profile', async (req, res, next) => {

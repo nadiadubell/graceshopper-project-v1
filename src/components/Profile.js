@@ -1,24 +1,33 @@
 import { useEffect, useState } from "react";
-import { getUserProfileInfo } from "../api";
+import { getUserProfileInfo, getUserContactInfo } from "../api";
 import { Link } from 'react-router-dom';
 import './Profile.css';
 
 
 export const Profile = ({isLoggedIn, setProductId}) => {
   const userId = localStorage.getItem('userId');
+  const username = localStorage.getItem('username');
+  const currentToken = localStorage.getItem('token');
   const [userProfileInfo, setUserProfileInfo] = useState ([]);
-  const [userOrderHistory, setUserOrderHistory] = useState([])
+  const [userOrderHistory, setUserOrderHistory] = useState([]);
+  const [userContactInfo, setUserContactInfo] = useState({})
 
   
   useEffect(() => {
     getProfileInfo(userId)
+    getUserContact(currentToken)
   }, []);
   
   
   const getProfileInfo = async (userId) => {
     const userInfo = await getUserProfileInfo(userId);
-    setUserProfileInfo([userInfo])
-    setUserOrderHistory(userInfo.products)
+    setUserProfileInfo([userInfo]);
+    setUserOrderHistory(userInfo.products);
+  }
+
+  const getUserContact = async(token) => {
+    const userInfo = await getUserContactInfo(token);
+    setUserContactInfo(userInfo);
   }
   
   
@@ -59,7 +68,7 @@ export const Profile = ({isLoggedIn, setProductId}) => {
                   <br/>
                   <img id='order-history-img' src={orderHistory.image}/>
                   <br/><br/>
-                  <p>Price: {orderHistory.price}</p>
+                  <p>Price: ${orderHistory.price}</p>
                   <br/>
                   <p>Quantity: {orderHistory.quantity}</p>
                   <br/>
@@ -81,20 +90,16 @@ export const Profile = ({isLoggedIn, setProductId}) => {
         <div id="user-info">
         <h2 id="user-info-title">User Info</h2>
         <span id="user-profile-info">
-            {userProfileInfo.map((userProfile, i) => {
-              return (
-                <div id="user-result" key={i}>
-                  <img id='user-profile-picture' src={userProfile.profilePicture}/>
+                <div id="user-result">
+                  <img id='user-profile-picture' src={userContactInfo.profilePicture}/>
                   <div id='user-details'>
-                  <h4>First Name: {userProfile.firstName}</h4>
+                  <h4>First Name: {userContactInfo.firstName}</h4>
                   <br/>
-                  <h4>Last Name: {userProfile.lastName}</h4>
+                  <h4>Last Name: {userContactInfo.lastName}</h4>
                   <br/>
-                  <h4>Email: {userProfile.email}</h4>
+                  <h4>Email: {userContactInfo.email}</h4>
                   </div>
                 </div>
-              )
-            })}
           </span>
           </div>
             <br/>
