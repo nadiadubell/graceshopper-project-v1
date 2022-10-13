@@ -4,16 +4,20 @@ const { BASE } = require('../api/index');
 
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
+  const [subtotal, setSubtotal] = useState('');
   const [total, setTotal] = useState('');
   const [renderer, setRenderer] = useState(false);
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
+  const shippingAndHandling = 10;
+  const tax = subtotal * 0.1;
 
   useEffect(() => {
     const fetchOrder = async () => {
       const results = await openOrder();
-      setUserOrder([results]);
-      getTotal(results);
+      setUserOrder([results])
+        .then(getSubtotal(results))
+        .then(getTotal(subtotal, shippingAndHandling, tax));
     };
     fetchOrder();
   }, [renderer]);
@@ -71,14 +75,26 @@ export const Orders = () => {
     return data;
   };
 
-  const getTotal = order => {
+  const getSubtotal = order => {
     let totalPrice = 0;
     let products = order.products;
     for (const product of products) {
       totalPrice += product.price * product.quantity;
     }
-    setTotal(totalPrice);
+    setSubtotal(totalPrice);
+    // setRenderer(!renderer);
   };
+
+  const getTotal = (subtotal, shippingAndHandling, tax) => {
+    console.log('SUBTOTAL', subtotal);
+    console.log('shippingAndHandling', shippingAndHandling);
+    console.log('tax', tax);
+    let sum = subtotal + shippingAndHandling + tax;
+    setTotal(sum);
+    // setRenderer(!renderer);
+  };
+  console.log('SUBTOTAL', subtotal);
+  console.log('TOTAL', total);
 
   return (
     <div id="order-page">
@@ -98,9 +114,9 @@ export const Orders = () => {
                         <select
                           id={`quantity-select-${i}`}
                           required
-                          onChange={event => {
-                            event.preventDefault();
+                          onChange={() => {
                             handleQuantityChange(i, order.id, product.id);
+                            window.location.reload(true);
                           }}
                         >
                           <option value="quantity">{product.quantity}</option>
@@ -115,7 +131,7 @@ export const Orders = () => {
                           <option value={9}>9</option>
                           {/* need to figure out how to make an input field that allows you
                         to manually enter a number larger than 10 if the below is selected */}
-                          <option value={10}>10+</option>
+                          <option value={10}>10</option>
                         </select>
                       </span>
                       <br></br>
@@ -134,10 +150,10 @@ export const Orders = () => {
             </div>
             <div id="order-summary">
               <h3>Order Summary</h3>
-              <h5>Subtotal: ${total}</h5>
-              <h5>Estimated Shipping & Handling:</h5>
-              <h5>Estimated Tax: ${total * 0.1}</h5>
-              <h3>Total:</h3>
+              <h5>Subtotal: ${subtotal}</h5>
+              <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
+              <h5>Estimated Tax: ${tax}</h5>
+              <h3>Total: ${total}</h3>
               <button>Checkout</button>
             </div>
           </div>
