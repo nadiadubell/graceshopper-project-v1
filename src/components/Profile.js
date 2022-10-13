@@ -59,7 +59,7 @@ export const Profile = ({isLoggedIn, setProductId}) => {
                   <br/>
                   <img id='order-history-img' src={orderHistory.image}/>
                   <br/><br/>
-                  <p>Price: {orderHistory.price}</p>
+                  <p>Price: ${orderHistory.price}</p>
                   <br/>
                   <p>Quantity: {orderHistory.quantity}</p>
                   <br/>

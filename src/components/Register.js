@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { BASE } from '../api/index';
+import { storeCurrentUser } from "../auth";
 import './Register.css'
 
 export const Register = (props) => {
