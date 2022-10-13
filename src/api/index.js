@@ -9,7 +9,17 @@ export const userCheck = async token => {
     },
   });
   if (data) {
-    console.log('DATA:', data.data);
+    return data.data;
+  }
+};
+
+export const getUserContactInfo = async(token) => {
+  const data = await axios.get(`${BASE}/users/info`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (data) {
     return data.data;
   }
 };
