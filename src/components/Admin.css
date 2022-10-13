@@ -30,3 +30,16 @@
   width: 100%;
   align-items: center;
 }
+
+#users {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  width: 25%;
+  border: 3px solid black;
+  box-shadow: 15px -12px 10px darkgray;
+  background-color: burlywood;
+}

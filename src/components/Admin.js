@@ -5,7 +5,6 @@ import './Admin.css';
 export const Admin = () => {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     const getUsers = async token => {
