@@ -26,7 +26,7 @@ export const Products = props => {
       <h1 id="products-header">Products</h1>
       {products.map((product, i) => {
         return (
-          <div id="single-product" key={i}>
+          <div id="product-view" key={i}>
             <Link to="/:productId">
               <h2
                 id="product-name"
@@ -34,7 +34,7 @@ export const Products = props => {
                   setProductId(product.id);
                 }}
               >
-                {product.name}
+                {product.name}{' '}
               </h2>
             </Link>
             <Link to="/:productId">
@@ -44,9 +44,12 @@ export const Products = props => {
                 onClick={() => {
                   setProductId(product.id);
                 }}
+                onClick={() => {
+                  setProductId(product.id);
+                }}
               />
             </Link>
-            <div id="product-price">Price: {product.price}</div>
+            <div id="product-price">Price: ${product.price}</div>
           </div>
         );
       })}
