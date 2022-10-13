@@ -12,7 +12,6 @@ const {
   getProductsByPrice,
 } = require('./products');
 const { createOrder, getOrdersWithoutProducts } = require('./orders');
-const { createGuestOrder } = require('./guest_orders');
 const { addProductToOrder } = require('./order_products');
 
 const dropTables = async () => {
@@ -377,7 +376,6 @@ const rebuildDB = async () => {
     await createInitialProducts();
     await createInitialOrders();
     await createInitialOrderProducts();
-    await createGuestOrder(1);
   } catch (error) {
     console.log('Error during rebuildDB');
     throw error;
