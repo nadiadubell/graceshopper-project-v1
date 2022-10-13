@@ -72,6 +72,7 @@ export const Checkout = () => {
           navigate('/profile');
         }}
       >
+        <h3>PLEASE ENTER PAYMENT DETAILS</h3>
         <label for="full-name">Full Name: </label>
         <input
           className="input-form"
