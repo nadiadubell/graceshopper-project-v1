@@ -138,7 +138,9 @@ usersRouter.get('/:userId/profile', async (req, res, next) => {
       if(_user.lastName) {
         userOrderHistory.lastName = _user.lastName
       }
-      console.log("ORDER HISTORY:", userOrderHistory)
+      if(_user.profilePicture) {
+        userOrderHistory.profilePicture = _user.profilePicture
+      }
       res.send(userOrderHistory)
     }
   } catch ({ name, message }) {

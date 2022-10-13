@@ -45,6 +45,7 @@ const buildTables = async () => {
             "firstName" VARCHAR(50) NOT NULL,
             "lastName" VARCHAR(50) NOT NULL,
             email VARCHAR(100) NOT NULL,
+            "profilePicture" VARCHAR(255),
             UNIQUE(username, email)
         );
 
@@ -94,6 +95,7 @@ const createInitialUsers = async () => {
         firstName: 'Aaron',
         lastName: 'Sexton',
         email: 'aaronsexton5@gmail.com',
+        profilePicture: 'https://imgur.com/V4RclNb.jpg'
       },
       {
         username: 'jstaff123',
@@ -102,6 +104,7 @@ const createInitialUsers = async () => {
         firstName: 'Jerrod',
         lastName: 'Stafford',
         email: 'jerrodstafford10@gmail.com',
+        profilePicture: 'https://imgur.com/V4RclNb.jpg'
       },
       {
         username: 'T-Rey2020',
@@ -110,6 +113,7 @@ const createInitialUsers = async () => {
         firstName: 'Trey',
         lastName: 'Byars',
         email: 'treybyars93@gmail.com',
+        profilePicture: 'https://imgur.com/V4RclNb.jpg'
       },
       {
         username: 'nadiadb',
@@ -118,6 +122,7 @@ const createInitialUsers = async () => {
         firstName: 'Nadia',
         lastName: 'DuBell',
         email: 'ndubell01@gmail.com',
+        profilePicture: 'https://imgur.com/V4RclNb.jpg'
       },
     ];
 

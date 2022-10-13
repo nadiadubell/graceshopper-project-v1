@@ -21,31 +21,37 @@ export const Profile = ({isLoggedIn, setProductId}) => {
     setUserOrderHistory(userInfo.products)
   }
   
-
+  
   return (
     <div id="profile-page">
+    { userOrderHistory ? (
+      <>
         <h1 id="user-profile-title">Welcome, {isLoggedIn.username}!</h1>
         <br/>
-        <h2 id='user-info-title'>Profile Info</h2>
-        <span id='user-profile-container'>
-          <p id='user-profile-picture'>User Profile Picture Here</p>
-          <div id="user-profile-info">
+        <div id='user-profile-container'>
+        <div id="user-info">
+        <h2 id="user-info-title">User Info</h2>
+        <span id="user-profile-info">
             {userProfileInfo.map((userProfile, i) => {
               return (
-                <div id='user-info' key={i}>
+                <div id="user-result" key={i}>
+                  <img id='user-profile-picture' src={userProfile.profilePicture}/>
+                  <div id='user-details'>
                   <h4>First Name: {userProfile.firstName}</h4>
                   <br/>
                   <h4>Last Name: {userProfile.lastName}</h4>
                   <br/>
                   <h4>Email: {userProfile.email}</h4>
+                  </div>
                 </div>
               )
             })}
+          </span>
           </div>
-        </span>
             <br/>
-          <h2 id='user-order-history-title'>Order History</h2>
-            <div id='user-order-history-container'>
+          <div id="user-order-history">
+          <h2 id="order-history-title">Order History</h2>
+          <span id='order-history'>
             {userOrderHistory.map((orderHistory, i) => {
               return (
                 <div id='user-order-history' key={i}>
@@ -60,10 +66,47 @@ export const Profile = ({isLoggedIn, setProductId}) => {
                   <Link to="/:productId">
                   <button id="reorder-button" onClick={()=>{setProductId(orderHistory.id)}}>REORDER</button>
                   </Link>
+                  </div>
+                  )
+                })}
+                </span>
+              </div>
+              </div>
+        </>
+   ) : (
+        <>
+        <h1 id="user-profile-title">Welcome, {isLoggedIn.username}!</h1>
+        <br/>
+        <div id='user-profile-container'>
+        <div id="user-info">
+        <h2 id="user-info-title">User Info</h2>
+        <span id="user-profile-info">
+            {userProfileInfo.map((userProfile, i) => {
+              return (
+                <div id="user-result" key={i}>
+                  <img id='user-profile-picture' src={userProfile.profilePicture}/>
+                  <div id='user-details'>
+                  <h4>First Name: {userProfile.firstName}</h4>
+                  <br/>
+                  <h4>Last Name: {userProfile.lastName}</h4>
+                  <br/>
+                  <h4>Email: {userProfile.email}</h4>
+                  </div>
                 </div>
               )
             })}
-            </div>
+          </span>
+          </div>
+            <br/>
+          <div id="user-order-history">
+          <h2 id="order-history-title">Order History</h2>
+              <div id="empty-order-history">
+              <h2>Order History Unavailable</h2>
+              </div>
+          </div>
+          </div>
+        </>
+    )}
     </div>
-  )
+              )
 }
