@@ -1,0 +1,30 @@
+#admin-header {
+  display: flex;
+  justify-content: space-around;
+  color: gray;
+  background-color: beige;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  width: 100%;
+  align-items: center;
+}
+
+#admin-dashboard-header {
+  display: flex;
+  justify-content: space-around;
+  color: gray;
+  background-color: beige;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  width: 100%;
+  align-items: center;
+}
+
+#admin-dashboard {
+  background-color: beige;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 15px;
+}

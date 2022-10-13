@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { BASE } from '../api/index';
+import './Admin.css';
 
 export const Admin = () => {
   const [users, setUsers] = useState([]);
