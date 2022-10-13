@@ -44,9 +44,6 @@ export const Products = props => {
                 onClick={() => {
                   setProductId(product.id);
                 }}
-                onClick={() => {
-                  setProductId(product.id);
-                }}
               />
             </Link>
             <div id="product-price">Price: ${product.price}</div>

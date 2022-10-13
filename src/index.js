@@ -8,6 +8,7 @@ import {
   Profile,
   Products,
   Orders,
+  Checkout,
   SingleProduct,
   Register,
   Login,
