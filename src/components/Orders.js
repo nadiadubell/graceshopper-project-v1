@@ -5,7 +5,6 @@ const { BASE } = require('../api/index');
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [subtotal, setSubtotal] = useState('');
-  const [total, setTotal] = useState('');
   const [renderer, setRenderer] = useState(false);
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
@@ -15,9 +14,8 @@ export const Orders = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       const results = await openOrder();
-      setUserOrder([results])
-        .then(getSubtotal(results))
-        .then(getTotal(subtotal, shippingAndHandling, tax));
+      setUserOrder([results]);
+      getSubtotal([results]);
     };
     fetchOrder();
   }, [renderer]);
@@ -77,24 +75,12 @@ export const Orders = () => {
 
   const getSubtotal = order => {
     let totalPrice = 0;
-    let products = order.products;
+    let products = order[0].products;
     for (const product of products) {
       totalPrice += product.price * product.quantity;
     }
     setSubtotal(totalPrice);
-    // setRenderer(!renderer);
   };
-
-  const getTotal = (subtotal, shippingAndHandling, tax) => {
-    console.log('SUBTOTAL', subtotal);
-    console.log('shippingAndHandling', shippingAndHandling);
-    console.log('tax', tax);
-    let sum = subtotal + shippingAndHandling + tax;
-    setTotal(sum);
-    // setRenderer(!renderer);
-  };
-  console.log('SUBTOTAL', subtotal);
-  console.log('TOTAL', total);
 
   return (
     <div id="order-page">
@@ -153,7 +139,7 @@ export const Orders = () => {
               <h5>Subtotal: ${subtotal}</h5>
               <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
               <h5>Estimated Tax: ${tax}</h5>
-              <h3>Total: ${total}</h3>
+              <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
               <button>Checkout</button>
             </div>
           </div>
