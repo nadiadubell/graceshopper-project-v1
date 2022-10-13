@@ -296,36 +296,43 @@ const createInitialOrderProducts = async () => {
 
     const orderProductsToCreate = [
       {
+        userId: 1,
         orderId: order1.id,
         productId: product1.id,
         quantity: 1,
       },
       {
+        userId: 1,
         orderId: order1.id,
         productId: product2.id,
         quantity: 2,
       },
       {
+        userId: 1,
         orderId: order1.id,
         productId: product3.id,
         quantity: 100,
       },
       {
+        userId: 2,
         orderId: order2.id,
         productId: product4.id,
         quantity: 1,
       },
       {
+        userId: 2,
         orderId: order2.id,
         productId: product1.id,
         quantity: 2,
       },
       {
+        userId: 3,
         orderId: order3.id,
         productId: product5.id,
         quantity: 10,
       },
       {
+        userId: 4,
         orderId: order4.id,
         productId: product6.id,
         quantity: 5,

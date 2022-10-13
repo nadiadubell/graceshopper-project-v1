@@ -18,14 +18,17 @@ const getOrderProductById = async id => {
   }
 };
 
-const checkForOrderProductPair = async (orderId, productId) => {
+const checkForOrderProductPair = async (userId, orderId, productId) => {
   try {
     const {
       rows: [orderProduct],
     } = await client.query(`
-      SELECT *
-      FROM orderproducts
-      WHERE "orderId"=${orderId} AND "productId"=${productId};
+      SELECT orderproducts.*
+      FROM orders
+      JOIN users ON users.id = orders."userId"
+      JOIN orderproducts ON orderproducts."orderId" = orders.id
+      JOIN products ON orderproducts."productId" = products.id
+      WHERE users.id=${userId} AND "orderId"=${orderId} AND "productId"=${productId} AND "isOpen" = true;
     `);
 
     return orderProduct;
@@ -35,9 +38,9 @@ const checkForOrderProductPair = async (orderId, productId) => {
   }
 };
 
-const addProductToOrder = async ({ orderId, productId, quantity }) => {
+const addProductToOrder = async ({ userId, orderId, productId, quantity }) => {
   try {
-    const check = await checkForOrderProductPair(orderId, productId);
+    const check = await checkForOrderProductPair(userId, orderId, productId);
     if (!check) {
       const {
         rows: [orderProduct],

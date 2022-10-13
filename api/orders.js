@@ -41,7 +41,7 @@ ordersRouter.post('/:userId', async (req, res, next) => {
       const { id: newOrderId } = await createOrder({ userId });
       orderId = newOrderId;
     }
-    await addProductToOrder({ orderId, productId, quantity });
+    await addProductToOrder({ userId, orderId, productId, quantity });
     const order = await getOpenOrderByUserId(userId);
 
     if (order) res.send(order);

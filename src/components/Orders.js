@@ -30,7 +30,7 @@ export const Orders = () => {
 
   const getOrderProduct = async (orderId, productId) => {
     const response = await fetch(
-      `${BASE}/orderproducts/${orderId}/${productId}`
+      `${BASE}/orderproducts/${userId}/${orderId}/${productId}`
     );
     const data = await response.json();
     return data.id;

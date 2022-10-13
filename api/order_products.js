@@ -25,22 +25,29 @@ orderProductsRouter.get('/:orderProductId', async (req, res, next) => {
   }
 });
 
-orderProductsRouter.get('/:orderId/:productId', async (req, res, next) => {
-  const { orderId, productId } = req.params;
+orderProductsRouter.get(
+  '/:userId/:orderId/:productId',
+  async (req, res, next) => {
+    const { userId, orderId, productId } = req.params;
 
-  try {
-    const orderProduct = await checkForOrderProductPair(orderId, productId);
+    try {
+      const orderProduct = await checkForOrderProductPair(
+        userId,
+        orderId,
+        productId
+      );
 
-    if (orderProduct) res.send(orderProduct);
-    else
-      next({
-        name: 'OrderProductError',
-        message: 'Error getting order product by IDs. Please try again',
-      });
-  } catch ({ name, message }) {
-    next({ name, message });
+      if (orderProduct) res.send(orderProduct);
+      else
+        next({
+          name: 'OrderProductError',
+          message: 'Error getting order product by IDs. Please try again',
+        });
+    } catch ({ name, message }) {
+      next({ name, message });
+    }
   }
-});
+);
 
 orderProductsRouter.patch('/:orderProductId', async (req, res, next) => {
   const { orderProductId: id } = req.params;
