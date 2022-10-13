@@ -1,0 +1,81 @@
+* {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+#single-product-container {
+  background-color: beige;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+@media (max-width: 1200px) {
+  #single-product {
+    flex-basis: 40%;
+    flex-direction: column;
+  }
+}
+
+#single-product {
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  width: 50%;
+  padding: 20px;
+}
+
+#single-product-name {
+  margin: 5px;
+}
+
+#single-product-image {
+  width: 50%;
+  border: 2px solid black;
+  box-shadow: 15px 3px 10px darkgray;
+  margin: 5px;
+}
+
+#single-product-description {
+  width: 50%;
+  border: 2px solid black;
+  box-shadow: 15px 3px 10px darkgray;
+  background-color: bisque;
+  margin: 5px;
+  padding: 5px;
+}
+
+#single-product-breed {
+  margin: 8px;
+  padding: 5px;
+  border: 2px groove black;
+  box-shadow: 15px 3px 10px darkgray;
+  background-color: bisque;
+}
+
+#single-product-price {
+  margin: 8px;
+  padding: 5px;
+  border: 2px groove black;
+  box-shadow: 15px 3px 10px darkgray;
+  background-color: bisque;
+}
+
+#single-product-quantity-select {
+  margin: 8px;
+}
+
+#single-product-add-to-cart {
+  margin: 8px;
+  padding: 5px;
+  border: 1px solid black;
+  box-shadow: 3px 12px 10px darkgray;
+  background-color: tan;
+}
+
+#back a {
+  text-decoration: none;
+}
