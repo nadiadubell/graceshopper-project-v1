@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 const { BASE } = require('../api/index');
+import './Checkout.css';
 
 export const Checkout = () => {
   const navigate = useNavigate();
@@ -71,38 +72,57 @@ export const Checkout = () => {
           navigate('/profile');
         }}
       >
+        <label for="full-name">Full Name: </label>
         <input
           className="input-form"
+          id="full-name"
           placeholder="Full name as it Appears on Credit Card"
           type="text"
           required
           value={name}
           onChange={enterName}
         ></input>
+        <br />
+        <label for="credit-card-number">Credit Card #: </label>
         <input
           className="input-form"
+          id="credit-card-number"
           placeholder="Credit Card Number"
           type="number"
           required
           value={cardNumber}
           onChange={enterCardNumber}
         ></input>
+        <br />
+        <label for="exp-date">Exp. Date: </label>
         <input
           className="input-form"
+          id="exp-date"
           placeholder="Exp. Month/Year"
           type="month"
           required
+          min="2022-11"
+          max="2026-12"
           value={expDate}
           onChange={enterExpDate}
         ></input>
+        <br />
+        <label for="cvc-input">Card Verification Code: </label>
         <input
           className="input-form"
+          id="cvc-input"
           placeholder="CVC"
-          type="number"
+          type="text"
           required
+          maxlength="3"
+          min="0"
+          max="999"
+          step="1"
+          pattern="[0-9]{3}"
           value={CVC}
           onChange={enterCVC}
         ></input>
+        <br />
         <button>Place Order</button>
       </form>
     </div>

@@ -60,14 +60,10 @@ ordersRouter.post('/:userId', async (req, res, next) => {
 ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
   const { userId, orderId } = req.params;
   const { isOpen = '' } = req.body;
-  console.log(userId, orderId, isOpen);
-  console.log(req.user);
 
   const updateFields = {};
 
   if (isOpen || !isOpen) updateFields.isOpen = isOpen;
-  // DELETE THE BELOW? UNNECESSARY?
-  updateFields.userId = userId;
 
   try {
     const userCheck = await getUserById(userId);
