@@ -8,38 +8,3 @@
   flex-direction: row;
   justify-content: space-around;
 }
-
-#admin-header {
-  display: flex;
-  justify-content: space-around;
-  color: gray;
-  background-color: beige;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  width: 100%;
-  align-items: center;
-}
-
-#admin-dashboard-header {
-  display: flex;
-  justify-content: space-around;
-  color: gray;
-  background-color: beige;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  width: 100%;
-  align-items: center;
-}
-
-#users {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px;
-  width: 25%;
-  border: 3px solid black;
-  box-shadow: 15px -12px 10px darkgray;
-  background-color: burlywood;
-}
