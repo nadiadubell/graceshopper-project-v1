@@ -63,7 +63,7 @@ const App = () => {
           path="/:productId"
           element={<SingleProduct productId={productId} />}
         ></Route>
-        {/* <Route path='/admin' element={<Admin />}></Route> */}
+        {/* <Route path="/admin" element={<Admin />}></Route> */}
       </Routes>
       <Footer />
     </div>

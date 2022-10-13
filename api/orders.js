@@ -32,6 +32,8 @@ ordersRouter.get('/:userId', async (req, res, next) => {
   }
 });
 
+ordersRouter.post('/guest/:guestId', async (req, res, next) => {});
+
 ordersRouter.post('/:userId', async (req, res, next) => {
   const { userId } = req.params;
   const { productId, quantity } = req.body;
