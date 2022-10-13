@@ -44,7 +44,9 @@ const App = () => {
         ></Route>
         <Route
           path="/profile"
-          element={<Profile isLoggedIn={isLoggedIn} setProductId={setProductId}/>}
+          element={
+            <Profile isLoggedIn={isLoggedIn} setProductId={setProductId} />
+          }
         ></Route>
         <Route
           path="/login"
@@ -55,7 +57,7 @@ const App = () => {
           element={<Register setIsLoggedIn={setIsLoggedIn} />}
         ></Route>
         <Route path="/orders" element={<Orders />}></Route>
-        {/* <Route path='/checkout'element={<Checkout />}></Route> */}
+        <Route path="/checkout" element={<Checkout />}></Route>
         <Route
           path="/:productId"
           element={<SingleProduct productId={productId} />}
