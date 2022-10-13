@@ -1,3 +1,14 @@
+* {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#admin-dashboard {
+  background-color: beige;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 #admin-header {
   display: flex;
   justify-content: space-around;
@@ -18,13 +29,4 @@
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 100%;
   align-items: center;
-}
-
-#admin-dashboard {
-  background-color: beige;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 15px;
 }

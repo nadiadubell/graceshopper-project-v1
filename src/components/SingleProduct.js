@@ -2,7 +2,7 @@ import { BASE } from '../api/index';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './SingleProduct.css'
+import './SingleProduct.css';
 
 export const SingleProduct = props => {
   const [product, setProduct] = useState([]);
@@ -40,18 +40,19 @@ export const SingleProduct = props => {
   };
 
   return (
-    <div id='single-product-container'>
+    <div id="single-product-container">
       {product.map((singleProduct, i) => {
         return (
           <div id="single-product" key={i}>
             <h1 id="single-product-name">{singleProduct.name}</h1>
             <img id="single-product-image" src={singleProduct.image} />
             <h3 id="description-header"> Description: </h3>
-              <body id="single-product-description"> {singleProduct.description} </body>
+            <body id="single-product-description">
+              {singleProduct.description}
+            </body>
             <h3 id="single-product-breed">Breed: {singleProduct.breedname}</h3>
             <h3 id="single-product-price">Price: ${singleProduct.price}</h3>
             <select id="single-product-quantity-select" required>
-              <option value="quantity">1</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>

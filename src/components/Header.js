@@ -20,7 +20,6 @@ export const Header = ({ isLoggedIn }) => {
         />
       </Link>
       <h1 className="header" id="banner">
-        {' '}
         Welcome to HorsePlay!
       </h1>
 
