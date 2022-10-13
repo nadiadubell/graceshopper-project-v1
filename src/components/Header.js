@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-export const Header = ({ isLoggedIn }) => {
+export const Header = ({ isLoggedIn, isAdmin }) => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -20,13 +20,17 @@ export const Header = ({ isLoggedIn }) => {
         />
       </Link>
       <h1 className="header" id="banner">
-        {' '}
         Welcome to HorsePlay!
       </h1>
 
       {isLoggedIn ? (
         <>
           <nav className="header">
+            {isAdmin ? (
+              <Link id="links" to="admin">
+                admin
+              </Link>
+            ) : null}
             <Link id="links" to="products">
               products
             </Link>
