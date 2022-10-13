@@ -52,7 +52,7 @@ const buildTables = async () => {
 
         CREATE TABLE guests (
           id SERIAL PRIMARY KEY,
-          guestname VARCHAR(50) NOT NULL,
+          guestname VARCHAR(50) NOT NULL DEFAULT 'Guest',
           "isAdmin" BOOLEAN DEFAULT false
         );
 
