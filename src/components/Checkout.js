@@ -73,7 +73,7 @@ export const Checkout = () => {
         }}
       >
         <h3>PLEASE ENTER PAYMENT DETAILS</h3>
-        <label for="full-name">Full Name: </label>
+        <label>Full Name: </label>
         <input
           className="input-form"
           id="full-name"
@@ -84,7 +84,7 @@ export const Checkout = () => {
           onChange={enterName}
         ></input>
         <br />
-        <label for="credit-card-number">Credit Card #: </label>
+        <label>Credit Card #: </label>
         <input
           className="input-form"
           id="credit-card-number"
@@ -95,7 +95,7 @@ export const Checkout = () => {
           onChange={enterCardNumber}
         ></input>
         <br />
-        <label for="exp-date">Exp. Date: </label>
+        <label>Exp. Date: </label>
         <input
           className="input-form"
           id="exp-date"
@@ -108,14 +108,14 @@ export const Checkout = () => {
           onChange={enterExpDate}
         ></input>
         <br />
-        <label for="cvc-input">Card Verification Code: </label>
+        <label>Card Verification Code: </label>
         <input
           className="input-form"
           id="cvc-input"
           placeholder="CVC"
           type="text"
           required
-          maxlength="3"
+          maxLength="3"
           min="0"
           max="999"
           step="1"
