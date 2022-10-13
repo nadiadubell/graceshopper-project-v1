@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 const { axios } = require('axios');
 const { BASE } = require('../api/index');
 
@@ -140,7 +141,9 @@ export const Orders = () => {
               <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
               <h5>Estimated Tax: ${tax}</h5>
               <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
-              <button>Checkout</button>
+              <Link to="/checkout">
+                <button>Checkout</button>
+              </Link>
             </div>
           </div>
         );
