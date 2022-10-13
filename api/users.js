@@ -97,16 +97,6 @@ usersRouter.get('/me', requireUser, (req, res) => {
   res.send(user);
 });
 
-usersRouter.get('/:username/admin', requireAdmin, async (req, res, next) => {
-  const { username } = req.params;
-
-  const userName = await getUserByUsername(username);
-
-  try {
-  } catch ({ name, message }) {
-    next({ name, message });
-  }
-});
 
 usersRouter.get('/info', requireUser, async (req, res, next) => {
   const user = req.user;
