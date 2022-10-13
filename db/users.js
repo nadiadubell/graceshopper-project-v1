@@ -35,7 +35,7 @@ const createUser = async ({
 const getAllUsers = async () => {
   try {
     const { rows: users } = await client.query(`
-    SELECT username, "firstName", "lastName", email
+    SELECT username, "isAdmin", "firstName", "lastName", email
     FROM users;
     `);
     console.log('users', users);
@@ -97,7 +97,7 @@ const getUserById = async userId => {
     const {
       rows: [user],
     } = await client.query(`
-      SELECT id, username
+      SELECT id, username, "isAdmin"
       FROM users
       WHERE id = ${userId};
     `);

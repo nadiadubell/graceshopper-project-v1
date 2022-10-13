@@ -4,11 +4,14 @@ import { BASE } from '../api/index';
 
 export const Admin = () => {
   const [users, setUsers] = useState([]);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const getUsers = async () => {
+    const getUsers = async token => {
       try {
-        const data = await axios.get(`${BASE}/users`);
+        const data = await axios.get(`${BASE}/users`, {
+          Authorization: `Bearer ${token}`,
+        });
         console.log('users', data.data);
         setUsers(data.data);
         return data.data;
@@ -17,7 +20,7 @@ export const Admin = () => {
       }
     };
 
-    getUsers();
+    getUsers(token);
   }, []);
   return (
     <div id="admin-dashboard">
