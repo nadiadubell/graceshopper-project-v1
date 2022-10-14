@@ -48,9 +48,9 @@ export const SingleProduct = props => {
             <h1 id="single-product-name">{singleProduct.name}</h1>
             <img id="single-product-image" src={singleProduct.image} />
             <h3 id="description-header"> Description: </h3>
-            <body id="single-product-description">
+            <div id="single-product-description">
               {singleProduct.description}
-            </body>
+            </div>
             <h3 id="single-product-breed">Breed: {singleProduct.breedname}</h3>
             <h3 id="single-product-price">Price: ${singleProduct.price}</h3>
             <select id="single-product-quantity-select" required>

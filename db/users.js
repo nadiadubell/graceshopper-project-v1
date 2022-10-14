@@ -1,6 +1,5 @@
 const client = require('./client');
 const bcrypt = require('bcrypt');
-const { use } = require('../api/users');
 
 const createUser = async ({
   username,
