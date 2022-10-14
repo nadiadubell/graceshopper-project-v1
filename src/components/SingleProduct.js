@@ -48,6 +48,7 @@ export const SingleProduct = props => {
       } else {
         const guest = await axios.post(`${BASE}/guestusers`);
         localStorage.setItem('guestId', guest.data.id);
+        console.log('GUEST DATA', guest.data.id);
         const addItemToGuestOrder = await axios.post(
           `${BASE}/guestorders/${guest.data.id}`,
           {
