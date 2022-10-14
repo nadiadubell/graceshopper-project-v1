@@ -17,13 +17,7 @@
   height: 100%;
   padding: 15px;
 }
-@media (max-width: 1200px) {
-  #product-view {
-    flex-basis: 40%;
-    flex-direction: column;
-    font-size: xx-large;
-  }
-}
+
 #product-view {
   display: flex; 
   flex-direction: column;
@@ -59,3 +53,18 @@
   padding-bottom: 25px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
  }
+
+ @media (max-width: 768px) {
+  #products {
+    height: fit-content;
+  }
+  #product-view {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: fit-content;
+    width: fit-content;
+    align-items: center;
+  }
+}
