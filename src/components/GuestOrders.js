@@ -4,12 +4,11 @@ const { axios } = require('axios');
 const { BASE } = require('../api/index');
 import './Orders.css';
 
-export const Orders = () => {
+export const GuestOrders = () => {
   const [userOrder, setUserOrder] = useState([]);
   const [subtotal, setSubtotal] = useState('');
   const [renderer, setRenderer] = useState(false);
-  const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('userId');
+  const guestId = localStorage.getItem('guestId');
   const shippingAndHandling = 10;
   const tax = subtotal * 0.1;
 
@@ -24,8 +23,10 @@ export const Orders = () => {
     fetchOrder();
   }, [renderer]);
 
+  console.log('USER ORDER', userOrder);
+
   const openOrder = async () => {
-    const response = await fetch(`${BASE}/orders/${userId}`, {
+    const response = await fetch(`${BASE}/guestorders/${guestId}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -36,7 +37,7 @@ export const Orders = () => {
 
   const getOrderProduct = async (orderId, productId) => {
     const response = await fetch(
-      `${BASE}/orderproducts/${userId}/${orderId}/${productId}`
+      `${BASE}/guestorders/${guestId}/${orderId}/${productId}`
     );
     const data = await response.json();
     return data.id;
@@ -44,12 +45,11 @@ export const Orders = () => {
 
   const handleRemoveButtonClick = async (orderId, productId) => {
     const response = await fetch(
-      `${BASE}/orderproducts/${userId}/${orderId}/${productId}`,
+      `${BASE}/guestorders/${guestId}/${orderId}/${productId}`,
       {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -66,7 +66,6 @@ export const Orders = () => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         quantity: `${value}`,
@@ -147,7 +146,7 @@ export const Orders = () => {
                   <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
-                  <Link to="/checkout">
+                  <Link to="/guestcheckout">
                     <button>Checkout</button>
                   </Link>
                 </div>
