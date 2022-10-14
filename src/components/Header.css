@@ -25,4 +25,17 @@
   letter-spacing: 1pt;
 }
 
+@media (max-width:768px) {
+  .header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: tan;
+    flex-wrap: wrap;
+    text-align: center;
+    padding-top: 2%;
+  }
+}
+
 
