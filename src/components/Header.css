@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
 }
-.header {
+#header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -25,6 +25,10 @@
   letter-spacing: 1pt;
 }
 
+.horse {
+  display: none;
+}
+
 @media (max-width:768px) {
   .header{
     display: flex;
@@ -35,6 +39,15 @@
     flex-wrap: wrap;
     text-align: center;
     padding-top: 2%;
+  }
+
+  #links {
+    display: none;
+  }
+
+  .horse {
+    display: flex;
+    margin: 10px;
   }
 }
 

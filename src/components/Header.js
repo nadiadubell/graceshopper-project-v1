@@ -10,8 +10,12 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
     navigate('/');
   };
 
+  const linksListGuest = [ {name: Products, link: <Link to='products'/>}, {name: Orders, link: <Link to='orders'/>}, {name: Login, link: <Link to='login'/>}, {name: login, link: <Link to='/login'/>} ]
+  const linksListUser = [ {name: Products, link: <Link to='products'/>}, {name: Orders, link: <Link to='orders'/>}, {name: Profile, link: <Link to='profile'/>}, {name: Logout, link: <Link to='/'/>} ]
+  const linksListAdmin = [ {name: Admin, link: <Link to='admin'/>}, {name: Products, link: <Link to='products'/>}, {name: Orders, link: <Link to='orders'/>}, {name: Profile, link: <Link to='profile'/>}, {name: Logout, link: <Link to='/'/>} ]
+
   return (
-    <div className="header">
+    <div id="header">
       <Link to="profile">
         <img
           id="logo"
@@ -20,13 +24,13 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
           alt="Horse Logo Image"
         />
       </Link>
-      <h1 className="header" id="banner">
+      <h1 id="header" id="banner">
         Welcome to HorsePlay!
       </h1>
 
       {isLoggedIn ? (
         <>
-          <nav className="header">
+          <nav id="header">
             {isAdmin ? (
               <Link id="links" to="admin">
                 admin
@@ -44,11 +48,20 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="links" to="/" onClick={handleLogout}>
               logout
             </Link>
+            <ul className="horse"/>
+              {linksListUser.map((link, i) => {
+                return (
+                  <div key={i}>
+                    <p {link.link}>{link.name}</p>
+                  </div>
+                )
+              })}
+            </ul>
           </nav>
         </>
       ) : (
         <>
-          <nav className="header">
+          <nav id="header">
             <Link id="links" to="products">
               products
             </Link>
