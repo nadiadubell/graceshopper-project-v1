@@ -87,4 +87,8 @@
     width: fit-content;
     align-items: center;
   }
+
+  #back {
+    text-align: center;
+  }
 }

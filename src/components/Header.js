@@ -65,7 +65,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="links" to="products">
               products
             </Link>
-            <Link id="links" to="orders">
+            <Link id="links" to="guestorders">
               cart
             </Link>
             <Link id="links" to="register">

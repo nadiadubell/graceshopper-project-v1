@@ -20,16 +20,41 @@ const createGuest = async isAdmin => {
   }
 };
 
-const deleteGuest = async id => {
+const getGuestById = async guestId => {
   try {
-    const guestToDelete = await getGuestById(id);
-    if (guestToDelete) {
-      await client.query(`
-      DELETE FROM guests
-      WHERE id = ${id};
+    const guest = await client.query(`
+      SELECT *
+      FROM guests
+      WHERE id=${guestId};
     `);
 
-      return 'guest deleted';
+    return guest;
+  } catch (error) {
+    console.log('Error getting guest by Id');
+    throw error;
+  }
+};
+
+const deleteGuest = async (guestId, orderId) => {
+  try {
+    const guestToDelete = await getGuestById(guestId);
+    if (guestToDelete) {
+      await client.query(`
+      DELETE FROM orderproducts
+      WHERE "orderId"=${orderId};
+      `);
+
+      await client.query(`
+      DELETE FROM orders
+      WHERE "guestId"=${guestId};
+      `);
+
+      await client.query(`
+      DELETE FROM guests
+      WHERE id = ${guestId};
+      `);
+
+      return guestToDelete;
     }
   } catch (error) {
     console.error(error);
@@ -39,5 +64,6 @@ const deleteGuest = async id => {
 
 module.exports = {
   createGuest,
+  getGuestById,
   deleteGuest,
 };
