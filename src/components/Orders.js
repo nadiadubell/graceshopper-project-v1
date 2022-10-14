@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const { axios } = require('axios');
 const { BASE } = require('../api/index');
+import './Orders.css'
 
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
@@ -87,15 +88,15 @@ export const Orders = () => {
     <div id="order-page">
       {userOrder.map((order, i) => {
         return (
-          <div key={i}>
-            <div id="order-products">
+          <div id="order-products" key={i}>
+            <div>
               {order.products.map((product, i) => {
                 return (
                   <div key={i}>
-                    <img src={product.image} />
                     <h4>{product.name}</h4>
+                    <img id="order-product-image" src={product.image} />
                     <ul>
-                      <li>Price: {product.price}</li>
+                      <li>Price: ${product.price}</li>
                       <span>
                         <li>Quantity:</li>
                         <select
@@ -121,7 +122,6 @@ export const Orders = () => {
                           <option value={10}>10</option>
                         </select>
                       </span>
-                      <br></br>
                       <button
                         onClick={async event => {
                           event.preventDefault();
