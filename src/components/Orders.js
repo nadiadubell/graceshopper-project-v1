@@ -96,7 +96,7 @@ export const Orders = () => {
                     <h4>{product.name}</h4>
                     <img id="order-product-image" src={product.image} />
                     <ul>
-                      <li>Price: {product.price}</li>
+                      <li>Price: ${product.price}</li>
                       <span>
                         <li>Quantity:</li>
                         <select
@@ -122,7 +122,6 @@ export const Orders = () => {
                           <option value={10}>10</option>
                         </select>
                       </span>
-                      <br></br>
                       <button
                         onClick={async event => {
                           event.preventDefault();
