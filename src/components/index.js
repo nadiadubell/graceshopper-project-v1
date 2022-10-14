@@ -6,6 +6,8 @@ export { Profile } from './Profile';
 
 export { Orders } from './Orders';
 
+export { GuestOrders } from './GuestOrders';
+
 export { Checkout } from './Checkout';
 
 export { Products } from './Products';

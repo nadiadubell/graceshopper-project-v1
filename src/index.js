@@ -8,6 +8,7 @@ import {
   Profile,
   Products,
   Orders,
+  GuestOrders,
   Checkout,
   SingleProduct,
   Register,
@@ -68,6 +69,7 @@ const App = () => {
           }
         ></Route>
         <Route path="/orders" element={<Orders />}></Route>
+        <Route path="/guestorders" element={<GuestOrders />}></Route>
         <Route path="/checkout" element={<Checkout />}></Route>
         <Route
           path="/:productId"
