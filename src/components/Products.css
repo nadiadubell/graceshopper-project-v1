@@ -14,7 +14,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  height: 100%;
+  height: fit-content;
   padding: 15px;
 }
 
@@ -25,7 +25,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 20px;
-  width: 25%;
+  width: 30%;
   border: 3px solid black;
   box-shadow: 15px -12px 10px darkgray;
   background-color: burlywood;
