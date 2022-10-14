@@ -144,7 +144,7 @@ export const GuestOrders = () => {
                   <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
-                  <Link to="/checkout">
+                  <Link to="/guestcheckout">
                     <button>Checkout</button>
                   </Link>
                 </div>

@@ -10,6 +10,8 @@ export { GuestOrders } from './GuestOrders';
 
 export { Checkout } from './Checkout';
 
+export { GuestCheckout } from './GuestCheckout';
+
 export { Products } from './Products';
 
 export { SingleProduct } from './SingleProduct';

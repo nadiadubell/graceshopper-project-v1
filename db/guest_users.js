@@ -20,6 +20,21 @@ const createGuest = async isAdmin => {
   }
 };
 
+const getGuestById = async guestId => {
+  try {
+    const guest = await client.query(`
+      SELECT *
+      FROM guests
+      WHERE id=${guestId};
+    `);
+
+    return guest;
+  } catch (error) {
+    console.log('Error getting guest by Id');
+    throw error;
+  }
+};
+
 const deleteGuest = async id => {
   try {
     const guestToDelete = await getGuestById(id);
