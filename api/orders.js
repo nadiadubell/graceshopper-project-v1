@@ -16,8 +16,6 @@ const { getUserById } = require('../db/users');
 ordersRouter.get('/:userId', async (req, res, next) => {
   const { userId } = req.params;
 
-  //POSSIBLE CHECK FOR IF USERID EXISTS AND, IF NOT, CARRY OUT GUEST SIDE OF THIS API CALL
-
   try {
     const order = await getOpenOrderByUserId(userId);
 
@@ -31,8 +29,6 @@ ordersRouter.get('/:userId', async (req, res, next) => {
     next({ name, message });
   }
 });
-
-ordersRouter.post('/guest/:guestId', async (req, res, next) => {});
 
 ordersRouter.post('/:userId', async (req, res, next) => {
   const { userId } = req.params;
@@ -87,7 +83,7 @@ ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
 ordersRouter.delete('/:orderId', async (req, res, next) => {
   const { orderId } = req.params;
   try {
-    const order = await getOrderById(orderId);
+    const order = await getOpenOrderByUserId(orderId);
 
     if (order && (order.userId === req.user.id || req.user.isAdmin === true)) {
       const deletedOrder = await deleteOrder(orderId);
