@@ -29,15 +29,6 @@
   align-items: center;
 }
 
-/* @media (max-width: 768px) {
-  #users-container {
-    display: flex;
-    flex-basis: 53%;
-    flex-direction: row;
-    font-size: xx-large;
-  }
-} */
-
 #users-container {
   background-color: beige;
   display: flex;
@@ -86,6 +77,6 @@
     background-color: burlywood;
     justify-content: space-evenly;
     align-content: space-around;
-    font-size: 12px;
+    font-size: 10px;
   }
 }
