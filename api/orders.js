@@ -12,7 +12,6 @@ const {
 const { addProductToOrder } = require('../db/order_products');
 const { getUserById } = require('../db/users');
 
-// GET api/orders/:userId
 ordersRouter.get('/:userId', async (req, res, next) => {
   const { userId } = req.params;
 
