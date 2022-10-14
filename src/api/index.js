@@ -13,7 +13,7 @@ export const userCheck = async token => {
   }
 };
 
-export const getUserContactInfo = async(token) => {
+export const getUserContactInfo = async token => {
   const data = await axios.get(`${BASE}/users/info`, {
     headers: {
       Authorization: `Bearer ${token}`,

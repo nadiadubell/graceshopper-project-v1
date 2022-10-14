@@ -48,6 +48,9 @@ apiRouter.use('/orders', ordersRouter);
 const guestOrdersRouter = require('./guest_orders');
 apiRouter.use('/guestorders', guestOrdersRouter);
 
+const guestUsersRouter = require('./guest_users');
+apiRouter.use('/guestusers', guestUsersRouter);
+
 const orderProductsRouter = require('./order_products');
 apiRouter.use('/orderproducts', orderProductsRouter);
 

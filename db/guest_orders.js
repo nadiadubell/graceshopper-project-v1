@@ -11,17 +11,17 @@ const makeProductArray = rows => {
   return rows[0];
 };
 
-const createGuestOrder = async ({ guestId, isOpen = true }) => {
+const createGuestOrder = async (guestId, isOpen) => {
   try {
+    console.log(guestId, isOpen);
     const {
       rows: [order],
     } = await client.query(
       `
             INSERT INTO orders ("guestId", "isOpen")
-            VALUES ($1, $2)
+            VALUES (${guestId}, ${isOpen})
             RETURNING *;
-        `,
-      [guestId, isOpen]
+        `
     );
     console.log('GUEST ORDER', order);
     return order;
@@ -34,7 +34,7 @@ const createGuestOrder = async ({ guestId, isOpen = true }) => {
 const getOpenOrderByGuestId = async id => {
   try {
     const { rows } = await client.query(`
-      SELECT orders.*, guestname,
+      SELECT orders.*, guests.id AS "guestId",
       jsonb_agg(jsonb_build_object(
         'id', products.id,
         'name', products.name,
@@ -50,6 +50,8 @@ const getOpenOrderByGuestId = async id => {
       GROUP BY guests.id, orders.id, orderproducts.quantity;
   `);
 
+    if (rows.length === 0) return false;
+
     const result = makeProductArray(rows);
     return result;
   } catch (error) {
@@ -61,7 +63,7 @@ const getOpenOrderByGuestId = async id => {
 const getOrderHistoryByGuestId = async id => {
   try {
     const { rows } = await client.query(`
-      SELECT orders.*, guestname,
+      SELECT orders.*, guests.id AS "guestId",
       jsonb_agg(jsonb_build_object(
         'id', products.id,
         'name', products.name,
