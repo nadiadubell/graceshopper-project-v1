@@ -48,14 +48,13 @@ export const GuestCheckout = () => {
 
   const handleSubmit = async () => {
     const response = await fetch(`${BASE}/guestusers/${guestId}/${orderId}`, {
-      method: 'PATCH',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userId,
+        guestId,
         orderId,
-        isOpen: false,
       }),
     });
     const data = await response.json();
@@ -69,7 +68,8 @@ export const GuestCheckout = () => {
         onSubmit={async event => {
           event.preventDefault();
           await handleSubmit();
-          navigate('/profile');
+          localStorage.removeItem('guestId');
+          navigate('/register');
         }}
       >
         <h3>PLEASE ENTER PAYMENT DETAILS</h3>

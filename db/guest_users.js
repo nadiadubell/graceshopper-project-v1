@@ -35,16 +35,26 @@ const getGuestById = async guestId => {
   }
 };
 
-const deleteGuest = async id => {
+const deleteGuest = async (guestId, orderId) => {
   try {
-    const guestToDelete = await getGuestById(id);
+    const guestToDelete = await getGuestById(guestId);
     if (guestToDelete) {
       await client.query(`
-      DELETE FROM guests
-      WHERE id = ${id};
-    `);
+      DELETE FROM orderproducts
+      WHERE "orderId"=${orderId};
+      `);
 
-      return 'guest deleted';
+      await client.query(`
+      DELETE FROM orders
+      WHERE "guestId"=${guestId};
+      `);
+
+      await client.query(`
+      DELETE FROM guests
+      WHERE id = ${guestId};
+      `);
+
+      return guestToDelete;
     }
   } catch (error) {
     console.error(error);
@@ -54,5 +64,6 @@ const deleteGuest = async id => {
 
 module.exports = {
   createGuest,
+  getGuestById,
   deleteGuest,
 };

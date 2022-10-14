@@ -1,5 +1,5 @@
 const express = require('express');
-const { createGuest, deleteGuest } = require('../db/guest_users');
+const { createGuest, getGuestById, deleteGuest } = require('../db/guest_users');
 const { getOpenOrderByGuestId } = require('../db/guest_orders');
 const guestUsersRouter = express.Router();
 
@@ -28,15 +28,16 @@ guestUsersRouter.delete('/:guestId/:orderId', async (req, res, next) => {
         name: 'GuestOrderError',
         message: 'Error getting guest order by Id. Please try again',
       });
-      const deletedGuest = await await deleteGuest(guestId);
-      if (!deletedGuest) {
-        next({
-          name: 'DeletedGuestError',
-          message: 'Error deleting guest account. Please try again',
-        });
-      }
-      res.send(deletedGuest);
     }
+    const deletedGuest = await getGuestById(guestId);
+    if (!deletedGuest) {
+      next({
+        name: 'DeletedGuestError',
+        message: 'Error deleting guest account. Please try again',
+      });
+    }
+    await deleteGuest(guestId, orderId);
+    res.send(deletedGuest);
   } catch ({ name, message }) {
     next({ name, message });
   }
