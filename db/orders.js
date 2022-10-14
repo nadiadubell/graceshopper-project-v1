@@ -11,17 +11,16 @@ const makeProductArray = rows => {
   return rows[0];
 };
 
-const createOrder = async ({ userId, isOpen = true }) => {
+const createOrder = async (userId, isOpen) => {
   try {
     const {
       rows: [order],
     } = await client.query(
       `
         INSERT INTO orders ("userId", "isOpen")
-        VALUES ($1, $2)
+        VALUES (${userId}, ${isOpen})
         RETURNING *;
-    `,
-      [userId, isOpen]
+    `
     );
     return order;
   } catch (error) {
@@ -87,6 +86,7 @@ const getOpenOrderByUserId = async id => {
     WHERE users.id=${id} AND "isOpen" = true
     GROUP BY users.id, orders.id, orderproducts.quantity;
 `);
+    if (rows.length === 0) return false;
 
     const result = makeProductArray(rows);
     return result;

@@ -107,19 +107,17 @@ usersRouter.get('/me', requireUser, (req, res) => {
   res.send(user);
 });
 
-
 usersRouter.get('/info', requireUser, async (req, res, next) => {
   const user = req.user;
 
   try {
     const _user = await getUserByUsername(user.username);
-    if(_user) {
+    if (_user) {
       res.send(_user);
     }
-  } catch({ name, message }) {
-    next({ name, message })
+  } catch ({ name, message }) {
+    next({ name, message });
   }
-
 });
 
 usersRouter.get('/:userId/profile', async (req, res, next) => {
@@ -143,19 +141,19 @@ usersRouter.get('/:userId/profile', async (req, res, next) => {
       });
     } else {
       const _user = await getUserByUsername(user.username);
-      if(_user.email) {
-        userOrderHistory.email = _user.email
+      if (_user.email) {
+        userOrderHistory.email = _user.email;
       }
-      if(_user.firstName) {
-        userOrderHistory.firstName = _user.firstName
+      if (_user.firstName) {
+        userOrderHistory.firstName = _user.firstName;
       }
-      if(_user.lastName) {
-        userOrderHistory.lastName = _user.lastName
+      if (_user.lastName) {
+        userOrderHistory.lastName = _user.lastName;
       }
-      if(_user.profilePicture) {
-        userOrderHistory.profilePicture = _user.profilePicture
+      if (_user.profilePicture) {
+        userOrderHistory.profilePicture = _user.profilePicture;
       }
-      res.send(userOrderHistory)
+      res.send(userOrderHistory);
     }
   } catch ({ name, message }) {
     next({ name, message });

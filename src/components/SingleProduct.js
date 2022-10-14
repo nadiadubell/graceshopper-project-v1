@@ -8,6 +8,7 @@ export const SingleProduct = props => {
   const [product, setProduct] = useState([]);
   const { productId } = props;
   const userId = localStorage.getItem('userId');
+  const guestId = localStorage.getItem('guestId');
 
   let navigate = useNavigate();
 
@@ -27,14 +28,36 @@ export const SingleProduct = props => {
 
   const handleAddToCart = async productId => {
     try {
-      if (!userId) createGuestUser();
       const select = document.getElementById('single-product-quantity-select');
       const value = select.options[select.selectedIndex].value;
-      const addItemToOrder = await axios.post(`${BASE}/orders/${userId}`, {
-        productId: productId,
-        quantity: value,
-      });
-      return addItemToOrder.data;
+      if (userId) {
+        const addItemToOrder = await axios.post(`${BASE}/orders/${userId}`, {
+          productId: productId,
+          quantity: value,
+        });
+        return addItemToOrder.data;
+      } else if (guestId) {
+        const addItemToGuestOrder = await axios.post(
+          `${BASE}/guestorders/${guestId}`,
+          {
+            productId: productId,
+            quantity: value,
+          }
+        );
+        return addItemToGuestOrder.data;
+      } else {
+        const guest = await axios.post(`${BASE}/guestusers`);
+        localStorage.setItem('guestId', guest.data.id);
+        console.log('GUEST DATA', guest.data.id);
+        const addItemToGuestOrder = await axios.post(
+          `${BASE}/guestorders/${guest.data.id}`,
+          {
+            productId: productId,
+            quantity: value,
+          }
+        );
+        return addItemToGuestOrder.data;
+      }
     } catch (err) {
       console.error(err);
     }
