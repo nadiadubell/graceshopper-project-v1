@@ -63,7 +63,7 @@ export const Checkout = () => {
   };
 
   return (
-    <div>
+    <div id="checkout-page">
       <form
         id="checkout-form"
         onSubmit={async event => {
