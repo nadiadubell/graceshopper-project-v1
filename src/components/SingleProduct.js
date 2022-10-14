@@ -8,6 +8,7 @@ export const SingleProduct = props => {
   const [product, setProduct] = useState([]);
   const { productId } = props;
   const userId = localStorage.getItem('userId');
+  const guestId = localStorage.getItem('guestId');
 
   let navigate = useNavigate();
 
@@ -27,10 +28,6 @@ export const SingleProduct = props => {
 
   const handleAddToCart = async productId => {
     try {
-      if (!userId) {
-        const guest = await axios.post(`${BASE}/guestusers`);
-        console.log('GUEST', guest);
-      }
       const select = document.getElementById('single-product-quantity-select');
       const value = select.options[select.selectedIndex].value;
       if (userId) {
@@ -39,9 +36,20 @@ export const SingleProduct = props => {
           quantity: value,
         });
         return addItemToOrder.data;
-      } else {
+      } else if (guestId) {
         const addItemToGuestOrder = await axios.post(
-          `${BASE}/guestorders/${guest.id}`,
+          `${BASE}/guestorders/${guestId}`,
+          {
+            productId: productId,
+            quantity: value,
+          }
+        );
+        return addItemToGuestOrder.data;
+      } else {
+        const guest = await axios.post(`${BASE}/guestusers`);
+        localStorage.setItem('guestId', guest.data.id);
+        const addItemToGuestOrder = await axios.post(
+          `${BASE}/guestorders/${guest.data.id}`,
           {
             productId: productId,
             quantity: value,

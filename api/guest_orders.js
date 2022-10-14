@@ -33,8 +33,10 @@ guestOrdersRouter.post('/:guestId', async (req, res, next) => {
   const { productId, quantity } = req.body;
   try {
     let { id: orderId } = await getOpenOrderByGuestId(guestId);
+    console.log('ORDER ID RETURN', orderId);
 
     if (!orderId) {
+      console.log('HERE!!!!!!!');
       const { id: newOrderId } = await createGuestOrder({ guestId });
       orderId = newOrderId;
     }
