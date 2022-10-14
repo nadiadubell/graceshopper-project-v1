@@ -288,7 +288,7 @@ const createInitialOrders = async () => {
 
     for (const order of ordersToCreate) {
       const userId = order.userId 
-       const isOpen = order.isOpen
+      const isOpen = order.isOpen
       orders.push(await createOrder(userId, isOpen));
     }
     console.log('Orders created:');

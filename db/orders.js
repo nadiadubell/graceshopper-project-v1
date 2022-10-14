@@ -14,7 +14,7 @@ const makeProductArray = rows => {
 const createOrder = async (userId, isOpen) => {
   try {
     const {
-      rows: order,
+      rows: [order],
     } = await client.query(
       `
         INSERT INTO orders ("userId", "isOpen")
