@@ -1,6 +1,5 @@
 const client = require('./client');
 const bcrypt = require('bcrypt');
-const { use } = require('../api/users');
 
 const createUser = async ({
   username,
@@ -141,14 +140,14 @@ const getUserByUsername = async userName => {
 const deleteUser = async id => {
   try {
     const userToDelete = await getUserById(id);
-    if(userToDelete) {
-    await client.query(`
+    if (userToDelete) {
+      await client.query(`
       DELETE FROM users
       WHERE id = ${id};
     `);
 
-    return ('User Deleted');
-  }
+      return 'User Deleted';
+    }
   } catch (error) {
     console.error(error);
     throw error;
