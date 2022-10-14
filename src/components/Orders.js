@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 const { axios } = require('axios');
 const { BASE } = require('../api/index');
-import './Orders.css'
+import './Orders.css';
 
 export const Orders = () => {
   const [userOrder, setUserOrder] = useState([]);
@@ -16,8 +16,10 @@ export const Orders = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       const results = await openOrder();
-      setUserOrder([results]);
-      getSubtotal([results]);
+      if (results) {
+        setUserOrder([results]);
+        getSubtotal([results]);
+      }
     };
     fetchOrder();
   }, [renderer]);
@@ -86,68 +88,81 @@ export const Orders = () => {
 
   return (
     <div id="order-page">
-      {userOrder.map((order, i) => {
-        return (
-          <div id="order-products" key={i}>
-            <div>
-              {order.products.map((product, i) => {
-                return (
-                  <div key={i}>
-                    <h4>{product.name}</h4>
-                    <img id="order-product-image" src={product.image} />
-                    <ul>
-                      <li>Price: ${product.price}</li>
-                      <span>
-                        <li>Quantity:</li>
-                        <select
-                          id={`quantity-select-${i}`}
-                          required
-                          onChange={() => {
-                            handleQuantityChange(i, order.id, product.id);
-                            window.location.reload(true);
-                          }}
-                        >
-                          <option value="quantity">{product.quantity}</option>
-                          <option value={1}>1</option>
-                          <option value={2}>2</option>
-                          <option value={3}>3</option>
-                          <option value={4}>4</option>
-                          <option value={5}>5</option>
-                          <option value={6}>6</option>
-                          <option value={7}>7</option>
-                          <option value={8}>8</option>
-                          <option value={9}>9</option>
-                          {/* need to figure out how to make an input field that allows you
+      {userOrder.length !== 0 ? (
+        <>
+          {userOrder.map((order, i) => {
+            return (
+              <div id="order-products" key={i}>
+                <div>
+                  {order.products.map((product, i) => {
+                    return (
+                      <div key={i}>
+                        <h4>{product.name}</h4>
+                        <img id="order-product-image" src={product.image} />
+                        <ul>
+                          <li>Price: ${product.price}</li>
+                          <span>
+                            <li>Quantity:</li>
+                            <select
+                              id={`quantity-select-${i}`}
+                              required
+                              onChange={() => {
+                                handleQuantityChange(i, order.id, product.id);
+                                window.location.reload(true);
+                              }}
+                            >
+                              <option value="quantity">
+                                {product.quantity}
+                              </option>
+                              <option value={1}>1</option>
+                              <option value={2}>2</option>
+                              <option value={3}>3</option>
+                              <option value={4}>4</option>
+                              <option value={5}>5</option>
+                              <option value={6}>6</option>
+                              <option value={7}>7</option>
+                              <option value={8}>8</option>
+                              <option value={9}>9</option>
+                              {/* need to figure out how to make an input field that allows you
                         to manually enter a number larger than 10 if the below is selected */}
-                          <option value={10}>10</option>
-                        </select>
-                      </span>
-                      <button
-                        onClick={async event => {
-                          event.preventDefault();
-                          handleRemoveButtonClick(order.id, product.id);
-                        }}
-                      >
-                        Remove From Cart
-                      </button>
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-            <div id="order-summary">
-              <h3>Order Summary</h3>
-              <h5>Subtotal: ${subtotal}</h5>
-              <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
-              <h5>Estimated Tax: ${tax}</h5>
-              <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
-              <Link to="/checkout">
-                <button>Checkout</button>
-              </Link>
-            </div>
-          </div>
-        );
-      })}
+                              <option value={10}>10</option>
+                            </select>
+                          </span>
+                          <button
+                            onClick={async event => {
+                              event.preventDefault();
+                              handleRemoveButtonClick(order.id, product.id);
+                            }}
+                          >
+                            Remove From Cart
+                          </button>
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div id="order-summary">
+                  <h3>Order Summary</h3>
+                  <h5>Subtotal: ${subtotal}</h5>
+                  <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
+                  <h5>Estimated Tax: ${tax}</h5>
+                  <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
+                  <Link to="/checkout">
+                    <button>Checkout</button>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <>
+          <h1>
+            Your Cart is Currently Empty. Why Not Add
+            <Link to="/products"> Something?</Link>
+          </h1>
+        </>
+      )}
     </div>
   );
 };

@@ -19,6 +19,7 @@ ordersRouter.get('/:userId', async (req, res, next) => {
     const order = await getOpenOrderByUserId(userId);
 
     if (order) res.send(order);
+    else if (order === false) res.send(false);
     else
       next({
         name: 'OrderDoesNotExistError',
