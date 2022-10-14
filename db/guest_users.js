@@ -1,16 +1,16 @@
 const client = require('./client');
 
-const createGuest = async ({ guestname, isAdmin }) => {
+const createGuest = async isAdmin => {
   try {
     const {
       rows: [guest],
     } = await client.query(
       `
-      INSERT INTO guests (guestname, "isAdmin")
-      VALUES($1, $2)
-      RETURNING *;
+      INSERT INTO guests ("isAdmin")
+      VALUES ($1)
+      RETURNING id;
     `,
-      [guestname, isAdmin]
+      [isAdmin]
     );
     console.log('GUEST', guest);
     return guest;

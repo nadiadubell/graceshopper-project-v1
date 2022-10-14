@@ -5,6 +5,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.removeItem('userId');
     props.setIsLoggedIn(false);
     navigate('/');
   };
