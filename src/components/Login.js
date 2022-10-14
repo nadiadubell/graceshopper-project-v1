@@ -19,6 +19,7 @@ export const Login = props => {
     storeCurrentUser(data);
     props.setIsLoggedIn(data.data.user);
     props.setIsAdmin(data.data.user.isAdmin);
+    window.location.reload(true);
     return data;
   };
 
