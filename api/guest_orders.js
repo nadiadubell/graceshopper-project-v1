@@ -17,6 +17,7 @@ guestOrdersRouter.get('/:guestId', async (req, res, next) => {
     const order = await getOpenOrderByGuestId(guestId);
 
     if (order) res.send(order);
+    else if (order === false) res.send(false);
     else
       next({
         name: 'GuestOrderDoesNotExistError',

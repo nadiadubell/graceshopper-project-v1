@@ -23,6 +23,8 @@ export const GuestOrders = () => {
     fetchOrder();
   }, [renderer]);
 
+  console.log('USER ORDER', userOrder);
+
   const openOrder = async () => {
     const response = await fetch(`${BASE}/guestorders/${guestId}`, {
       headers: {
