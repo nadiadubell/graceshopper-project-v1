@@ -5,6 +5,7 @@ const client = require('./db/client');
 const morgan = require('morgan');
 const apiRouter = require('./api');
 const CORS = require('cors');
+const path = require('path');
 
 // server.use(express.static('public'));
 
