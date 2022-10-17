@@ -1,0 +1,48 @@
+#horse-container {
+  display: none;
+}
+
+@media (max-width:768px) {
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: tan;
+    flex-wrap: wrap;
+    text-align: center;
+    padding-top: 2%;
+  }
+  
+  #links {
+    display: none;
+  }
+
+  #horse-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    align-self: auto;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  #nav-icon {
+    align-items: center;
+    justify-content: center;
+  }
+
+  #horse-button {
+    display: flex;
+    height: 25px;
+    width: 25px;
+    margin-top: 15px;
+    background: transparent;
+    color: tan;
+  }
+  
+  .horse {
+    display: none;
+  }
+}
