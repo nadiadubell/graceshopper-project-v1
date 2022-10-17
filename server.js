@@ -6,11 +6,13 @@ const morgan = require('morgan');
 const apiRouter = require('./api');
 const CORS = require('cors');
 
+server.use(express.static('public'));
+
 server.use(express.json());
 
 server.use(morgan('dev'));
 
-server.use(CORS())
+server.use(CORS());
 
 server.use((req, res, next) => {
   console.log('Starting body logger...');
