@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const BASE = 'http://localhost:4000/api';
+export const BASE = 'http://horseplay.herokuapp.com/api';
 
 export const userCheck = async token => {
   const data = await axios.get(`${BASE}/users/me`, {
