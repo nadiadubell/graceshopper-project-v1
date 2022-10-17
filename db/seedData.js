@@ -258,6 +258,25 @@ const createInitialProducts = async () => {
         price: 150,
         image: 'https://i.imgur.com/Dsh9r2h.jpg',
       },
+      {
+        name: 'Clydesdale Model Horse',
+        description: `Clydesdales are a type of draft horse, named for where they originated 
+        in Clydesdale, Scotland. They were originally a smaller breed but have been bred to 
+        be very large and powerful. They can be recognized by their stocky, muscular size, 
+        large facial shape, and long hair featherings on legs. The first Clydesdale horses 
+        were used for hauling and agriculture work but are now, with their elegant gait, 
+        more often used for parades and demonstrations.`,
+        breedId: 8,
+        price: 600,
+        image: 'https://i.imgur.com/TNNaGoh.jpg',
+      },
+      {
+        name: 'Palomino Model Horse',
+        description: `It's a Palomino!`,
+        breedId: 7,
+        price: 50,
+        image: 'https://i.imgur.com/NOebewQ.jpg',
+      },
     ];
 
     const products = [];
@@ -287,8 +306,8 @@ const createInitialOrders = async () => {
     const orders = [];
 
     for (const order of ordersToCreate) {
-      const userId = order.userId 
-      const isOpen = order.isOpen
+      const userId = order.userId;
+      const isOpen = order.isOpen;
       orders.push(await createOrder(userId, isOpen));
     }
     console.log('Orders created:');
