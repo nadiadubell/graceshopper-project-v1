@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 export const Header = ({ isLoggedIn, isAdmin }) => {
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -34,7 +33,9 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
               <Link id="links" to="admin">
                 admin
               </Link>
-            ) : null}
+            ) : (
+              <></>
+            )}
             <Link id="links" to="products">
               products
             </Link>
@@ -47,13 +48,15 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="links" to="/" onClick={handleLogout}>
               logout
             </Link>
-          </nav>    
+          </nav>
           <nav id="nav-list-small">
-          {isAdmin ? (
+            {isAdmin ? (
               <Link id="single-link" to="admin">
                 admin
               </Link>
-            ) : null}
+            ) : (
+              <></>
+            )}
             <Link id="single-link" to="products">
               products
             </Link>
@@ -68,11 +71,13 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             </Link>
           </nav>
           <nav id="nav-list-super-small">
-          {isAdmin ? (
+            {isAdmin ? (
               <Link id="single-link" to="admin">
                 admin
               </Link>
-            ) : null}
+            ) : (
+              <></>
+            )}
             <Link id="single-link" to="products">
               products
             </Link>
@@ -93,7 +98,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="links" to="products">
               products
             </Link>
-            <Link id="links" to="orders">
+            <Link id="links" to="guestorders">
               cart
             </Link>
             <Link id="links" to="register">
@@ -107,7 +112,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="single-link" to="products">
               products
             </Link>
-            <Link id="single-link" to="orders">
+            <Link id="single-link" to="guestorders">
               cart
             </Link>
             <Link id="single-link" to="register">
@@ -121,7 +126,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="single-link" to="products">
               products
             </Link>
-            <Link id="single-link" to="orders">
+            <Link id="single-link" to="guestorders">
               cart
             </Link>
             <Link id="single-link" to="register">
