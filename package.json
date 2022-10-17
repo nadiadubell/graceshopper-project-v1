@@ -7,7 +7,7 @@
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
     "start:dev": "nodemon server.js",
-    "start": "react-scripts start",
+    "start": "node server.js & react-scripts start",
     "start:react": "react-scripts start",
     "build": "react-scripts build"
   },
