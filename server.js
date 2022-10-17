@@ -6,7 +6,11 @@ const morgan = require('morgan');
 const apiRouter = require('./api');
 const CORS = require('cors');
 
-server.use(express.static('public'));
+// server.use(express.static('public'));
+
+const buildPath = path.join(__dirname, 'build');
+
+server.use(express.static(buildPath));
 
 server.use(express.json());
 
