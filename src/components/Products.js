@@ -12,7 +12,7 @@ export const Products = props => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data = await axios.get(`${BASE}/products`);
+        const data = await axios.get(`/api/products`);
         setProducts(data.data);
         return data;
       } catch (err) {
