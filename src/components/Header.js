@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 export const Header = ({ isLoggedIn, isAdmin }) => {
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -10,13 +11,9 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
     navigate('/');
   };
 
-  const linksListGuest = [ {name: Products, link: <Link to='products'/>}, {name: Orders, link: <Link to='orders'/>}, {name: Login, link: <Link to='login'/>}, {name: login, link: <Link to='/login'/>} ]
-  const linksListUser = [ {name: Products, link: <Link to='products'/>}, {name: Orders, link: <Link to='orders'/>}, {name: Profile, link: <Link to='profile'/>}, {name: Logout, link: <Link to='/'/>} ]
-  const linksListAdmin = [ {name: Admin, link: <Link to='admin'/>}, {name: Products, link: <Link to='products'/>}, {name: Orders, link: <Link to='orders'/>}, {name: Profile, link: <Link to='profile'/>}, {name: Logout, link: <Link to='/'/>} ]
-
   return (
-    <div id="header">
-      <Link to="profile">
+    <div className="header">
+      <Link to="products">
         <img
           id="logo"
           src="https://www.freeiconspng.com/uploads/white-horse-png-23.png"
@@ -24,13 +21,15 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
           alt="Horse Logo Image"
         />
       </Link>
-      <h1 id="header" id="banner">
+      <h1 className="header" id="banner">
         Welcome to HorsePlay!
       </h1>
-
+      <h2 className="header" id="banner-two">
+        Welcome to HorsePlay!
+      </h2>
       {isLoggedIn ? (
         <>
-          <nav id="header">
+          <nav id="nav-links">
             {isAdmin ? (
               <Link id="links" to="admin">
                 admin
@@ -48,30 +47,87 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
             <Link id="links" to="/" onClick={handleLogout}>
               logout
             </Link>
-            <ul className="horse"/>
-              {linksListUser.map((link, i) => {
-                return (
-                  <div key={i}>
-                    <p {link.link}>{link.name}</p>
-                  </div>
-                )
-              })}
-            </ul>
+          </nav>    
+          <nav id="nav-list-small">
+          {isAdmin ? (
+              <Link id="single-link" to="admin">
+                admin
+              </Link>
+            ) : null}
+            <Link id="single-link" to="products">
+              products
+            </Link>
+            <Link id="single-link" to="orders">
+              cart
+            </Link>
+            <Link id="single-link" to="profile">
+              profile
+            </Link>
+            <Link id="single-link" to="/" onClick={handleLogout}>
+              logout
+            </Link>
+          </nav>
+          <nav id="nav-list-super-small">
+          {isAdmin ? (
+              <Link id="single-link" to="admin">
+                admin
+              </Link>
+            ) : null}
+            <Link id="single-link" to="products">
+              products
+            </Link>
+            <Link id="single-link" to="orders">
+              cart
+            </Link>
+            <Link id="single-link" to="profile">
+              profile
+            </Link>
+            <Link id="single-link" to="/" onClick={handleLogout}>
+              logout
+            </Link>
           </nav>
         </>
       ) : (
         <>
-          <nav id="header">
+          <nav className="header">
             <Link id="links" to="products">
               products
             </Link>
-            <Link id="links" to="guestorders">
+            <Link id="links" to="orders">
               cart
             </Link>
             <Link id="links" to="register">
               register
             </Link>
             <Link id="links" to="login">
+              login
+            </Link>
+          </nav>
+          <nav id="nav-list-small">
+            <Link id="single-link" to="products">
+              products
+            </Link>
+            <Link id="single-link" to="orders">
+              cart
+            </Link>
+            <Link id="single-link" to="register">
+              register
+            </Link>
+            <Link id="single-link" to="login">
+              login
+            </Link>
+          </nav>
+          <nav id="nav-list-super-small">
+            <Link id="single-link" to="products">
+              products
+            </Link>
+            <Link id="single-link" to="orders">
+              cart
+            </Link>
+            <Link id="single-link" to="register">
+              register
+            </Link>
+            <Link id="single-link" to="login">
               login
             </Link>
           </nav>
