@@ -54,6 +54,7 @@ export const Orders = () => {
       }
     );
     const data = await response.json();
+    if (!data) window.location.reload(true);
     setRenderer(!renderer);
     return data;
   };
