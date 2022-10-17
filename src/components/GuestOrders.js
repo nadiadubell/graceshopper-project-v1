@@ -23,8 +23,6 @@ export const GuestOrders = () => {
     fetchOrder();
   }, [renderer]);
 
-  console.log('USER ORDER', userOrder);
-
   const openOrder = async () => {
     const response = await fetch(`${BASE}/guestorders/${guestId}`, {
       headers: {
@@ -54,6 +52,7 @@ export const GuestOrders = () => {
       }
     );
     const data = await response.json();
+    if (!data) window.location.reload(true);
     setRenderer(!renderer);
     return data;
   };
@@ -129,7 +128,6 @@ export const GuestOrders = () => {
                           </span>
                           <button
                             onClick={async event => {
-                              event.preventDefault();
                               handleRemoveButtonClick(order.id, product.id);
                             }}
                           >
