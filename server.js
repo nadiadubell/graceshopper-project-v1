@@ -7,7 +7,7 @@ const apiRouter = require('./api');
 const CORS = require('cors');
 const path = require('path');
 
-// server.use(express.static('public'));
+server.use(express.static('public'));
 
 const buildPath = path.join(__dirname, 'build');
 
