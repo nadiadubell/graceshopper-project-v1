@@ -15,7 +15,7 @@ export const SingleProduct = props => {
   useEffect(() => {
     const getSingleProduct = async productId => {
       try {
-        const data = await axios.get(`${BASE}/products/${productId}`);
+        const data = await axios.get(`/api/products/${productId}`);
         setProduct([data.data]);
         return data.data;
       } catch (err) {
