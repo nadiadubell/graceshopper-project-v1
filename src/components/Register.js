@@ -16,7 +16,7 @@ export const Register = props => {
   let navigate = useNavigate();
 
   const registerUser = async () => {
-    const data = await axios.post(`${BASE}/users/register`, {
+    const data = await axios.post(`/api/users/register`, {
       username: createUsername,
       password: createPassword,
       firstName: createFirstName,
