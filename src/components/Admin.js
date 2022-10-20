@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BASE } from '../api/index';
 import './Admin.css';
 

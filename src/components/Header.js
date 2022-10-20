@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import React from 'react';
 import './Header.css';
 
 export const Header = ({ isLoggedIn, isAdmin }) => {

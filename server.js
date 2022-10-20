@@ -12,7 +12,7 @@ const { rebuildDB } = require('./db/seedData');
 
 const buildPath = path.join(__dirname, 'dist');
 
-server.use(express.static(buildPath));
+server.use('/dist', express.static(buildPath));
 
 server.use(express.json());
 
@@ -37,6 +37,10 @@ server.use((req, res, next) => {
   console.log('Body logger finished!');
   next();
 });
+
+server.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, './public/index.html'))
+);
 
 server.use('/api', apiRouter);
 

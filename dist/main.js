@@ -3363,27 +3363,27 @@ const Admin = () => {
     };
     getUsers(token);
   }, []);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "admin-page"
-  }, /*#__PURE__*/React.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "admin-title"
-  }, "Welcome Admin!"), /*#__PURE__*/React.createElement("h2", {
+  }, "Welcome Admin!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     id: "dashboard-title"
-  }, "Dashboard"), /*#__PURE__*/React.createElement("div", {
+  }, "Dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "users-container"
   }, users.map((user, id) => {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "users",
       key: id
-    }, /*#__PURE__*/React.createElement("h3", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       id: "user-username"
-    }, "username: ", user.username), /*#__PURE__*/React.createElement("h3", {
+    }, "username: ", user.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       id: "user-isAdmin"
-    }, "Admin: ", String(user.isAdmin)), /*#__PURE__*/React.createElement("h3", {
+    }, "Admin: ", String(user.isAdmin)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       id: "user-firstname"
-    }, "firstname: ", user.firstName), /*#__PURE__*/React.createElement("h3", {
+    }, "firstname: ", user.firstName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       id: "user-lastname"
-    }, "lastname: ", user.lastName), /*#__PURE__*/React.createElement("h3", {
+    }, "lastname: ", user.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
       id: "user-email"
     }, "email: ", user.email));
   })));
@@ -3463,16 +3463,16 @@ const Checkout = () => {
     const data = await response.json();
     return data;
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "checkout-page"
-  }, /*#__PURE__*/React.createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     id: "checkout-form",
     onSubmit: async event => {
       event.preventDefault();
       await handleSubmit();
       navigate('/profile');
     }
-  }, /*#__PURE__*/React.createElement("h3", null, "PLEASE ENTER PAYMENT DETAILS"), /*#__PURE__*/React.createElement("label", null, "Full Name: "), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "PLEASE ENTER PAYMENT DETAILS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Full Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-form",
     id: "full-name",
     placeholder: "Full name as it Appears on Credit Card",
@@ -3480,7 +3480,7 @@ const Checkout = () => {
     required: true,
     value: name,
     onChange: enterName
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Credit Card #: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Credit Card #: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-form",
     id: "credit-card-number",
     placeholder: "Credit Card Number",
@@ -3488,7 +3488,7 @@ const Checkout = () => {
     required: true,
     value: cardNumber,
     onChange: enterCardNumber
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Exp. Date: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Exp. Date: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-form",
     id: "exp-date",
     placeholder: "Exp. Month/Year",
@@ -3498,7 +3498,7 @@ const Checkout = () => {
     max: "2026-12",
     value: expDate,
     onChange: enterExpDate
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Card Verification Code: "), /*#__PURE__*/React.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Card Verification Code: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-form",
     id: "cvc-input",
     placeholder: "CVC",
@@ -3511,7 +3511,7 @@ const Checkout = () => {
     pattern: "[0-9]{3}",
     value: CVC,
     onChange: enterCVC
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("button", null, "Place Order")));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Place Order")));
 };
 
 /***/ }),
@@ -3527,47 +3527,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Footer": function() { return /* binding */ Footer; }
 /* harmony export */ });
-/* harmony import */ var _Footer_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.css */ "./src/components/Footer.css");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Footer_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.css */ "./src/components/Footer.css");
+
 
 
 const Footer = () => {
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     className: "footer"
-  }, /*#__PURE__*/React.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://www.linkedin.com/home",
     className: "footer",
     target: "_blank",
     rel: "noreferrer"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: "https://www.freeiconspng.com/thumbs/linkedin-logo-png/linkedin-logo-3.png",
     width: "50",
     alt: "Linkedin Logo"
-  })), /*#__PURE__*/React.createElement("a", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://www.facebook.com/",
     className: "footer",
     target: "_blank",
     rel: "noreferrer"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: "https://www.freeiconspng.com/uploads/facebook-logo-2.png",
     width: "50",
     alt: "Facebook Logo"
-  })), /*#__PURE__*/React.createElement("h2", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "footer"
-  }, "\xA9 2022"), /*#__PURE__*/React.createElement("a", {
+  }, "\xA9 2022"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://www.instagram.com/",
     className: "footer",
     target: "_blank",
     rel: "noreferrer"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: "https://www.freepnglogos.com/uploads/logo-ig-png/logo-ig-instagram-new-logo-vector-download-13.png",
     width: "50",
     alt: "Instagram Logo"
-  })), /*#__PURE__*/React.createElement("a", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
     href: "https://www.twitter.com/",
     className: "footer",
     target: "_blank",
     rel: "noreferrer"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: "https://www.freeiconspng.com/uploads/twitter-icon-png-13-1.png",
     width: "50",
     alt: "Twitter Logo"
@@ -3866,8 +3869,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Header": function() { return /* binding */ Header; }
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
-/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.css */ "./src/components/Header.css");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.css */ "./src/components/Header.css");
+
 
 
 const Header = ({
@@ -3881,115 +3887,115 @@ const Header = ({
     props.setIsLoggedIn(false);
     navigate('/');
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "header"
-  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     to: "products"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     id: "logo",
     src: "https://www.freeiconspng.com/uploads/white-horse-png-23.png",
     width: "50",
     alt: "Horse Logo Image"
-  })), /*#__PURE__*/React.createElement("h1", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     className: "header",
     id: "banner"
-  }, "Welcome to HorsePlay!"), /*#__PURE__*/React.createElement("h2", {
+  }, "Welcome to HorsePlay!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     className: "header",
     id: "banner-two"
-  }, "Welcome to HorsePlay!"), isLoggedIn ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
+  }, "Welcome to HorsePlay!"), isLoggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     id: "nav-links"
-  }, isAdmin ? /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, isAdmin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "admin"
-  }, "admin") : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "admin") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "products"
-  }, "products"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "products"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "orders"
-  }, "cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "profile"
-  }, "profile"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "/",
     onClick: handleLogout
-  }, "logout")), /*#__PURE__*/React.createElement("nav", {
+  }, "logout")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     id: "nav-list-small"
-  }, isAdmin ? /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, isAdmin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "admin"
-  }, "admin") : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "admin") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "products"
-  }, "products"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "products"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "orders"
-  }, "cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "profile"
-  }, "profile"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "/",
     onClick: handleLogout
-  }, "logout")), /*#__PURE__*/React.createElement("nav", {
+  }, "logout")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     id: "nav-list-super-small"
-  }, isAdmin ? /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, isAdmin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "admin"
-  }, "admin") : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "admin") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "products"
-  }, "products"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "products"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "orders"
-  }, "cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "profile"
-  }, "profile"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "/",
     onClick: handleLogout
-  }, "logout"))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("nav", {
+  }, "logout"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     className: "header"
-  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "products"
-  }, "products"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "products"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "guestorders"
-  }, "cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "register"
-  }, "register"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "links",
     to: "login"
-  }, "login")), /*#__PURE__*/React.createElement("nav", {
+  }, "login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     id: "nav-list-small"
-  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "products"
-  }, "products"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "products"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "guestorders"
-  }, "cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "register"
-  }, "register"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "login"
-  }, "login")), /*#__PURE__*/React.createElement("nav", {
+  }, "login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
     id: "nav-list-super-small"
-  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "products"
-  }, "products"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "products"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "guestorders"
-  }, "cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "register"
-  }, "register"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+  }, "register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     id: "single-link",
     to: "login"
   }, "login"))));
@@ -4042,16 +4048,16 @@ const Login = props => {
     loginUser();
     navigate('/');
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "login-page"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "login-form"
-  }, /*#__PURE__*/React.createElement("h2", null, "Please Sign In"), /*#__PURE__*/React.createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Please Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "input-container",
     onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Username"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "Username",
@@ -4061,9 +4067,9 @@ const Login = props => {
     },
     minLength: 7,
     required: true
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Password"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "password",
     placeholder: "Password",
@@ -4073,12 +4079,12 @@ const Login = props => {
     },
     minLength: 7,
     required: true
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "button-container"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     id: "login-button",
     type: "submit"
-  }, "LOGIN"))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+  }, "LOGIN"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     to: "/register"
   }, "Not a registered user? Click here to sign up!")));
 };
@@ -4180,61 +4186,61 @@ const Orders = () => {
     }
     setSubtotal(totalPrice);
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "order-page"
-  }, userOrder.length !== 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, userOrder.map((order, i) => {
-    return /*#__PURE__*/React.createElement("div", {
+  }, userOrder.length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, userOrder.map((order, i) => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "order-products",
       key: i
-    }, /*#__PURE__*/React.createElement("div", null, order.products.map((product, i) => {
-      return /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, order.products.map((product, i) => {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         key: i
-      }, /*#__PURE__*/React.createElement("h4", null, product.name), /*#__PURE__*/React.createElement("img", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         id: "order-product-image",
         src: product.image
-      }), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Price: $", product.price), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("li", null, "Quantity:"), /*#__PURE__*/React.createElement("select", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Price: $", product.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Quantity:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         id: `quantity-select-${i}`,
         required: true,
         onChange: () => {
           handleQuantityChange(i, order.id, product.id);
           window.location.reload(true);
         }
-      }, /*#__PURE__*/React.createElement("option", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "quantity"
-      }, product.quantity), /*#__PURE__*/React.createElement("option", {
+      }, product.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 1
-      }, "1"), /*#__PURE__*/React.createElement("option", {
+      }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 2
-      }, "2"), /*#__PURE__*/React.createElement("option", {
+      }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 3
-      }, "3"), /*#__PURE__*/React.createElement("option", {
+      }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 4
-      }, "4"), /*#__PURE__*/React.createElement("option", {
+      }, "4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 5
-      }, "5"), /*#__PURE__*/React.createElement("option", {
+      }, "5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 6
-      }, "6"), /*#__PURE__*/React.createElement("option", {
+      }, "6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 7
-      }, "7"), /*#__PURE__*/React.createElement("option", {
+      }, "7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 8
-      }, "8"), /*#__PURE__*/React.createElement("option", {
+      }, "8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 9
-      }, "9"), /*#__PURE__*/React.createElement("option", {
+      }, "9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: 10
-      }, "10"))), /*#__PURE__*/React.createElement("button", {
+      }, "10"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: async event => {
           event.preventDefault();
           handleRemoveButtonClick(order.id, product.id);
         }
       }, "Remove From Cart")));
-    })), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "order-summary"
-    }, /*#__PURE__*/React.createElement("h3", null, "Order Summary"), /*#__PURE__*/React.createElement("h5", null, "Subtotal: $", subtotal), /*#__PURE__*/React.createElement("h5", null, "Estimated Shipping & Handling: $", shippingAndHandling), /*#__PURE__*/React.createElement("h5", null, "Estimated Tax: $", tax), /*#__PURE__*/React.createElement("h3", null, "Total: $", subtotal + shippingAndHandling + tax), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Order Summary"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Subtotal: $", subtotal), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Estimated Shipping & Handling: $", shippingAndHandling), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", null, "Estimated Tax: $", tax), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Total: $", subtotal + shippingAndHandling + tax), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
       to: "/checkout"
-    }, /*#__PURE__*/React.createElement("button", null, "Checkout"))));
-  })) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, "Checkout"))));
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "empty-cart"
-  }, "Your Cart is Currently Empty. Why Not Add", /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, "Your Cart is Currently Empty. Why Not Add", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
     to: "/products"
   }, " Something?"))));
 };
@@ -4280,30 +4286,30 @@ const Products = props => {
     };
     getProducts();
   }, []);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", {
     id: "products"
-  }, /*#__PURE__*/React.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h1", {
     id: "products-header"
   }, "Products"), products.map((product, i) => {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", {
       id: "product-view",
       key: i
-    }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
       to: "/:productId"
-    }, /*#__PURE__*/React.createElement("h2", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h2", {
       id: "product-name",
       onClick: () => {
         setProductId(product.id);
       }
-    }, product.name, ' ')), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    }, product.name, ' ')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
       to: "/:productId"
-    }, /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("img", {
       id: "product-image",
       src: product.image,
       onClick: () => {
         setProductId(product.id);
       }
-    })), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", {
       id: "product-price"
     }, "Price: $", product.price));
   }));
@@ -4354,73 +4360,73 @@ const Profile = ({
     const userInfo = await (0,_api__WEBPACK_IMPORTED_MODULE_1__.getUserContactInfo)(token);
     setUserContactInfo(userInfo);
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "profile-page"
-  }, userOrderHistory ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
+  }, userOrderHistory ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "user-profile-title"
-  }, "Welcome, ", isLoggedIn.username, "!"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+  }, "Welcome, ", isLoggedIn.username, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-profile-container"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-info"
-  }, /*#__PURE__*/React.createElement("h2", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     id: "user-info-title"
-  }, "User Info"), /*#__PURE__*/React.createElement("span", {
+  }, "User Info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     id: "user-profile-info"
   }, userProfileInfo.map((userProfile, i) => {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "user-result",
       key: i
-    }, /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
       id: "user-profile-picture",
       src: userProfile.profilePicture
-    }), /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "user-details"
-    }, /*#__PURE__*/React.createElement("h4", null, "First Name: ", userProfile.firstName), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null, "Last Name: ", userProfile.lastName), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null, "Email: ", userProfile.email)));
-  }))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "First Name: ", userProfile.firstName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Last Name: ", userProfile.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Email: ", userProfile.email)));
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-order-history"
-  }, /*#__PURE__*/React.createElement("h2", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     id: "order-history-title"
-  }, "Order History"), /*#__PURE__*/React.createElement("span", {
+  }, "Order History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     id: "order-history"
   }, userOrderHistory.map((orderHistory, i) => {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       id: "user-order-history",
       key: i
-    }, /*#__PURE__*/React.createElement("h4", null, orderHistory.name), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("img", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, orderHistory.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
       id: "order-history-img",
       src: orderHistory.image
-    }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("p", null, "Price: $", orderHistory.price), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("p", null, "Quantity: ", orderHistory.quantity), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Price: $", orderHistory.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Quantity: ", orderHistory.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       to: "/:productId"
-    }, /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
       id: "reorder-button",
       onClick: () => {
         setProductId(orderHistory.id);
       }
     }, "REORDER")));
-  }))))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
+  }))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
     id: "user-profile-title"
-  }, "Welcome, ", isLoggedIn.username, "!"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+  }, "Welcome, ", isLoggedIn.username, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-profile-container"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-info"
-  }, /*#__PURE__*/React.createElement("h2", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     id: "user-info-title"
-  }, "User Info"), /*#__PURE__*/React.createElement("span", {
+  }, "User Info"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     id: "user-profile-info"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-result"
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     id: "user-profile-picture",
     src: userContactInfo.profilePicture
-  }), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-details"
-  }, /*#__PURE__*/React.createElement("h4", null, "First Name: ", userContactInfo.firstName), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null, "Last Name: ", userContactInfo.lastName), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("h4", null, "Email: ", userContactInfo.email))))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "First Name: ", userContactInfo.firstName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Last Name: ", userContactInfo.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h4", null, "Email: ", userContactInfo.email))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "user-order-history"
-  }, /*#__PURE__*/React.createElement("h2", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
     id: "order-history-title"
-  }, "Order History"), /*#__PURE__*/React.createElement("div", {
+  }, "Order History"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "empty-order-history"
-  }, /*#__PURE__*/React.createElement("h2", null, "Order History Unavailable"))))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Order History Unavailable"))))));
 };
 
 /***/ }),
@@ -4476,16 +4482,16 @@ const Register = props => {
     registerUser();
     navigate('/');
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "register-page"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "register-form"
-  }, /*#__PURE__*/React.createElement("h2", null, "Please Sign Up"), /*#__PURE__*/React.createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Please Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "input-container",
     onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Create Username"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Create Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "Create Username",
@@ -4494,9 +4500,9 @@ const Register = props => {
       setCreateUsername(event.target.value);
     },
     minLength: 7
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Create Password"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Create Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "Create Password",
@@ -4505,9 +4511,9 @@ const Register = props => {
       setCreatePassword(event.target.value);
     },
     minLength: 7
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Confirm Password"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Confirm Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "Confirm Password",
@@ -4516,9 +4522,9 @@ const Register = props => {
       setConfirmPassword(event.target.value);
     },
     minLength: 7
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "First Name"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "First Name",
@@ -4526,9 +4532,9 @@ const Register = props => {
     onChange: event => {
       setCreateFirstName(event.target.value);
     }
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Last Name"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "Last Name",
@@ -4536,9 +4542,9 @@ const Register = props => {
     onChange: event => {
       setCreateLastName(event.target.value);
     }
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "form-input"
-  }, /*#__PURE__*/React.createElement("label", null, "Email"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     className: "input-bar",
     type: "text",
     placeholder: "Email",
@@ -4547,12 +4553,12 @@ const Register = props => {
       setCreateEmail(event.target.value);
     },
     minLength: 7
-  })), /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "button-container"
-  }, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     id: "register-button",
     type: "submit"
-  }, "REGISTER"))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+  }, "REGISTER"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
     to: "/login"
   }, "Already a registered user? Click here to sign in!")));
 };
@@ -4631,57 +4637,57 @@ const SingleProduct = props => {
       console.error(err);
     }
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     id: "single-product-container"
   }, product.map((singleProduct, i) => {
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
       id: "single-product",
       key: i
-    }, /*#__PURE__*/React.createElement("h1", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", {
       id: "single-product-name"
-    }, singleProduct.name), /*#__PURE__*/React.createElement("img", {
+    }, singleProduct.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("img", {
       id: "single-product-image",
       src: singleProduct.image
-    }), /*#__PURE__*/React.createElement("h3", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", {
       id: "description-header"
-    }, " Description: "), /*#__PURE__*/React.createElement("div", {
+    }, " Description: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
       id: "single-product-description"
-    }, singleProduct.description), /*#__PURE__*/React.createElement("h3", {
+    }, singleProduct.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", {
       id: "single-product-breed"
-    }, "Breed: ", singleProduct.breedname), /*#__PURE__*/React.createElement("h3", {
+    }, "Breed: ", singleProduct.breedname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h3", {
       id: "single-product-price"
-    }, "Price: $", singleProduct.price), /*#__PURE__*/React.createElement("select", {
+    }, "Price: $", singleProduct.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("select", {
       id: "single-product-quantity-select",
       required: true
-    }, /*#__PURE__*/React.createElement("option", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 1
-    }, "1"), /*#__PURE__*/React.createElement("option", {
+    }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 2
-    }, "2"), /*#__PURE__*/React.createElement("option", {
+    }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 3
-    }, "3"), /*#__PURE__*/React.createElement("option", {
+    }, "3"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 4
-    }, "4"), /*#__PURE__*/React.createElement("option", {
+    }, "4"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 5
-    }, "5"), /*#__PURE__*/React.createElement("option", {
+    }, "5"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 6
-    }, "6"), /*#__PURE__*/React.createElement("option", {
+    }, "6"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 7
-    }, "7"), /*#__PURE__*/React.createElement("option", {
+    }, "7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 8
-    }, "8"), /*#__PURE__*/React.createElement("option", {
+    }, "8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 9
-    }, "9"), /*#__PURE__*/React.createElement("option", {
+    }, "9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("option", {
       value: 10
-    }, "10")), /*#__PURE__*/React.createElement("button", {
+    }, "10")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
       id: "single-product-add-to-cart",
       onClick: () => {
         handleAddToCart(singleProduct.id);
         navigate('/products');
       }
-    }, "Add To Cart"), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+    }, "Add To Cart"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
       to: "/products"
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
       id: "back"
     }, "Back to all products")));
   }));

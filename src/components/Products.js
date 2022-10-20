@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASE } from '../api/index';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Products.css';
 
