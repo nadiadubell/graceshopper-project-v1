@@ -52,10 +52,14 @@ server.get('/*', (req, res) => {
   });
 });
 
-client.connect();
+const init = async () => {
+  await client.connect();
 
-const PORT = process.env['PORT'] ?? 4000;
+  const PORT = process.env['PORT'] ?? 4000;
 
-// server.listen(PORT, () => {
-//   console.log(`Server is listening on ${PORT}`);
-// });
+  server.listen(PORT, () => {
+    console.log(`Server is listening on ${PORT}`);
+  });
+};
+
+init();
