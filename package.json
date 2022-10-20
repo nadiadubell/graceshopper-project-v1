@@ -8,8 +8,7 @@
     "seed": "node ./db/seed.js",
     "start:dev": "nodemon server.js",
     "start": "node server.js & react-scripts start",
-    "start:react": "react-scripts start",
-    "build": "react-scripts build"
+    "start:react": "react-scripts start"
   },
   "keywords": [],
   "author": "",
