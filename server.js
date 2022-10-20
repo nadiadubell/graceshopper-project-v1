@@ -7,9 +7,9 @@ const apiRouter = require('./api');
 const CORS = require('cors');
 const path = require('path');
 
-// const buildPath = path.join(__dirname, 'build');
+const buildPath = path.join(__dirname, 'build');
 
-// server.use(express.static(buildPath));
+server.use(express.static(buildPath));
 
 server.use(express.json());
 
@@ -17,16 +17,16 @@ server.use(morgan('dev'));
 
 server.use(CORS());
 
-if (process.env.NODE_ENV === 'production') {
-  // Exprees will serve up production assets
-  server.use(express.static('build'));
+// if (process.env.NODE_ENV === 'production') {
+//   // Exprees will serve up production assets
+//   server.use(express.static('build'));
 
-  // Express serve up index.html file if it doesn't recognize route
-  const path = require('path');
-  server.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-  });
-}
+//   // Express serve up index.html file if it doesn't recognize route
+//   const path = require('path');
+//   server.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+//   });
+// }
 
 server.use((req, res, next) => {
   console.log('Starting body logger...');
