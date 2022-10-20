@@ -31,7 +31,7 @@ export const getUserContactInfo = async token => {
 };
 
 export const getUserProfileInfo = async userId => {
-  const userProfileInfoObj = await axios.get(`/api/users/${userId}/profile`);
+  const userProfileInfoObj = await axios.get(`${BASE}/users/${userId}/profile`);
   const userProfileInfoArr = userProfileInfoObj.data;
   return userProfileInfoArr;
 };
