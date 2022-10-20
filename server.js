@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const apiRouter = require('./api');
 const CORS = require('cors');
 const path = require('path');
+const { rebuildDB } = require('./db/seedData');
 
 const buildPath = path.join(__dirname, 'build');
 
@@ -54,6 +55,8 @@ server.get('/*', (req, res) => {
 
 const init = async () => {
   await client.connect();
+
+  await rebuildDB();
 
   const PORT = process.env['PORT'] ?? 4000;
 
