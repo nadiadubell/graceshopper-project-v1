@@ -140,7 +140,7 @@ const createInitialUsers = async () => {
     }
 
     console.log('Users created:');
-    console.log(users);
+    // console.log(users);
     console.log('Finished creating users!');
   } catch (error) {
     console.log('Error creating initial users');
@@ -168,7 +168,7 @@ const createInitialBreeds = async () => {
       breeds.push(await createBreed(breed));
     }
     console.log('Breeds created:');
-    console.log(breeds);
+    // console.log(breeds);
     console.log('Finished creating breeds!');
   } catch (error) {
     console.log('Error creating initial breeds');
@@ -285,7 +285,7 @@ const createInitialProducts = async () => {
       products.push(await createProduct(product));
     }
     console.log('Products created:');
-    console.log(products);
+    // console.log(products);
     console.log('Finished creating products!');
   } catch (error) {
     console.log('Error creating initial products');
@@ -311,7 +311,7 @@ const createInitialOrders = async () => {
       orders.push(await createOrder(userId, isOpen));
     }
     console.log('Orders created:');
-    console.log(orders);
+    // console.log(orders);
     console.log('Finished creating orders!');
   } catch (error) {
     console.log('Error creating initial orders');
@@ -379,7 +379,7 @@ const createInitialOrderProducts = async () => {
     }
 
     console.log('Order products created:');
-    console.log(orderProducts);
+    // console.log(orderProducts);
     console.log('Finished creating order products');
   } catch (error) {
     console.log('Error creating order products');
