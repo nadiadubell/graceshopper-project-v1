@@ -46,7 +46,7 @@ export const SingleProduct = props => {
         );
         return addItemToGuestOrder.data;
       } else {
-        const guest = await axios.post(`/api/guestusers`);
+        const guest = await axios.post(`${BASE}/guestusers`);
         localStorage.setItem('guestId', guest.data.id);
         const addItemToGuestOrder = await axios.post(
           `${BASE}/guestorders/${guest.data.id}`,
