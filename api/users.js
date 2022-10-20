@@ -60,6 +60,7 @@ usersRouter.post('/register', async (req, res, next) => {
       const user = await createUser({
         username,
         password,
+        isAdmin: false,
         firstName,
         lastName,
         email,
