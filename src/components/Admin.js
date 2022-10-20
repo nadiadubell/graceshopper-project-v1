@@ -34,7 +34,7 @@ export const Admin = () => {
           return (
             <div id="users" key={id}>
               <h3 id="user-username">username: {user.username}</h3>
-              <h3 id="user-isAdmin">isAdmin: {String(user.isAdmin)}</h3>
+              <h3 id="user-isAdmin">Admin: {String(user.isAdmin)}</h3>
               <h3 id="user-firstname">firstname: {user.firstName}</h3>
               <h3 id="user-lastname">lastname: {user.lastName}</h3>
               <h3 id="user-email">email: {user.email}</h3>

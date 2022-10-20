@@ -61,18 +61,20 @@ export const GuestOrders = () => {
     const orderProductId = await getOrderProduct(orderId, productId);
     const select = document.getElementById(`quantity-select-${i}`);
     const value = select.options[select.selectedIndex].value;
-    const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        quantity: `${value}`,
-      }),
-    });
-    const data = await response.json();
-    setRenderer(!renderer);
-    return data;
+    if (orderProductId) {
+      const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          quantity: `${value}`,
+        }),
+      });
+      const data = await response.json();
+      if (data) setRenderer(!renderer);
+      return data;
+    }
   };
 
   const getSubtotal = order => {

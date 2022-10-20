@@ -7,8 +7,9 @@
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
     "start:dev": "nodemon server.js",
-    "start": "node server.js",
-    "start:react": "react-scripts start"
+    "start": "node server.js & react-scripts start",
+    "start:react": "react-scripts start",
+    "build": "react-scripts build"
   },
   "keywords": [],
   "author": "",
@@ -22,14 +23,14 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
-    "react": "^18.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20",
+    "react": "^18.2.0",
+    "react-scripts": "^5.0.1",
     "react-dom": "^18.2.0",
     "react-router": "^6.4.1",
-    "react-router-dom": "^6.4.2",
-    "react-scripts": "^5.0.1"
+    "react-router-dom": "^6.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   },
   "browserslist": {
     "production": [

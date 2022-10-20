@@ -14,7 +14,7 @@ export const Products = props => {
       try {
         const data = await axios.get(`${BASE}/products`);
         setProducts(data.data);
-        return data;
+        return data.data;
       } catch (err) {
         console.error(err);
       }
