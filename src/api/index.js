@@ -4,12 +4,12 @@ import axios from 'axios';
 //   ? `${process.env.BASE}:${process.env.PORT}/api`
 //   : 'http://localhost:4000/api';
 
-export const BASE =
-  process.env.NODE_ENV === 'production'
-    ? `https://horseplay.herokuapp.com:443/api`
-    : 'http://localhost:4000/api';
+export const BASE = '/api';
+//   process.env.NODE_ENV === 'production'
+//     ? `https://horseplay.herokuapp.com:443/api`
+//     : 'http://localhost:4000/api';
 
-console.log('BASE>>>>>>>>>>>>>>>>>>>', BASE);
+// console.log('BASE>>>>>>>>>>>>>>>>>>>', BASE);
 
 export const userCheck = async token => {
   const response = await fetch(`${BASE}/users/me`, {
