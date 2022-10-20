@@ -12,7 +12,7 @@ export const Login = props => {
   let navigate = useNavigate();
 
   const loginUser = async () => {
-    const data = await axios.post(`/api/users/login`, {
+    const data = await axios.post(`${BASE}/users/login`, {
       username: usernameLogin,
       password: passwordLogin,
     });
