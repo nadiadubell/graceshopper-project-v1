@@ -55,6 +55,7 @@ server.get('/*', (req, res) => {
 client.connect();
 
 const PORT = process.env['PORT'] ?? 4000;
+console.log('PORT>>>>>>>>>>>>>>>>>>>>>>>', PORT);
 
 server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
