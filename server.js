@@ -56,7 +56,7 @@ server.get('/*', (req, res) => {
 const init = async () => {
   await client.connect();
 
-  await rebuildDB();
+  // await rebuildDB();
 
   const PORT = process.env['PORT'] ?? 4000;
 
