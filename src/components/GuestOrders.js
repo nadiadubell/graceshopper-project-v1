@@ -74,8 +74,7 @@ export const GuestOrders = () => {
           quantity: `${value}`,
         }),
       });
-      const data = await response.json();
-      if (data) setRenderer(!renderer);
+      const data = await response.json().then(setRenderer(!renderer));
       return data;
     }
   };
