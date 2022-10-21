@@ -83,7 +83,6 @@ export const GuestOrders = () => {
     const select = document.createElement('select');
     select.id = `quantity-select-${selectId}`;
     select.required = true;
-    select.onChange = handleQuantityChange(selectId, orderId, productId);
     console.log('SELECT', select);
     for (let i = 1; i < 11; i++) {
       let opt = document.createElement('option');
@@ -92,6 +91,7 @@ export const GuestOrders = () => {
       if (i === quantity) opt.selected = true;
       select.appendChild(opt);
     }
+    select.onChange = handleQuantityChange(selectId, orderId, productId);
   };
 
   const getSubtotal = order => {
