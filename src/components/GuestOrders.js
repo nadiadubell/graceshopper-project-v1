@@ -79,12 +79,11 @@ export const GuestOrders = () => {
     }
   };
 
-  const populateOptionTags = (quantity, selectId, orderId, productId) => {
+  const populateOptionTags = async (quantity, selectId, orderId, productId) => {
     console.log('QUANTITY', quantity, 'SELECTID', selectId);
     const select = document.createElement('select');
     select.id = `quantity-select-${selectId}`;
     select.required = true;
-    console.log('SELECT', select);
     for (let i = 1; i < 11; i++) {
       let opt = document.createElement('option');
       opt.value = i;
@@ -92,7 +91,8 @@ export const GuestOrders = () => {
       if (i === quantity) opt.selected = true;
       select.appendChild(opt);
     }
-    select.onChange = handleQuantityChange(selectId, orderId, productId);
+    console.log('SELECT', select);
+    select.onChange = await handleQuantityChange(selectId, orderId, productId);
   };
 
   const getSubtotal = order => {
