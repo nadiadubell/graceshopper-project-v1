@@ -79,25 +79,6 @@ export const GuestOrders = () => {
     }
   };
 
-  const populateOptionTags = (quantity, selectId, orderId, productId) => {
-    console.log('QUANTITY', quantity, 'SELECTID', selectId);
-    const select = document.createElement('select');
-    select.id = `quantity-select-${selectId}`;
-    select.required = true;
-    for (let i = 1; i < 11; i++) {
-      let opt = document.createElement('option');
-      opt.value = i;
-      opt.innerHTML = i;
-      if (i === quantity) opt.selected = true;
-      select.appendChild(opt);
-    }
-    console.log('SELECT', select);
-    select.onChange = () => {
-      handleQuantityChange(selectId, orderId, productId);
-    };
-    return select;
-  };
-
   const getSubtotal = order => {
     let totalPrice = 0;
     let products = order[0].products;
@@ -124,20 +105,14 @@ export const GuestOrders = () => {
                           <li>Price: ${product.price}</li>
                           <span>
                             <li>Quantity:</li>
-                            {/* <select
+                            <select
                               id={`quantity-select-${i}`}
                               required
                               onChange={() => {
                                 handleQuantityChange(i, order.id, product.id);
                               }}
-                            > */}
-                            {populateOptionTags(
-                              product.quantity,
-                              i,
-                              order.id,
-                              product.id
-                            )}
-                            {/* <option value="quantity">
+                            >
+                              <option value="quantity">
                                 {product.quantity}
                               </option>
                               <option value={1}>1</option>
@@ -148,11 +123,11 @@ export const GuestOrders = () => {
                               <option value={6}>6</option>
                               <option value={7}>7</option>
                               <option value={8}>8</option>
-                              <option value={9}>9</option> */}
-                            {/* need to figure out how to make an input field that allows you
+                              <option value={9}>9</option>
+                              {/* need to figure out how to make an input field that allows you
                         to manually enter a number larger than 10 if the below is selected */}
-                            {/* <option value={10}>10</option> */}
-                            {/* </select> */}
+                              <option value={10}>10</option>
+                            </select>
                           </span>
                           <button
                             onClick={async event => {
