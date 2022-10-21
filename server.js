@@ -51,13 +51,13 @@ server.use((error, req, res, next) => {
   });
 });
 
-server.get('/*', (req, res) => {
-  res.status(404);
-  res.send({
-    name: 'PageNotFoundError',
-    message: 'Page not found!',
-  });
-});
+// server.get('/*', (req, res) => {
+//   res.status(404);
+//   res.send({
+//     name: 'PageNotFoundError',
+//     message: 'Page not found!',
+//   });
+// });
 
 const init = async () => {
   await client.connect();

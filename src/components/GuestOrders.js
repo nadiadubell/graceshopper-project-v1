@@ -52,7 +52,7 @@ export const GuestOrders = () => {
       }
     );
     const data = await response.json();
-    // if (!data) window.location.reload(true);
+    if (!data) window.location.reload(true);
     setRenderer(!renderer);
     return data;
   };
