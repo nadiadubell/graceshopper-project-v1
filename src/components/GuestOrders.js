@@ -73,7 +73,7 @@ export const GuestOrders = () => {
     const select = document.getElementById(`quantity-select-${i}`);
     const value = select.options[select.selectedIndex].value;
     const orderProductId = await getOrderProduct(orderId, productId)
-      .then(updateQuantity(orderProductId, value))
+      .then(await updateQuantity(orderProductId, value))
       .then(setRenderer(!renderer));
   };
 
