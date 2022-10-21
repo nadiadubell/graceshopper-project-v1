@@ -78,6 +78,20 @@ export const GuestOrders = () => {
     }
   };
 
+  const populateOptionTags = quantity => {
+    for (let i = 1; i < 11; i++) {
+      if (i === quantity) {
+        return (
+          <option value={i} selected>
+            {i}
+          </option>
+        );
+      } else {
+        return <option value={i}>{i}</option>;
+      }
+    }
+  };
+
   const getSubtotal = order => {
     let totalPrice = 0;
     let products = order[0].products;
@@ -111,6 +125,7 @@ export const GuestOrders = () => {
                                 handleQuantityChange(i, order.id, product.id);
                               }}
                             >
+                              {populateOptionTags(product.quantity)}
                               <option value="quantity">
                                 {product.quantity}
                               </option>
