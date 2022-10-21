@@ -79,7 +79,9 @@ export const GuestOrders = () => {
   };
 
   const populateOptionTags = (quantity, selectId) => {
+    console.log('QUANTITY', quantity, 'SELECTID', selectId);
     const select = document.getElementById(`quantity-select-${selectId}`);
+    console.log('SELECT', select);
     for (let i = 1; i < 11; i++) {
       let opt = document.createElement('option');
       opt.value = i;
