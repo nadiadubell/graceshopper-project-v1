@@ -55,9 +55,8 @@ export const GuestOrders = () => {
         },
       }
     );
-    const data = await response.json();
-    if (!data) window.location.reload(true);
-    setRenderer(!renderer);
+    const data = await response.json().then(setRenderer(!renderer));
+    // if (!data) window.location.reload(true);
     return data;
   };
 
