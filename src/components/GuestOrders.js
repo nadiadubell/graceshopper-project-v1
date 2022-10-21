@@ -95,6 +95,7 @@ export const GuestOrders = () => {
     select.onChange = () => {
       handleQuantityChange(selectId, orderId, productId);
     };
+    return select;
   };
 
   const getSubtotal = order => {
