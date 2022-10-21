@@ -21,7 +21,7 @@ export const GuestOrders = () => {
       } else setUserOrder([]);
     };
     fetchOrder();
-  }, [renderer, tax]);
+  }, [renderer]);
 
   const openOrder = async () => {
     const response = await fetch(`${BASE}/guestorders/${guestId}`, {
