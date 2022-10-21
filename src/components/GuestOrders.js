@@ -122,7 +122,7 @@ export const GuestOrders = () => {
                                 handleQuantityChange(i, order.id, product.id);
                               }}
                             >
-                              {populateOptionTags(product.quantity, selectId)}
+                              {populateOptionTags(product.quantity, i)}
                               {/* <option value="quantity">
                                 {product.quantity}
                               </option>
