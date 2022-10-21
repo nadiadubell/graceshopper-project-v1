@@ -111,7 +111,7 @@ export const GuestOrders = () => {
                               }}
                             >
                               <option value="quantity">
-                                {product.quantity}
+                                {product[i].quantity}
                               </option>
                               <option value={1}>1</option>
                               <option value={2}>2</option>
