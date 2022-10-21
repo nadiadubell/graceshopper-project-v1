@@ -126,7 +126,7 @@ export const GuestOrders = () => {
                               }}
                             >
                               {populateOptionTags(product.quantity)}
-                              <option value="quantity">
+                              {/* <option value="quantity">
                                 {product.quantity}
                               </option>
                               <option value={1}>1</option>
@@ -137,10 +137,10 @@ export const GuestOrders = () => {
                               <option value={6}>6</option>
                               <option value={7}>7</option>
                               <option value={8}>8</option>
-                              <option value={9}>9</option>
+                              <option value={9}>9</option> */}
                               {/* need to figure out how to make an input field that allows you
                         to manually enter a number larger than 10 if the below is selected */}
-                              <option value={10}>10</option>
+                              {/* <option value={10}>10</option> */}
                             </select>
                           </span>
                           <button
