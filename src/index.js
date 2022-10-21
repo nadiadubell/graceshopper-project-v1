@@ -37,7 +37,7 @@ const App = () => {
     });
     const data = await response.json();
     console.log('GUEST DATA!!!!!!', data);
-    if (!data) localStorage.removeItem('guestId');
+    if (data.rows.length === 0) localStorage.removeItem('guestId');
   };
 
   useEffect(() => {

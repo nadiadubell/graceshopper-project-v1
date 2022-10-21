@@ -14,9 +14,7 @@ export const GuestOrders = () => {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      console.log('HERE!!!!!!!!');
       const results = await openOrder();
-      console.log('RESULTS!!!!!!!!!!!!!!!!!!!!', results);
       if (results) {
         setUserOrder([results]);
         getSubtotal([results]);
