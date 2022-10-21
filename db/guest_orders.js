@@ -53,10 +53,6 @@ const getOpenOrderByGuestId = async id => {
     if (rows.length === 0) return false;
 
     const result = makeProductArray(rows);
-    // console.log(
-    //   'RESULT>>>>>>>>>>>>>>>>>>>',
-    //   result.products.sort((a, b) => a.id - b.id)
-    // );
     result.products.sort((a, b) => a.id - b.id);
     return result;
   } catch (error) {

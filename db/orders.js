@@ -89,6 +89,7 @@ const getOpenOrderByUserId = async id => {
     if (rows.length === 0) return false;
 
     const result = makeProductArray(rows);
+    result.products.sort((a, b) => a.id - b.id);
     return result;
   } catch (error) {
     console.log('Error getting order by ID');
