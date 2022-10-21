@@ -52,7 +52,6 @@ export const GuestOrders = () => {
       }
     );
     const data = await response.json().then(setRenderer(!renderer));
-    // if (!data) window.location.reload(true);
     return data;
   };
 
@@ -106,6 +105,7 @@ export const GuestOrders = () => {
                               required
                               onChange={() => {
                                 handleQuantityChange(i, order.id, product.id);
+                                setRenderer(!renderer);
                               }}
                             >
                               <option value="quantity">

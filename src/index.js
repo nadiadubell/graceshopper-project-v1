@@ -29,21 +29,20 @@ const App = () => {
   const currentToken = localStorage.getItem('token');
   const guestId = localStorage.getItem('guestId');
 
-  const checkForGuest = async () => {
+  const checkForGuests = async () => {
     const response = await fetch(`${BASE}/guestusers`, {
       headers: {
         'Content-Type': 'application/json',
       },
     });
     const data = await response.json();
-    console.log('GUEST DATA!!!!!!', data);
     if (data.rows.length === 0) localStorage.removeItem('guestId');
   };
 
   useEffect(() => {
     userCheck(currentToken);
     if (guestId) {
-      checkForGuest();
+      checkForGuests();
     }
   }, [isLoggedIn]);
 
