@@ -20,6 +20,8 @@ export const GuestOrders = () => {
       if (results) {
         setUserOrder([results]);
         getSubtotal([results]);
+      } else {
+        setUserOrder([]);
       }
     };
     fetchOrder();
