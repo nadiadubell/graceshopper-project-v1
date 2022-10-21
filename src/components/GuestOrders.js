@@ -78,16 +78,14 @@ export const GuestOrders = () => {
     }
   };
 
-  const populateOptionTags = quantity => {
-    const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    for (const num of numArr) {
-      num === quantity ? (
-        <option value={num} selected>
-          {num}
-        </option>
-      ) : (
-        <option value={num}>{num}</option>
-      );
+  const populateOptionTags = (quantity, selectId) => {
+    const select = document.getElementById(`quantity-select-${selectId}`);
+    for (let i = 1; i < 11; i++) {
+      let opt = document.createElement('option');
+      opt.value = i;
+      opt.innerHTML = i;
+      if (i === quantity) opt.selected = true;
+      select.appendChild(opt);
     }
   };
 
@@ -124,7 +122,7 @@ export const GuestOrders = () => {
                                 handleQuantityChange(i, order.id, product.id);
                               }}
                             >
-                              {populateOptionTags(product.quantity)}
+                              {populateOptionTags(product.quantity, selectId)}
                               {/* <option value="quantity">
                                 {product.quantity}
                               </option>
