@@ -55,23 +55,26 @@ export const GuestOrders = () => {
     return data;
   };
 
+  const updateQuantity = async (orderProductId, value) => {
+    const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity: `${value}`,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  };
+
   const handleQuantityChange = async (i, orderId, productId) => {
-    const orderProductId = await getOrderProduct(orderId, productId);
     const select = document.getElementById(`quantity-select-${i}`);
     const value = select.options[select.selectedIndex].value;
-    if (orderProductId) {
-      const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          quantity: `${value}`,
-        }),
-      });
-      const data = await response.json();
-      return data;
-    }
+    const orderProductId = await getOrderProduct(orderId, productId)
+      .then(updateQuantity(orderProductId, value))
+      .then(setRenderer(!renderer));
   };
 
   const getSubtotal = order => {
@@ -105,7 +108,6 @@ export const GuestOrders = () => {
                               required
                               onChange={() => {
                                 handleQuantityChange(i, order.id, product.id);
-                                setRenderer(!renderer);
                               }}
                             >
                               <option value="quantity">
