@@ -19,6 +19,7 @@ import {
 import { getCurrentUser } from '../src/auth';
 import { userCheck } from './api';
 import './style.css';
+import { response } from 'express';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser);
@@ -26,10 +27,25 @@ const App = () => {
   const [productId, setProductId] = useState('');
 
   const currentToken = localStorage.getItem('token');
+  const guestId = localStorage.getItem('guestId');
+
+  const checkForGuest = async () => {
+    const response = await fetch(`${BASE}/guestusers`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    if (!data) localStorage.removeItem('guestId');
+  };
 
   useEffect(() => {
     userCheck(currentToken);
   }, [isLoggedIn]);
+
+  if (guestId) {
+    checkForGuest();
+  }
 
   return (
     <div>

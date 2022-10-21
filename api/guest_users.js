@@ -1,7 +1,24 @@
 const express = require('express');
-const { createGuest, getGuestById, deleteGuest } = require('../db/guest_users');
+const {
+  createGuest,
+  getGuestById,
+  deleteGuest,
+  getAllGuests,
+} = require('../db/guest_users');
 const { getOpenOrderByGuestId } = require('../db/guest_orders');
 const guestUsersRouter = express.Router();
+
+guestUsersRouter.get('/', async (req, res, next) => {
+  try {
+    const guests = await getAllGuests();
+    res.send(guests);
+  } catch (error) {
+    next({
+      name: 'GetAllGuestsError',
+      message: 'There was an error getting all guests',
+    });
+  }
+});
 
 guestUsersRouter.post('/', async (req, res, next) => {
   try {

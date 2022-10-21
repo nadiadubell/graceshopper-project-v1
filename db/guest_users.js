@@ -20,6 +20,21 @@ const createGuest = async isAdmin => {
   }
 };
 
+const getAllGuests = async () => {
+  try {
+    const guests = await client.query(`
+    SELECT *
+    FROM guests;
+    `);
+
+    if (guests) return guests;
+    else return false;
+  } catch (error) {
+    console.log('Error getting all guests');
+    throw error;
+  }
+};
+
 const getGuestById = async guestId => {
   try {
     const guest = await client.query(`
@@ -64,6 +79,7 @@ const deleteGuest = async (guestId, orderId) => {
 
 module.exports = {
   createGuest,
+  getAllGuests,
   getGuestById,
   deleteGuest,
 };
