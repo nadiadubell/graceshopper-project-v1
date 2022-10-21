@@ -19,7 +19,6 @@ import {
 import { getCurrentUser } from '../src/auth';
 import { userCheck } from './api';
 import './style.css';
-import { response } from 'express';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(getCurrentUser);
