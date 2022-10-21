@@ -15,10 +15,10 @@ export const GuestOrders = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       const results = await openOrder();
-      if (results) {
-        setUserOrder([results]);
-        getSubtotal([results]);
-      }
+      // if (results) {
+      setUserOrder([results]);
+      getSubtotal([results]);
+      // }
     };
     fetchOrder();
   }, [renderer]);
