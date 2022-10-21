@@ -72,9 +72,10 @@ export const GuestOrders = () => {
   const handleQuantityChange = async (i, orderId, productId) => {
     const select = document.getElementById(`quantity-select-${i}`);
     const value = select.options[select.selectedIndex].value;
-    const orderProductId = await getOrderProduct(orderId, productId)
-      .then(await updateQuantity(orderProductId, value))
-      .then(setRenderer(!renderer));
+    const orderProductId = await getOrderProduct(orderId, productId);
+    if (orderProductId) {
+      await updateQuantity(orderProductId, value).then(setRenderer(!renderer));
+    }
   };
 
   const getSubtotal = order => {
