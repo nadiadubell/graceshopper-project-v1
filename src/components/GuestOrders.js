@@ -71,6 +71,7 @@ export const GuestOrders = () => {
 
   const handleQuantityChange = async (i, orderId, productId) => {
     const select = document.getElementById(`quantity-select-${i}`);
+    console.log('quantity change select element', select);
     const value = select.options[select.selectedIndex].value;
     const orderProductId = await getOrderProduct(orderId, productId);
     if (orderProductId) {
