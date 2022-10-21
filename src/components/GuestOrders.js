@@ -79,15 +79,16 @@ export const GuestOrders = () => {
   };
 
   const populateOptionTags = quantity => {
-    for (let i = 1; i < 11; i++) {
-      if (i === quantity) {
+    const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    for (const num of numArr) {
+      if (num === quantity) {
         return (
-          <option value={i} selected>
-            {i}
+          <option value={num} selected>
+            {num}
           </option>
         );
       } else {
-        return <option value={i}>{i}</option>;
+        return <option value={num}>{num}</option>;
       }
     }
   };
