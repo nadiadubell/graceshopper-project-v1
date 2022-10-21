@@ -111,7 +111,7 @@ export const GuestOrders = () => {
                                 handleQuantityChange(i, order.id, product.id);
                               }}
                             >
-                              <option value="quantity" selected>
+                              <option value="quantity">
                                 {product.quantity}
                               </option>
                               <option value={1}>1</option>
