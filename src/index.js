@@ -41,11 +41,10 @@ const App = () => {
 
   useEffect(() => {
     userCheck(currentToken);
+    if (guestId) {
+      checkForGuest();
+    }
   }, [isLoggedIn]);
-
-  if (guestId) {
-    checkForGuest();
-  }
 
   return (
     <div>
