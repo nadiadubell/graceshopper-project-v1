@@ -20,9 +20,7 @@ export const GuestOrders = () => {
       if (results) {
         setUserOrder([results]);
         getSubtotal([results]);
-      } else {
-        setUserOrder([]);
-      }
+      } else setUserOrder([]);
     };
     fetchOrder();
   }, [renderer]);
@@ -110,7 +108,6 @@ export const GuestOrders = () => {
                               required
                               onChange={() => {
                                 handleQuantityChange(i, order.id, product.id);
-                                // window.location.reload(true);
                               }}
                             >
                               <option value="quantity">

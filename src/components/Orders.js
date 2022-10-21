@@ -19,7 +19,7 @@ export const Orders = () => {
       if (results) {
         setUserOrder([results]);
         getSubtotal([results]);
-      }
+      } else setUserOrder([]);
     };
     fetchOrder();
   }, [renderer]);
@@ -53,9 +53,7 @@ export const Orders = () => {
         },
       }
     );
-    const data = await response.json();
-    if (!data) window.location.reload(true);
-    setRenderer(!renderer);
+    const data = await response.json().then(setRenderer(!renderer));
     return data;
   };
 
@@ -158,7 +156,7 @@ export const Orders = () => {
         </>
       ) : (
         <>
-          <h1 id='empty-cart'>
+          <h1 id="empty-cart">
             Your Cart is Currently Empty. Why Not Add
             <Link to="/products"> Something?</Link>
           </h1>

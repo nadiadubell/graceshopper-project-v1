@@ -47,7 +47,7 @@ const getOpenOrderByGuestId = async id => {
       JOIN orderproducts ON orderproducts."orderId" = orders.id
       JOIN products ON orderproducts."productId" = products.id
       WHERE guests.id=${id} AND "isOpen" = true
-      GROUP BY guests.id, orders.id, orderproducts.quantity;
+      GROUP BY guests.id, orders.id;
   `);
 
     if (rows.length === 0) return false;
