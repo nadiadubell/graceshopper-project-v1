@@ -89,7 +89,7 @@ export const GuestOrders = () => {
       opt.value = i;
       opt.innerHTML = i;
       if (i === quantity) opt.selected = true;
-      select.appendChild([opt]);
+      select.appendChild(opt);
     }
     console.log('SELECT', select);
     select.onChange = () => {
