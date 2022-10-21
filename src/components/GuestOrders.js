@@ -79,7 +79,7 @@ export const GuestOrders = () => {
     }
   };
 
-  const populateOptionTags = async (quantity, selectId, orderId, productId) => {
+  const populateOptionTags = (quantity, selectId, orderId, productId) => {
     console.log('QUANTITY', quantity, 'SELECTID', selectId);
     const select = document.createElement('select');
     select.id = `quantity-select-${selectId}`;
@@ -92,7 +92,9 @@ export const GuestOrders = () => {
       select.appendChild(opt);
     }
     console.log('SELECT', select);
-    select.onChange = await handleQuantityChange(selectId, orderId, productId);
+    select.onChange = () => {
+      handleQuantityChange(selectId, orderId, productId);
+    };
   };
 
   const getSubtotal = order => {
