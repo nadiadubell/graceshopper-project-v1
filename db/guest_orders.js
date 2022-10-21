@@ -51,9 +51,9 @@ const getOpenOrderByGuestId = async id => {
   `);
 
     if (rows.length === 0) return false;
-    console.log('ROWS!!!!!!!!!!!!!!!!!!!!!!!!!!!', rows[0].products);
 
     const result = makeProductArray(rows);
+    console.log('RESULT>>>>>>>>>>>>>>>>>>>', result);
     return result;
   } catch (error) {
     console.log('Error getting guest order by ID');
