@@ -24,6 +24,7 @@ export const SingleProduct = props => {
       }
     };
     if (singleProductId) {
+      console.log('HERE!!!!');
       getSingleProduct(singleProductId);
     } else getSingleProduct(productId);
   }, []);
