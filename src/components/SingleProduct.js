@@ -24,7 +24,6 @@ export const SingleProduct = props => {
       }
     };
     if (singleProductId) {
-      console.log('HERE!!!!');
       getSingleProduct(singleProductId);
     } else getSingleProduct(productId);
   }, []);
@@ -94,6 +93,7 @@ export const SingleProduct = props => {
               id="single-product-add-to-cart"
               onClick={() => {
                 handleAddToCart(singleProduct.id);
+                localStorage.removeItem('singleProductId')
                 navigate('/products');
               }}
             >

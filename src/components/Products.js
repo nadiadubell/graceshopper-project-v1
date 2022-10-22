@@ -8,6 +8,7 @@ export const Products = props => {
   const [products, setProducts] = useState([]);
   const { setProductId } = props;
   const navigate = useNavigate();
+  const singleProductId = localStorage.getItem('singleProductId');
 
   useEffect(() => {
     const getProducts = async () => {
@@ -21,6 +22,9 @@ export const Products = props => {
     };
     getProducts();
   }, []);
+
+  if (singleProductId) localStorage.removeItem('singleProductId');
+
   return (
     <div id="products">
       <h1 id="products-header">Products</h1>
