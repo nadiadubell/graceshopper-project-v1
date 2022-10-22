@@ -2,15 +2,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 import './Header.css';
 
-export const Header = ({ isLoggedIn, isAdmin }) => {
+export const Header = ({ isLoggedIn, setIsLoggedIn, isAdmin }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
+    setIsLoggedIn(false);
     navigate('/');
-    props.setIsLoggedIn(false);
   };
 
   return (
