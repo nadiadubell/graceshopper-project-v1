@@ -12,17 +12,18 @@ export const SingleProduct = props => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getSingleProduct = async productId => {
-      try {
-        const data = await axios.get(`${BASE}/products/${productId}`);
-        setProduct([data.data]);
-        return data.data;
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getSingleProduct(productId);
+    if (product.length === 0) {
+      const getSingleProduct = async productId => {
+        try {
+          const data = await axios.get(`${BASE}/products/${productId}`);
+          setProduct([data.data]);
+          return data.data;
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      getSingleProduct(productId);
+    }
   }, []);
 
   const handleAddToCart = async productId => {
@@ -90,6 +91,7 @@ export const SingleProduct = props => {
               id="single-product-add-to-cart"
               onClick={() => {
                 handleAddToCart(singleProduct.id);
+                setProduct([]);
                 navigate('/products');
               }}
             >
