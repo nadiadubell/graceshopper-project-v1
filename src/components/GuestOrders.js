@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const { axios } = require('axios');
 const { BASE } = require('../api/index');
 import './Orders.css';
@@ -11,6 +11,7 @@ export const GuestOrders = () => {
   const guestId = localStorage.getItem('guestId');
   const shippingAndHandling = 10;
   const tax = subtotal * 0.1;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -146,9 +147,11 @@ export const GuestOrders = () => {
                   <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
-                  <Link to="/guestcheckout">
-                    <button>Checkout</button>
-                  </Link>
+                  {/* <Link to="/guestcheckout"> */}
+                  <button onClick={() => navigate('/guestcheckout')}>
+                    Checkout
+                  </button>
+                  {/* </Link> */}
                 </div>
               </div>
             );
@@ -158,7 +161,7 @@ export const GuestOrders = () => {
         <>
           <h1 id="empty-cart">
             Your Cart is Currently Empty. Why Not Add
-            <Link to="/products"> Something?</Link>
+            <a onClick={() => navigate('/products')}> Something?</a>
           </h1>
         </>
       )}

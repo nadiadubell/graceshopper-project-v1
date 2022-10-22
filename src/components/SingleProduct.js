@@ -9,8 +9,7 @@ export const SingleProduct = props => {
   const { productId } = props;
   const userId = localStorage.getItem('userId');
   const guestId = localStorage.getItem('guestId');
-
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSingleProduct = async productId => {
@@ -96,9 +95,11 @@ export const SingleProduct = props => {
             >
               Add To Cart
             </button>
-            <Link to="/products">
+            {/* <Link to="/products"> */}
+            <a onClick={() => navigate('/products')}>
               <div id="back">Back to all products</div>
-            </Link>
+            </a>
+            {/* </Link> */}
           </div>
         );
       })}

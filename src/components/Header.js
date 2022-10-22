@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
 import './Header.css';
 
 export const Header = ({ isLoggedIn, isAdmin }) => {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -13,14 +15,16 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
 
   return (
     <div className="header">
-      <Link to="products">
+      {/* <Link to="products"> */}
+      <a onClick={() => navigate('/products')}>
         <img
           id="logo"
           src="https://www.freeiconspng.com/uploads/white-horse-png-23.png"
           width="50"
           alt="Horse Logo Image"
         />
-      </Link>
+      </a>
+      {/* </Link> */}
       <h1 className="header" id="banner">
         Welcome to HorsePlay!
       </h1>
