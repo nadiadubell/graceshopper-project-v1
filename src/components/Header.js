@@ -9,7 +9,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
-    window.location.reload(true);
+    navigate('/');
     props.setIsLoggedIn(false);
   };
 
