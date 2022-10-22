@@ -53,7 +53,7 @@ const App = () => {
         setIsLoggedIn={setIsLoggedIn}
         isAdmin={isAdmin}
       />
-      <HashRouter>
+      <Routes>
         <Route
           exact
           path="/"
@@ -94,7 +94,7 @@ const App = () => {
           element={<SingleProduct productId={productId} />}
         ></Route>
         <Route path="/admin" element={<Admin />}></Route>
-      </HashRouter>
+      </Routes>
       <Footer />
     </div>
   );
