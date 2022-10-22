@@ -10,7 +10,7 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
     props.setIsLoggedIn(false);
-    navigate('/');
+    window.location.reload(true);
   };
 
   return (
@@ -22,7 +22,6 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
           width="50"
           alt="Horse Logo Image"
         />
-
       </Link>
       <h1 className="header" id="banner">
         Welcome to HorsePlay!
