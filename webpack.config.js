@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
@@ -19,7 +20,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, './public/index.html'),
+    path: path.join(__dirname, './dist'),
     publicPath: 'auto',
   },
 };
