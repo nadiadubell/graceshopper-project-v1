@@ -19,8 +19,13 @@ module.exports = {
       },
     ],
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: 'https://horseplay.herokuapp.com',
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true,
   },
+  // output: {
+  //   path: path.resolve(__dirname, 'dist'),
+  //   publicPath: 'https://horseplay.herokuapp.com',
+  // },
 };
