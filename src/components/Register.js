@@ -32,6 +32,7 @@ export const Register = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     registerUser();
+    localStorage.removeItem('guestId');
     navigate('/');
   };
 

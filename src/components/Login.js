@@ -26,6 +26,7 @@ export const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
     loginUser();
+    localStorage.removeItem('guestId');
     navigate('/');
   };
 
