@@ -66,13 +66,6 @@ const init = async () => {
 
   const PORT = process.env['PORT'] ?? 4000;
 
-  server.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
-      if (err) {
-        res.status(500).send(__dirname)
-      }
-    })
-
   server.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}`);
   });
