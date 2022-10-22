@@ -23,9 +23,9 @@ export const SingleProduct = props => {
         console.error(err);
       }
     };
-    if (!singleProductId) {
-      getSingleProduct(productId);
-    } else getSingleProduct(singleProductId);
+    if (singleProductId) {
+      getSingleProduct(singleProductId);
+    } else getSingleProduct(productId);
   }, []);
 
   const handleAddToCart = async productId => {
