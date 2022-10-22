@@ -10,7 +10,7 @@ export const GuestOrders = () => {
   const [renderer, setRenderer] = useState(false);
   const guestId = localStorage.getItem('guestId');
   const shippingAndHandling = 10;
-  const tax = (subtotal * 0.1).toFixed(2);
+  const tax = subtotal * 0.1;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -143,8 +143,8 @@ export const GuestOrders = () => {
                 </div>
                 <div id="order-summary">
                   <h3>Order Summary</h3>
-                  <h5>Subtotal: ${+subtotal.toFixed(2)}</h5>
-                  <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
+                  <h5>Subtotal: ${subtotal}.00</h5>
+                  <h5>Estimated Shipping & Handling: ${shippingAndHandling}.00</h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
                   <Link to="/guestcheckout">

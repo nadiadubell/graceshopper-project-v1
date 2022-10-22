@@ -193,7 +193,7 @@ const createInitialProducts = async () => {
         Thoroughbreds are also used in other riding disciplines and are 
         often crossbred to improve other horse breeds.`,
         breedId: 1,
-        price: 5000.0,
+        price: 5000,
         image: 'https://i.imgur.com/9RhQMDK.jpg',
       },
       {
@@ -205,7 +205,7 @@ const createInitialProducts = async () => {
         flowing mane and tail. Friesians are graceful and agile and are often used as 
         sporting horses today.`,
         breedId: 2,
-        price: 10.5,
+        price: 10,
         image: 'https://i.imgur.com/FLqRtqe.jpg',
       },
       {
@@ -218,7 +218,7 @@ const createInitialProducts = async () => {
         instinct to work well with their human counterparts, making them valuable 
         partners for ranchers and cattlemen.`,
         breedId: 3,
-        price: 25.0,
+        price: 25,
         image: 'https://i.imgur.com/Vq69eiB.jpg',
       },
       {
@@ -232,7 +232,7 @@ const createInitialProducts = async () => {
         full manes and tails. They are most commonly grey-coated, but can be seen in other 
         colors. You will often see them used in movies and a variety of equestrian activities.`,
         breedId: 4,
-        price: 50.34,
+        price: 50,
         image: 'https://i.imgur.com/p2MTXB9.jpg',
       },
       {
@@ -242,7 +242,7 @@ const createInitialProducts = async () => {
         appearance with arched neck and high tail carriage. These horses have high endurance 
         and high speed and are now often found participating in endurance racing.`,
         breedId: 5,
-        price: 100.15,
+        price: 100,
         image: 'https://i.imgur.com/V03UdeV.jpg',
       },
       {
@@ -255,7 +255,7 @@ const createInitialProducts = async () => {
         approximately 11,600 purebreds worldwide. This breed possesses the rare combination 
         of beauty and nobility along with courage, strength, temperament and intelligence.`,
         breedId: 6,
-        price: 150.25,
+        price: 150,
         image: 'https://i.imgur.com/Dsh9r2h.jpg',
       },
       {
@@ -267,14 +267,14 @@ const createInitialProducts = async () => {
         were used for hauling and agriculture work but are now, with their elegant gait, 
         more often used for parades and demonstrations.`,
         breedId: 8,
-        price: 600.0,
+        price: 600,
         image: 'https://i.imgur.com/TNNaGoh.jpg',
       },
       {
         name: 'Palomino Model Horse',
         description: `It's a Palomino!`,
         breedId: 7,
-        price: 50.18,
+        price: 50,
         image: 'https://i.imgur.com/NOebewQ.jpg',
       },
     ];

@@ -142,8 +142,10 @@ export const Orders = () => {
                 </div>
                 <div id="order-summary">
                   <h3>Order Summary</h3>
-                  <h5>Subtotal: ${subtotal}</h5>
-                  <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
+                  <h5>Subtotal: ${subtotal}.00</h5>
+                  <h5>
+                    Estimated Shipping & Handling: ${shippingAndHandling}.00
+                  </h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
                   <Link to="/checkout">
