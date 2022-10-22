@@ -13,7 +13,6 @@ const { requireAdmin } = require('./utils');
 
 productsRouter.get('/', async (req, res, next) => {
   try {
-    console.log('GETTING ALL PRODUCTS');
     const products = await getAllProducts();
 
     res.send(products);
