@@ -9,7 +9,7 @@ export const SingleProduct = props => {
   const { productId } = props;
   const userId = localStorage.getItem('userId');
   const guestId = localStorage.getItem('guestId');
-  const singleProductId = localStorage.getItem('singleProduct');
+  const singleProductId = localStorage.getItem('singleProductId');
   const navigate = useNavigate();
 
   useEffect(() => {
