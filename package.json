@@ -14,7 +14,6 @@
   },
   "keywords": [],
   "author": "",
-  "homepage": ".",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.19.6",
