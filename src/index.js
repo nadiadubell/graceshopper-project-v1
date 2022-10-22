@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import {
   Header,
   Footer,
@@ -53,7 +53,7 @@ const App = () => {
         setIsLoggedIn={setIsLoggedIn}
         isAdmin={isAdmin}
       />
-      <Routes>
+      <HashRouter>
         <Route
           exact
           path="/"
@@ -94,7 +94,7 @@ const App = () => {
           element={<SingleProduct productId={productId} />}
         ></Route>
         <Route path="/admin" element={<Admin />}></Route>
-      </Routes>
+      </HashRouter>
       <Footer />
     </div>
   );
