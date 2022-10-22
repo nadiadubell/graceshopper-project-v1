@@ -6,11 +6,11 @@ import './Orders.css';
 
 export const GuestOrders = () => {
   const [userOrder, setUserOrder] = useState([]);
-  const [subtotal, setSubtotal] = useState('');
+  const [subtotal, setSubtotal] = useState(0);
   const [renderer, setRenderer] = useState(false);
   const guestId = localStorage.getItem('guestId');
   const shippingAndHandling = 10;
-  const tax = subtotal * 0.1;
+  const tax = (subtotal * 0.1).toFixed(2);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -143,14 +143,12 @@ export const GuestOrders = () => {
                 </div>
                 <div id="order-summary">
                   <h3>Order Summary</h3>
-                  <h5>Subtotal: ${subtotal}</h5>
+                  <h5>Subtotal: ${+subtotal.toFixed(2)}</h5>
                   <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
                   <Link to="/guestcheckout">
-                  <button>
-                    Checkout
-                  </button>
+                    <button>Checkout</button>
                   </Link>
                 </div>
               </div>
