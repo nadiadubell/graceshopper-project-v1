@@ -36,7 +36,9 @@ server.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, './public/index.html'))
 // );
 
-server.get('/*', (req, res) => res.sendFile(path.join(buildPath)));
+server.get('/*', (req, res) =>
+  res.sendFile(path.join(__dirname, './public/index.html'))
+);
 
 server.use('/api', apiRouter);
 
