@@ -20,7 +20,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, './dist'),
-    publicPath: 'auto',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'https://horseplay.herokuapp.com',
   },
 };
