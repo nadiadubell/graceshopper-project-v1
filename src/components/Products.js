@@ -27,27 +27,25 @@ export const Products = props => {
       {products.map((product, i) => {
         return (
           <div id="product-view" key={i}>
-            {/* <Link to="/:productId"> */}
-            <h2
-              id="product-name"
-              onClick={() => {
-                setProductId(product.id);
-                navigate('/:productId');
-              }}
-            >
-              {product.name}{' '}
-            </h2>
-            {/* </Link> */}
-            {/* <Link to="/:productId"> */}
-            <img
-              id="product-image"
-              src={product.image}
-              onClick={() => {
-                setProductId(product.id);
-                navigate('/:productId');
-              }}
-            />
-            {/* </Link> */}
+            <Link to="/:productId">
+              <h2
+                id="product-name"
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              >
+                {product.name}{' '}
+              </h2>
+            </Link>
+            <Link to="/:productId">
+              <img
+                id="product-image"
+                src={product.image}
+                onClick={() => {
+                  setProductId(product.id);
+                }}
+              />
+            </Link>
             <div id="product-price">Price: ${product.price}</div>
           </div>
         );

@@ -15,16 +15,15 @@ export const Header = ({ isLoggedIn, isAdmin }) => {
 
   return (
     <div className="header">
-      {/* <Link to="products"> */}
-      <a onClick={() => navigate('/products')}>
+      <Link to="products">
         <img
           id="logo"
           src="https://www.freeiconspng.com/uploads/white-horse-png-23.png"
           width="50"
           alt="Horse Logo Image"
         />
-      </a>
-      {/* </Link> */}
+
+      </Link>
       <h1 className="header" id="banner">
         Welcome to HorsePlay!
       </h1>

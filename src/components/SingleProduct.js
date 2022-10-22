@@ -95,11 +95,9 @@ export const SingleProduct = props => {
             >
               Add To Cart
             </button>
-            {/* <Link to="/products"> */}
-            <a onClick={() => navigate('/products')}>
+            <Link to="/products">
               <div id="back">Back to all products</div>
-            </a>
-            {/* </Link> */}
+            </Link>
           </div>
         );
       })}

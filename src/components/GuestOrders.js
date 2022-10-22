@@ -147,11 +147,11 @@ export const GuestOrders = () => {
                   <h5>Estimated Shipping & Handling: ${shippingAndHandling}</h5>
                   <h5>Estimated Tax: ${tax}</h5>
                   <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
-                  {/* <Link to="/guestcheckout"> */}
-                  <button onClick={() => navigate('/guestcheckout')}>
+                  <Link to="/guestcheckout">
+                  <button>
                     Checkout
                   </button>
-                  {/* </Link> */}
+                  </Link>
                 </div>
               </div>
             );
