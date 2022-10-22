@@ -38,9 +38,16 @@ server.use((req, res, next) => {
   next();
 });
 
-server.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, './public/index.html'))
-);
+// server.get('/', (req, res) =>
+//   res.sendFile(path.join(__dirname, './public/index.html'))
+// );
+
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(__dirname)
+    }
+  })
 
 server.use('/api', apiRouter);
 
@@ -58,13 +65,6 @@ server.get('/*', (req, res) => {
     message: 'Page not found!',
   });
 });
-
-server.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'),function(err) {
-    if (err) {
-      res.status(500).send(__dirname)
-    }
-  })
 
 const init = async () => {
   await client.connect();
