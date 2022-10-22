@@ -8,8 +8,6 @@ const CORS = require('cors');
 const path = require('path');
 const { rebuildDB } = require('./db/seedData');
 
-// const buildPath = path.join(__dirname, 'build');
-
 const buildPath = path.join(__dirname, 'dist');
 
 server.use('/dist', express.static(buildPath));
@@ -19,10 +17,6 @@ server.use(express.json());
 server.use(morgan('dev'));
 
 server.use(CORS());
-
-// if (process.env.NODE_ENV === 'production') {
-//   // Exprees will serve up production assets
-//   server.use(express.static('build'));
 
 //   // Express serve up index.html file if it doesn't recognize route
 //   const path = require('path');
@@ -42,7 +36,7 @@ server.use((req, res, next) => {
 //   res.sendFile(path.join(__dirname, './public/index.html'))
 // );
 
-server.get('*', (req, res) =>
+server.get('/*', (req, res) =>
   res.sendFile(path.resolve(__dirname, './public/index.html'))
 );
 
