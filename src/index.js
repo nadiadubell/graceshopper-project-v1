@@ -62,6 +62,7 @@ const App = () => {
           }
         ></Route>
         <Route
+          exact
           path="/products"
           element={
             <Products isLoggedIn={isLoggedIn} setProductId={setProductId} />
