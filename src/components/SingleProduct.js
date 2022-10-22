@@ -17,7 +17,7 @@ export const SingleProduct = props => {
       try {
         const data = await axios.get(`${BASE}/products/${productId}`);
         setProduct([data.data]);
-        localStorage.getItem('singleProductId', data.data.id);
+        localStorage.setItem('singleProductId', data.data.id);
         return data.data;
       } catch (err) {
         console.error(err);
