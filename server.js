@@ -38,8 +38,12 @@ server.use((req, res, next) => {
   next();
 });
 
-server.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, './public/index.html'))
+// server.get('/', (req, res) =>
+//   res.sendFile(path.join(__dirname, './public/index.html'))
+// );
+
+server.get('*', (req, res) =>
+  res.sendFile(path.resolve(__dirname, './public/index.html'))
 );
 
 server.use('/api', apiRouter);
