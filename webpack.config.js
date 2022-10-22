@@ -21,7 +21,11 @@ module.exports = {
   },
   entry: path.join(__dirname, './src/index.js'),
   output: {
-    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    publicPath: '/',
+  },
+  devServer: {
+    historyAPIFallback: true,
   },
 };
