@@ -1,4 +1,5 @@
 'use strict';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -19,7 +20,8 @@ module.exports = {
       },
     ],
   },
-  entry: path.join(__dirname, './src/index.js'),
+  context: __dirname,
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -28,4 +30,10 @@ module.exports = {
   devServer: {
     historyAPIFallback: true,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      filename: 'index.html',
+    }),
+  ],
 };

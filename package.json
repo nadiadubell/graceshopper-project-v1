@@ -37,6 +37,7 @@
     "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.20"
   },
   "browserslist": {
