@@ -19,13 +19,9 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './',
-    hot: true,
+  entry: path.join(__dirname, './src/index.js'),
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
   },
-  // output: {
-  //   path: path.resolve(__dirname, 'dist'),
-  //   publicPath: 'https://horseplay.herokuapp.com',
-  // },
 };
