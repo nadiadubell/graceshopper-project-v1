@@ -9,6 +9,7 @@ export const SingleProduct = props => {
   const { productId } = props;
   const userId = localStorage.getItem('userId');
   const guestId = localStorage.getItem('guestId');
+  const singleProductId = localStorage.getItem('singleProduct');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,13 +17,15 @@ export const SingleProduct = props => {
       try {
         const data = await axios.get(`${BASE}/products/${productId}`);
         setProduct([data.data]);
-        localStorage.setItem('singleProduct', data.data);
+        localStorage.getItem('singleProductId', data.data.id);
         return data.data;
       } catch (err) {
         console.error(err);
       }
     };
-    getSingleProduct(productId);
+    if (!singleProductId) {
+      getSingleProduct(productId);
+    } else getSingleProduct(singleProductId);
   }, []);
 
   const handleAddToCart = async productId => {
