@@ -29,6 +29,7 @@ export const Products = props => {
     <div id="products">
       <h1 id="products-header">Products</h1>
       {products.map((product, i) => {
+        price = String(Math.round((product.price * 100) / 100));
         return (
           <div id="product-view" key={i}>
             <Link to="/:productId">
@@ -50,9 +51,7 @@ export const Products = props => {
                 }}
               />
             </Link>
-            <div id="product-price">
-              Price: ${`Math.round((product.price * 100) / 100)`}
-            </div>
+            <div id="product-price">Price: ${price}</div>
           </div>
         );
       })}
