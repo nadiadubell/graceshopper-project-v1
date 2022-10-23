@@ -102,7 +102,7 @@ export const GuestOrders = () => {
                         <h4>{product.name}</h4>
                         <img id="order-product-image" src={product.image} />
                         <ul>
-                          <li>Price: ${product.price}</li>
+                          <li>Price: ${Number(product.price).toFixed(2)}</li>
                           <span>
                             <li>Quantity:</li>
                             <select
@@ -143,10 +143,17 @@ export const GuestOrders = () => {
                 </div>
                 <div id="order-summary">
                   <h3>Order Summary</h3>
-                  <h5>Subtotal: ${subtotal}.00</h5>
-                  <h5>Estimated Shipping & Handling: ${shippingAndHandling}.00</h5>
-                  <h5>Estimated Tax: ${tax}</h5>
-                  <h3>Total: ${subtotal + shippingAndHandling + tax}</h3>
+                  <h3>Order Summary</h3>
+                  <h5>Subtotal: ${Number(subtotal).toFixed(2)}</h5>
+                  <h5>
+                    Estimated Shipping & Handling: $
+                    {Number(shippingAndHandling).toFixed(2)}
+                  </h5>
+                  <h5>Estimated Tax: ${Number(tax).toFixed(2)}</h5>
+                  <h3>
+                    Total: $
+                    {Number(subtotal + shippingAndHandling + tax).toFixed(2)}
+                  </h3>
                   <Link to="/guestcheckout">
                     <button>Checkout</button>
                   </Link>

@@ -76,7 +76,9 @@ export const SingleProduct = props => {
               {singleProduct.description}
             </div>
             <h3 id="single-product-breed">Breed: {singleProduct.breedname}</h3>
-            <h3 id="single-product-price">Price: ${singleProduct.price}.00</h3>
+            <h3 id="single-product-price">
+              Price: ${Number(singleProduct.price).toFixed(2)}.00
+            </h3>
             <select id="single-product-quantity-select" required>
               <option value={1}>1</option>
               <option value={2}>2</option>
@@ -93,7 +95,7 @@ export const SingleProduct = props => {
               id="single-product-add-to-cart"
               onClick={() => {
                 handleAddToCart(singleProduct.id);
-                localStorage.removeItem('singleProductId')
+                localStorage.removeItem('singleProductId');
                 navigate('/products');
               }}
             >

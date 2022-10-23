@@ -29,8 +29,6 @@ export const Products = props => {
     <div id="products">
       <h1 id="products-header">Products</h1>
       {products.map((product, i) => {
-        const price = Number(product.price).toFixed(2);
-        console.log(price);
         return (
           <div id="product-view" key={i}>
             <Link to="/:productId">
@@ -52,7 +50,9 @@ export const Products = props => {
                 }}
               />
             </Link>
-            <div id="product-price">Price: ${price}</div>
+            <div id="product-price">
+              Price: ${Number(product.price).toFixed(2)}
+            </div>
           </div>
         );
       })}
