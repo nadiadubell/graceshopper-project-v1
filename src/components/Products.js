@@ -50,7 +50,9 @@ export const Products = props => {
                 }}
               />
             </Link>
-            <div id="product-price">Price: ${product.price}.00</div>
+            <div id="product-price">
+              Price: ${String(Math.round((product.price * 100) / 100))}
+            </div>
           </div>
         );
       })}
