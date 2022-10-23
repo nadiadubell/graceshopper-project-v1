@@ -193,7 +193,7 @@ const createInitialProducts = async () => {
         Thoroughbreds are also used in other riding disciplines and are 
         often crossbred to improve other horse breeds.`,
         breedId: 1,
-        price: 5000,
+        price: 5000.0,
         image: 'https://i.imgur.com/9RhQMDK.jpg',
       },
       {
@@ -205,7 +205,7 @@ const createInitialProducts = async () => {
         flowing mane and tail. Friesians are graceful and agile and are often used as 
         sporting horses today.`,
         breedId: 2,
-        price: 10,
+        price: 10.0,
         image: 'https://i.imgur.com/FLqRtqe.jpg',
       },
       {
