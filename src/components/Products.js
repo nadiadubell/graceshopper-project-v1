@@ -29,7 +29,7 @@ export const Products = props => {
     <div id="products">
       <h1 id="products-header">Products</h1>
       {products.map((product, i) => {
-        const price = String(Math.round((product.price * 100) / 100));
+        const price = product.price.toFixed(2);
         console.log(price);
         return (
           <div id="product-view" key={i}>
