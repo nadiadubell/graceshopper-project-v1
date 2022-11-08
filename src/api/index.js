@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export const BASE =
   process.env.NODE_ENV === 'production'
-    ? 'https://horseplay-klge74l72-ndubell01-gmailcom.vercel.app/api'
+    ? 'https://vercel.com/ndubell01-gmailcom/horseplay/api'
     : 'http://localhost:4000/api';
 //   process.env.NODE_ENV === 'production'
 //     ? `https://horseplay.herokuapp.com:443/api`
