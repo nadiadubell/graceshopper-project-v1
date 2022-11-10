@@ -16,7 +16,7 @@ server.use(express.json());
 
 server.use(morgan('dev'));
 
-server.use(CORS());
+// server.use(CORS());
 
 //   // Express serve up index.html file if it doesn't recognize route
 //   const path = require('path');
