@@ -4,7 +4,7 @@ import axios from 'axios';
 //   ? `${process.env.BASE}:${process.env.PORT}/api`
 //   : 'http://localhost:4000/api';
 
-export const BASE = 'https://horseplay.vercel.app/api';
+export const BASE = '/api';
 //   process.env.NODE_ENV === 'production'
 //     ? `https://horseplay.herokuapp.com:443/api`
 //     : 'http://localhost:4000/api';
