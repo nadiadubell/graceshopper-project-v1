@@ -193,7 +193,7 @@ const createInitialProducts = async () => {
         Thoroughbreds are also used in other riding disciplines and are 
         often crossbred to improve other horse breeds.`,
         breedId: 1,
-        price: 5000.0,
+        price: 25.0,
         image: 'https://i.imgur.com/9RhQMDK.jpg',
       },
       {
@@ -205,7 +205,7 @@ const createInitialProducts = async () => {
         flowing mane and tail. Friesians are graceful and agile and are often used as 
         sporting horses today.`,
         breedId: 2,
-        price: 10.25,
+        price: 25.25,
         image: 'https://i.imgur.com/FLqRtqe.jpg',
       },
       {
@@ -242,7 +242,7 @@ const createInitialProducts = async () => {
         appearance with arched neck and high tail carriage. These horses have high endurance 
         and high speed and are now often found participating in endurance racing.`,
         breedId: 5,
-        price: 100.12,
+        price: 50.12,
         image: 'https://i.imgur.com/V03UdeV.jpg',
       },
       {
@@ -255,7 +255,7 @@ const createInitialProducts = async () => {
         approximately 11,600 purebreds worldwide. This breed possesses the rare combination 
         of beauty and nobility along with courage, strength, temperament and intelligence.`,
         breedId: 6,
-        price: 150.05,
+        price: 60.05,
         image: 'https://i.imgur.com/Dsh9r2h.jpg',
       },
       {
@@ -267,7 +267,7 @@ const createInitialProducts = async () => {
         were used for hauling and agriculture work but are now, with their elegant gait, 
         more often used for parades and demonstrations.`,
         breedId: 8,
-        price: 600.38,
+        price: 50.38,
         image: 'https://i.imgur.com/TNNaGoh.jpg',
       },
       {
