@@ -272,7 +272,15 @@ const createInitialProducts = async () => {
       },
       {
         name: 'Palomino Model Horse',
-        description: `It's a Palomino!`,
+        description: `Palomino is a genetic color in horses, consisting of a yellow or gold 
+        coat and white mane and tail. Most Palominos also have dark skin and brown eyes. 
+        Genetically, the palomino color is created by breeding one dilution gene in combination 
+        with a "red" (chestnut) base coat. Most color breed registries that record palomino 
+        colored horses were founded years ago, so the standard definition of a palomino is 
+        based almost entirely on their beautiful visible coat color. Palominos have had starring 
+        roles in Hollywood over the years such as ‘Trigger’ the palomino partner of western 
+        cowboy Roy Rogers, ‘Mr. Ed’ the famous talking palomino who had his own tv show, and 
+        ‘Argo’ the palomino mount of Xena the Warrior Princess.`,
         breedId: 7,
         price: 49.99,
         image: 'https://i.imgur.com/NOebewQ.jpg',
