@@ -1,15 +1,16 @@
- #products-header {
+#products-header {
   display: flex;
   justify-content: space-around;
-  color:gray;
-  background-color:beige;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: gray;
+  background-color: beige;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   width: 100%;
   align-items: center;
 }
 
 #products {
-  background-color:beige;
+  background-color: beige;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -19,7 +20,7 @@
 }
 
 #product-view {
-  display: flex; 
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
@@ -36,11 +37,11 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
   padding-top: 25px;
-  }
+}
 
 #product-view a {
   text-decoration: none;
-}  
+}
 
 #product-image {
   width: 100%;
@@ -48,13 +49,13 @@
   padding: 1vh;
 }
 
- #product-price {
+#product-price {
   display: flex;
   padding-bottom: 25px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
- }
+}
 
- @media (max-width:600px) {
+@media (max-width: 600px) {
   #products {
     height: fit-content;
   }
@@ -64,19 +65,19 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    height: fit-content;
-    width: 100%;
+    height: 450px;
+    width: 500px;
     align-items: center;
   }
 
   #product-image {
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
     padding: 10px;
   }
 }
 
-@media (min-width:768px) and (max-width:992px) {
+@media (min-width: 768px) and (max-width: 992px) {
   #products {
     height: fit-content;
     background-color: beige;
