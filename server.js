@@ -57,16 +57,16 @@ server.use((error, req, res, next) => {
 //   });
 // });
 
-const init = async () => {
-  await client.connect();
+// const init = async () => {
+client.connect();
 
-  await rebuildDB();
+// await rebuildDB();
 
-  const PORT = process.env['PORT'] ?? 4000;
+const PORT = process.env['PORT'] ?? 4000;
 
-  server.listen(PORT, () => {
-    console.log(`Server is listening on ${PORT}`);
-  });
-};
+server.listen(PORT, () => {
+  console.log(`Server is listening on ${PORT}`);
+});
+// };
 
-init();
+// init();
