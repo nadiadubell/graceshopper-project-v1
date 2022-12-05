@@ -58,7 +58,7 @@ server.use((error, req, res, next) => {
 // });
 
 // const init = async () => {
-client.connect();
+await client.connect();
 
 // await rebuildDB();
 
