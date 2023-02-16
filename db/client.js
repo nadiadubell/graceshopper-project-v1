@@ -5,7 +5,7 @@ const { Pool, Client } = require('pg');
 const DATABASE_URL = process.env.DB_URL;
 const PASSWORD = process.env.DB_PW;
 
-const client = new Pool({
+const pool = new Pool({
   user: 'ndubell01',
   host: 'db.bit.io',
   database: DATABASE_URL,
@@ -14,10 +14,13 @@ const client = new Pool({
   ssl: true,
 });
 
-client.connect((err, client, done) => {
-  if (err) throw err;
-  console.log('Connected to PostgreSQL database');
-});
+pool.connect()
+  .then(() => {
+    console.log('Connected to database');
+  })
+  .catch((error) => {
+    console.error('Error connecting to database:', error);
+  });
 
 // const client = new Pool({
 //   connectionString,
