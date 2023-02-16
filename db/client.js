@@ -2,19 +2,19 @@ const { Pool, Client } = require('pg');
 // const connectionString =
 //   process.env.DATABASE_URL || 'http://localhost:5432/horseplay-dev';
 
-const DATABASE_URL = process.env.DB_URL;
+const NAME = process.env.DB_NAME;
 const PASSWORD = process.env.DB_PW;
 
-const pool = new Pool({
+const client = new Pool({
   user: 'ndubell01',
   host: 'db.bit.io',
-  database: DATABASE_URL,
+  database: NAME,
   password: PASSWORD, 
   port: 5432,
   ssl: true,
 });
 
-pool.connect()
+client.connect()
   .then(() => {
     console.log('Connected to database');
   })
