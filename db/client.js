@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg');
-const connectionString =
-  process.env.DATABASE_URL || 'http://localhost:5432/horseplay-dev';
+// const connectionString =
+//   process.env.DATABASE_URL || 'http://localhost:5432/horseplay-dev';
 
 const DATABASE_URL = process.env.DB_URL;
 const PASSWORD = process.env.DB_PW;
@@ -12,6 +12,11 @@ const client = new Pool({
   password: PASSWORD, 
   port: 5432,
   ssl: true,
+});
+
+client.connect((err, client, done) => {
+  if (err) throw err;
+  console.log('Connected to PostgreSQL database');
 });
 
 // const client = new Pool({
