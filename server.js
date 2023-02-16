@@ -58,7 +58,13 @@ server.use((error, req, res, next) => {
 // });
 
 const init = async () => {
-  await client.connect();
+  await client.connect()
+  .then(() => {
+    console.log('Connected to database');
+  })
+  .catch((error) => {
+    console.error('Error connecting to database:', error);
+  });
 
   // await rebuildDB();
 

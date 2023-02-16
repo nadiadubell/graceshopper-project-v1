@@ -14,14 +14,6 @@ const client = new Pool({
   ssl: true,
 });
 
-client.connect()
-  .then(() => {
-    console.log('Connected to database');
-  })
-  .catch((error) => {
-    console.error('Error connecting to database:', error);
-  });
-
 // const client = new Pool({
 //   connectionString,
 //   ssl:
