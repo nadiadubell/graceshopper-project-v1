@@ -77,7 +77,7 @@ export const SingleProduct = props => {
             </div>
             <h3 id="single-product-breed">Breed: {singleProduct.breedname}</h3>
             <h3 id="single-product-price">
-              Price: ${Number(singleProduct.price)}
+              Price: ${Number(singleProduct.price).toFixed(2)}
             </h3>
             <select id="single-product-quantity-select" required>
               <option value={1}>1</option>
