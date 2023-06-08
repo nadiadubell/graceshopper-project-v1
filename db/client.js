@@ -12,7 +12,7 @@ const client = new Pool({
   database: NAME,
   password: PASSWORD,
   port: 5432,
-  ssl: true,
+  ssl: false,
 });
 
 // const client = new Pool({
