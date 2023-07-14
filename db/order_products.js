@@ -64,10 +64,11 @@ const updateOrderProduct = async (id, quantity) => {
       await client.query(
         `
         UPDATE orderproducts
-        SET quantity = ${quantity}
-        WHERE id=${id}
+        SET quantity = $1
+        WHERE id = $2
         RETURNING *;
-      `
+      `,
+        [quantity, id]
       );
     }
 
