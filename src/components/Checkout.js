@@ -69,7 +69,7 @@ export const Checkout = () => {
         onSubmit={async event => {
           event.preventDefault();
           await handleSubmit();
-          navigate('/profile');
+          // navigate('/profile');
         }}
       >
         <h3>PLEASE ENTER PAYMENT DETAILS</h3>
