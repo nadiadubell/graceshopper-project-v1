@@ -57,23 +57,27 @@ export const Orders = () => {
     return data;
   };
 
-  const handleQuantityChange = async (i, orderId, productId) => {
-    const orderProductId = await getOrderProduct(orderId, productId);
-    const select = document.getElementById(`quantity-select-${i}`);
-    const value = select.options[select.selectedIndex].value;
+  const updateQuantity = async (orderProductId, value) => {
     const response = await fetch(`${BASE}/orderproducts/${orderProductId}/`, {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'content-type': 'application/json',
       },
       body: JSON.stringify({
         quantity: `${value}`,
       }),
     });
     const data = await response.json();
-    setRenderer(!renderer);
     return data;
+  };
+
+  const handleQuantityChange = async (i, orderId, productId) => {
+    const select = document.getElementById(`quantity-select-${i}`);
+    const value = select.options[select.selectedIndex].value;
+    const orderProductId = await getOrderProduct(orderId, productId);
+    if (orderProductId) {
+      await updateQuantity(orderProductId, value).then(setRenderer(renderer));
+    }
   };
 
   const getSubtotal = order => {
