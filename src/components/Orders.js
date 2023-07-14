@@ -76,7 +76,7 @@ export const Orders = () => {
     const value = select.options[select.selectedIndex].value;
     const orderProductId = await getOrderProduct(orderId, productId);
     if (orderProductId) {
-      await updateQuantity(orderProductId, value).then(setRenderer(renderer));
+      await updateQuantity(orderProductId, value).then(setRenderer(!renderer));
     }
   };
 
@@ -111,7 +111,6 @@ export const Orders = () => {
                               required
                               onChange={() => {
                                 handleQuantityChange(i, order.id, product.id);
-                                window.location.reload(true);
                               }}
                             >
                               <option value="quantity">
