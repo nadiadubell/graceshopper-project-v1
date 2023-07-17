@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// export const BASE = process.env.BASE
-//   ? `${process.env.BASE}:${process.env.PORT}/api`
-//   : 'http://localhost:4000/api';
+export const BASE = process.env.BASE
+  ? `${process.env.BASE}:${process.env.PORT}/api`
+  : 'http://localhost:4000/api';
 
-export const BASE = '/api';
+// export const BASE = '/api';
 //   process.env.NODE_ENV === 'production'
 //     ? `https://horseplay.herokuapp.com:443/api`
 //     : 'http://localhost:4000/api';
