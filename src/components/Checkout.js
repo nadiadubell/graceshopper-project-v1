@@ -58,6 +58,7 @@ export const Checkout = () => {
         isOpen: false,
       }),
     });
+    console.log('userId' + userId);
     const data = await response.json();
     console.log(data);
     return data;
