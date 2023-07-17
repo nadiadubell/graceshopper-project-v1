@@ -66,7 +66,7 @@ ordersRouter.patch('/:userId/:orderId', async (req, res, next) => {
   try {
     const userCheck = await getUserById(userId);
     const originalOrder = await getOrderById(orderId);
-    if (originalOrder.userId === userCheck.id || req.userId.isAdmin === true) {
+    if (originalOrder.userId === userCheck.id) {
       const updatedOrder = await updateOrder(originalOrder.id, updateFields);
       res.send({ order: updatedOrder });
     } else {
