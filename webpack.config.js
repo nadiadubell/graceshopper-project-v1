@@ -1,6 +1,7 @@
 'use strict';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
@@ -34,6 +35,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       filename: 'index.html',
+    }),
+    new webpack.EnvironmentPlugin({
+      BASE: process.env.BASE || 'http://localhost',
+      PORT: process.env.PORT || 4000,
     }),
   ],
 };
