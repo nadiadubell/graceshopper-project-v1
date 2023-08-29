@@ -28,9 +28,9 @@ export const Products = props => {
   return (
     <div id="products">
       <h1 id="products-header">Products</h1>
-      {products.map((product, i) => {
+      {products.map(product => {
         return (
-          <div id="product-view" key={i}>
+          <div id="product-view" key={product.id}>
             <Link to="/:productId">
               <h2
                 id="product-name"
@@ -48,6 +48,7 @@ export const Products = props => {
                 onClick={() => {
                   setProductId(product.id);
                 }}
+                loading="lazy"
               />
             </Link>
             <div id="product-price">
